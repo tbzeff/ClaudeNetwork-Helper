@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Network+ Study Helper</title>
+  <link rel="stylesheet" href="networkplus.css">
+</head>
+<body>
+
+<header>
+  <h1>Network+ Study Helper</h1>
+  <span class="badge">CompTIA N10-009</span>
+</header>
+
+<nav id="domain-nav">
+  <div class="domain-dropdown" id="dd-domain1">
+    <button class="active" onclick="toggleDomainDropdown('domain1')">Domain 1 — Networking Concepts ▾</button>
+    <div class="dropdown-menu" id="domain1-tabs">
+      <button class="sec-btn active" onclick="selectSection('ports', 'domain1')">⚡ Ports &amp; Protocols</button>
+      <button class="sec-btn" onclick="selectSection('cables', 'domain1')">🔌 Cable Standards</button>
+      <button class="sec-btn" onclick="selectSection('classful', 'domain1')">📋 Classful IP</button>
+      <button class="sec-btn" onclick="selectSection('fundamental', 'domain1')">🖧 Net Fundamentals</button>
+      <button class="sec-btn" onclick="selectSection('cloud', 'domain1')">☁️ Cloud Concepts</button>
+      <button class="sec-btn" onclick="selectSection('subnetting', 'domain1')">🧮 Subnetting</button>
+    </div>
+  </div>
+  <div class="domain-dropdown" id="dd-domain2">
+    <button onclick="toggleDomainDropdown('domain2')">Domain 2 — Network Implementation ▾</button>
+    <div class="dropdown-menu" id="domain2-tabs">
+      <button class="sec-btn" onclick="selectSection('routing', 'domain2')">🔀 Routing</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ── Ports & Protocols ── -->
+  <div id="ports" class="section active">
+    <div class="score-bar">
+      <div class="score-item s-correct"><div class="val" id="ports-correct">0</div><div class="lbl">Correct</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item s-wrong"><div class="val" id="ports-wrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item"><div class="val" id="ports-pct">—</div><div class="lbl">Accuracy</div></div>
+    </div>
+    <div class="progress-dots" id="ports-dots"></div>
+    <div class="card">
+      <div class="q-meta" id="ports-meta"></div>
+      <div class="q-text" id="ports-question"></div>
+      <div class="choices" id="ports-choices"></div>
+      <div class="feedback" id="ports-feedback"></div>
+      <button class="next-btn" id="ports-next" onclick="nextPortQ()">Next →</button>
+    </div>
+  </div>
+
+  <!-- ── Cable Standards ── -->
+  <div id="cables" class="section">
+    <div class="score-bar">
+      <div class="score-item s-correct"><div class="val" id="cables-correct">0</div><div class="lbl">Correct</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item s-wrong"><div class="val" id="cables-wrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item"><div class="val" id="cables-pct">—</div><div class="lbl">Accuracy</div></div>
+    </div>
+    <div class="progress-dots" id="cables-dots"></div>
+    <div class="card">
+      <div class="q-meta" id="cables-meta"></div>
+      <div class="q-text" id="cables-question"></div>
+      <div class="choices" id="cables-choices"></div>
+      <div class="feedback" id="cables-feedback"></div>
+      <button class="next-btn" id="cables-next" onclick="nextCableQ()">Next →</button>
+    </div>
+  </div>
+
+  <!-- ── Classful IP ── -->
+  <div id="classful" class="section">
+    <div class="score-bar">
+      <div class="score-item s-correct"><div class="val" id="classful-correct">0</div><div class="lbl">Correct</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item s-wrong"><div class="val" id="classful-wrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item"><div class="val" id="classful-pct">—</div><div class="lbl">Accuracy</div></div>
+    </div>
+    <div class="progress-dots" id="classful-dots"></div>
+    <div class="card">
+      <div class="q-meta" id="classful-meta"></div>
+      <div class="q-text" id="classful-question"></div>
+      <div class="choices" id="classful-choices"></div>
+      <div class="feedback" id="classful-feedback"></div>
+      <button class="next-btn" id="classful-next" onclick="nextClassfulQ()">Next →</button>
+    </div>
+  </div>
+
+  <!-- ── Networking Fundamentals ── -->
+  <div id="fundamental" class="section">
+    <div class="score-bar">
+      <div class="score-item s-correct"><div class="val" id="fundamental-correct">0</div><div class="lbl">Correct</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item s-wrong"><div class="val" id="fundamental-wrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item"><div class="val" id="fundamental-pct">—</div><div class="lbl">Accuracy</div></div>
+    </div>
+    <div class="progress-dots" id="fundamental-dots"></div>
+    <div class="card">
+      <div class="q-meta" id="fundamental-meta"></div>
+      <div class="q-text" id="fundamental-question"></div>
+      <div class="choices" id="fundamental-choices"></div>
+      <div class="feedback" id="fundamental-feedback"></div>
+      <button class="next-btn" id="fundamental-next" onclick="nextFundamentalQ()">Next →</button>
+    </div>
+  </div>
+
+  <!-- ── Cloud Concepts ── -->
+  <div id="cloud" class="section">
+    <div class="score-bar">
+      <div class="score-item s-correct"><div class="val" id="cloud-correct">0</div><div class="lbl">Correct</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item s-wrong"><div class="val" id="cloud-wrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item"><div class="val" id="cloud-pct">—</div><div class="lbl">Accuracy</div></div>
+    </div>
+    <div class="progress-dots" id="cloud-dots"></div>
+    <div class="card">
+      <div class="q-meta" id="cloud-meta"></div>
+      <div class="q-text" id="cloud-question"></div>
+      <div class="choices" id="cloud-choices"></div>
+      <div class="feedback" id="cloud-feedback"></div>
+      <button class="next-btn" id="cloud-next" onclick="nextCloudQ()">Next →</button>
+    </div>
+  </div>
+
+  <!-- ── Subnetting ── -->
+  <div id="subnetting" class="section">
+    <div class="score-bar">
+      <div class="score-item s-correct"><div class="val" id="subnet-correct">0</div><div class="lbl">Correct</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item s-wrong"><div class="val" id="subnet-wrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item"><div class="val" id="subnet-pct">—</div><div class="lbl">Accuracy</div></div>
+    </div>
+    <div class="card">
+      <div class="q-meta" id="subnet-meta"></div>
+      <div class="q-text" id="subnet-question"></div>
+      <div class="subnet-row">
+        <input type="text" id="subnet-answer" placeholder="Your answer…" autocomplete="off" spellcheck="false" />
+        <div class="subnet-hint" id="subnet-hint"></div>
+        <button class="submit-btn" onclick="checkSubnetQ()">Check Answer</button>
+      </div>
+      <div class="feedback" id="subnet-feedback"></div>
+      <button class="next-btn" id="subnet-next" onclick="nextSubnetQ()">Next →</button>
+    </div>
+  </div>
+
+  <!-- ── Routing (2.1) ── -->
+  <div id="routing" class="section">
+    <div class="score-bar">
+      <div class="score-item s-correct"><div class="val" id="routing-correct">0</div><div class="lbl">Correct</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item s-wrong"><div class="val" id="routing-wrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item"><div class="val" id="routing-pct">—</div><div class="lbl">Accuracy</div></div>
+    </div>
+    <div class="progress-dots" id="routing-dots"></div>
+    <div class="card">
+      <div class="q-meta" id="routing-meta"></div>
+      <div class="q-text" id="routing-question"></div>
+      <div class="choices" id="routing-choices"></div>
+      <div class="feedback" id="routing-feedback"></div>
+      <button class="next-btn" id="routing-next" onclick="nextRoutingQ()">Next →</button>
+    </div>
+  </div>
+
+</main>
+
+<script src="networkplus.js"></script>
+</body>
+</html>
