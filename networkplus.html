@@ -30,6 +30,7 @@
     <div class="dropdown-menu" id="domain2-tabs">
       <button class="sec-btn" onclick="selectSection('routing', 'domain2')">🔀 Routing</button>
       <button class="sec-btn" onclick="selectSection('switching', 'domain2')">🔁 Switching/VLANs</button>
+      <button class="sec-btn" onclick="selectSection('wireless', 'domain2')">📶 Wireless</button>
     </div>
   </div>
 </nav>
@@ -169,6 +170,25 @@
       <div class="choices" id="switching-choices"></div>
       <div class="feedback" id="switching-feedback"></div>
       <button class="next-btn" id="switching-next" onclick="nextSwitchingQ()">Next →</button>
+    </div>
+  </div>
+
+  <!-- ── Wireless (2.3) ── -->
+  <div id="wireless" class="section">
+    <div class="score-bar">
+      <div class="score-item s-correct"><div class="val" id="wireless-correct">0</div><div class="lbl">Correct</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item s-wrong"><div class="val" id="wireless-wrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item"><div class="val" id="wireless-pct">—</div><div class="lbl">Accuracy</div></div>
+    </div>
+    <div class="progress-dots" id="wireless-dots"></div>
+    <div class="card">
+      <div class="q-meta" id="wireless-meta"></div>
+      <div class="q-text" id="wireless-question"></div>
+      <div class="choices" id="wireless-choices"></div>
+      <div class="feedback" id="wireless-feedback"></div>
+      <button class="next-btn" id="wireless-next" onclick="nextWirelessQ()">Next →</button>
     </div>
   </div>
 

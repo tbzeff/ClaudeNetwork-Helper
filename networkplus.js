@@ -1,4 +1,4 @@
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+﻿// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 //  DATA â€” Ports & Protocols
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
@@ -509,7 +509,7 @@ function renderMC(prefix, q, checkFn) {
   document.getElementById(`${prefix}-question`).innerHTML  = q.text;
   const el = document.getElementById(`${prefix}-choices`);
   el.innerHTML = '';
-  q.choices.forEach(c => {
+  shuffle(q.choices).forEach(c => {
     const btn = document.createElement('button');
     btn.className = 'choice-btn';
     btn.textContent = c;
@@ -582,6 +582,67 @@ function buildPortQuestions() {
   return shuffle(qs);
 }
 
+// ══════════════════════════════════════════════════════
+//  DATA — Wireless (2.3)
+// ══════════════════════════════════════════════════════
+
+const WIRELESS_QUESTIONS = [
+  // Frequencies
+  { text: "Which Wi-Fi frequency band offers the <strong>most non-overlapping channels</strong> and is used by 802.11ac/Wi-Fi 5?", answer: "5 GHz", choices: ["2.4 GHz","5 GHz","6 GHz","900 MHz"], meta: "Frequencies — 2.3" },
+  { text: "Which Wi-Fi frequency band has the <strong>longest range</strong> but the <strong>fewest non-overlapping channels</strong>?", answer: "2.4 GHz", choices: ["2.4 GHz","5 GHz","6 GHz","60 GHz"], meta: "Frequencies — 2.3" },
+  { text: "Which frequency band was introduced with <strong>Wi-Fi 6E</strong> to provide additional spectrum?", answer: "6 GHz", choices: ["2.4 GHz","5 GHz","6 GHz","900 MHz"], meta: "Frequencies — 2.3" },
+  { text: "How many non-overlapping 20 MHz channels exist in the <strong>2.4 GHz</strong> band (US)?", answer: "3", choices: ["1","3","11","23"], meta: "Channels — 2.3" },
+  { text: "Which channels are the <strong>three non-overlapping</strong> 20 MHz channels in the 2.4 GHz band?", answer: "1, 6, 11", choices: ["1, 5, 10","1, 6, 11","2, 6, 10","1, 7, 13"], meta: "Channels — 2.3" },
+  { text: "What does <strong>802.11h</strong> add to wireless networks operating in the 5 GHz band?", answer: "Dynamic Frequency Selection (DFS) and Transmit Power Control (TPC) to avoid radar interference", choices: ["Dynamic Frequency Selection (DFS) and Transmit Power Control (TPC) to avoid radar interference","WPA3 encryption","Band steering between 2.4 and 5 GHz","MU-MIMO support"], meta: "Channels — 2.3" },
+  { text: "What is <strong>band steering</strong>?", answer: "Automatically directing capable clients from 2.4 GHz to 5 GHz to reduce congestion", choices: ["Automatically directing capable clients from 2.4 GHz to 5 GHz to reduce congestion","Bonding two frequency bands for double throughput","Blocking clients on the 2.4 GHz band entirely","Changing channel width from 20 MHz to 40 MHz"], meta: "Frequencies — 2.3" },
+  { text: "Increasing channel width from 20 MHz to 40 MHz in the 2.4 GHz band has what drawback?", answer: "It eliminates all non-overlapping channels, causing interference", choices: ["It eliminates all non-overlapping channels, causing interference","It reduces maximum throughput","It is not supported by 802.11n","It requires WPA3"], meta: "Channels — 2.3" },
+
+  // 802.11 Standards
+  { text: "Which 802.11 standard introduced <strong>MU-MIMO and operates only on 5 GHz</strong> (Wi-Fi 5)?", answer: "802.11ac", choices: ["802.11n","802.11ac","802.11ax","802.11g"], meta: "802.11 Standards — 2.3" },
+  { text: "Which 802.11 standard is known as <strong>Wi-Fi 6/6E</strong> and introduces OFDMA?", answer: "802.11ax", choices: ["802.11ac","802.11ax","802.11n","802.11ad"], meta: "802.11 Standards — 2.3" },
+  { text: "Which 802.11 standard operates on <strong>both 2.4 GHz and 5 GHz</strong> (Wi-Fi 4)?", answer: "802.11n", choices: ["802.11a","802.11g","802.11n","802.11ac"], meta: "802.11 Standards — 2.3" },
+  { text: "Which 802.11 standard operates only on <strong>2.4 GHz</strong> at up to 54 Mbps?", answer: "802.11g", choices: ["802.11a","802.11b","802.11g","802.11n"], meta: "802.11 Standards — 2.3" },
+  { text: "Which 802.11 standard operates only on <strong>5 GHz</strong> at up to 54 Mbps?", answer: "802.11a", choices: ["802.11a","802.11b","802.11g","802.11n"], meta: "802.11 Standards — 2.3" },
+
+  // SSID / BSSID / ESSID
+  { text: "What does <strong>SSID</strong> stand for?", answer: "Service Set Identifier", choices: ["Service Set Identifier","Secure Signal Interface Device","Subnet Service ID","System Signal Identifier"], meta: "Identifiers — 2.3" },
+  { text: "What is a <strong>BSSID</strong>?", answer: "The MAC address of the access point radio", choices: ["The MAC address of the access point radio","The broadcast SSID name","The basic subnet ID","A secondary SSID for guest networks"], meta: "Identifiers — 2.3" },
+  { text: "What is an <strong>ESSID</strong>?", answer: "The SSID shared across multiple APs forming a single extended wireless network", choices: ["The SSID shared across multiple APs forming a single extended wireless network","An encrypted SSID","A hidden SSID","A unique SSID per access point"], meta: "Identifiers — 2.3" },
+  { text: "When multiple APs broadcast the <strong>same SSID</strong> to form one seamless network, that SSID is called the:", answer: "ESSID", choices: ["BSSID","ESSID","BSS","IBSS"], meta: "Identifiers — 2.3" },
+
+  // Network Types
+  { text: "Which wireless network type <strong>requires no access point</strong> and has devices communicating directly?", answer: "Ad hoc (IBSS)", choices: ["Infrastructure","Ad hoc (IBSS)","Mesh","Point to point"], meta: "Network Types — 2.3" },
+  { text: "Which wireless network type uses <strong>access points connected to a wired distribution system</strong>?", answer: "Infrastructure (BSS)", choices: ["Ad hoc (IBSS)","Infrastructure (BSS)","Mesh","Point to point"], meta: "Network Types — 2.3" },
+  { text: "In a <strong>wireless mesh</strong> network, how do APs communicate with each other?", answer: "Via backhaul links between APs (wired or wireless)", choices: ["Via backhaul links between APs (wired or wireless)","Only through client devices","Via a single centralized controller with no direct AP-to-AP links","Only through a wired distribution system"], meta: "Network Types — 2.3" },
+  { text: "A <strong>point-to-point</strong> wireless link is most commonly used for:", answer: "Bridging two buildings or locations", choices: ["Bridging two buildings or locations","Connecting many clients to one AP","Creating a guest VLAN","Band steering between floors"], meta: "Network Types — 2.3" },
+
+  // Encryption
+  { text: "Which wireless encryption standard replaced WPA and uses <strong>AES-CCMP</strong>?", answer: "WPA2", choices: ["WEP","WPA","WPA2","WPA3"], meta: "Encryption — 2.3" },
+  { text: "Which wireless encryption standard introduced <strong>SAE (Simultaneous Authentication of Equals)</strong>?", answer: "WPA3", choices: ["WEP","WPA","WPA2","WPA3"], meta: "Encryption — 2.3" },
+  { text: "What is the main security improvement of <strong>WPA3-Personal</strong> over WPA2-Personal?", answer: "Forward secrecy via SAE, protecting past sessions even if the password is later compromised", choices: ["Forward secrecy via SAE, protecting past sessions even if the password is later compromised","AES-256 instead of AES-128","Elimination of the pre-shared key entirely","Mandatory certificate-based authentication"], meta: "Encryption — 2.3" },
+  { text: "Which deprecated wireless security protocol used <strong>RC4</strong> and is trivially cracked?", answer: "WEP", choices: ["WEP","WPA","WPA2","WPA3"], meta: "Encryption — 2.3" },
+
+  // Authentication
+  { text: "Which wireless authentication mode uses a <strong>single shared password</strong> for all clients?", answer: "PSK (Pre-Shared Key)", choices: ["PSK (Pre-Shared Key)","Enterprise (802.1X)","RADIUS","TACACS+"], meta: "Authentication — 2.3" },
+  { text: "Which wireless authentication mode uses <strong>802.1X with a RADIUS server</strong> for per-user credentials?", answer: "Enterprise (802.1X)", choices: ["PSK (Pre-Shared Key)","Enterprise (802.1X)","WPA2-Personal","SAE"], meta: "Authentication — 2.3" },
+  { text: "A company wants each employee to authenticate to Wi-Fi with their <strong>individual domain credentials</strong>. Which mode should be configured?", answer: "WPA2/WPA3 Enterprise (802.1X)", choices: ["WPA2/WPA3 Enterprise (802.1X)","WPA2-Personal PSK","WEP Open","WPA3-SAE"], meta: "Authentication — 2.3" },
+
+  // Guest Networks / Captive Portals
+  { text: "What is a <strong>captive portal</strong>?", answer: "A web page users must interact with before gaining full network access", choices: ["A web page users must interact with before gaining full network access","A firewall blocking guest traffic","A VLAN reserved for IoT devices","A separate SSID with WPA3 encryption"], meta: "Guest Networks — 2.3" },
+  { text: "Guest networks are typically isolated from corporate resources using:", answer: "A separate VLAN or SSID with firewall rules", choices: ["A separate VLAN or SSID with firewall rules","MAC filtering only","WEP encryption","Disabling DHCP"], meta: "Guest Networks — 2.3" },
+
+  // Antennas
+  { text: "Which antenna type radiates signal <strong>equally in all horizontal directions</strong>?", answer: "Omnidirectional", choices: ["Omnidirectional","Directional","Yagi","Parabolic"], meta: "Antennas — 2.3" },
+  { text: "Which antenna type focuses signal in <strong>one specific direction</strong>, maximizing range in that direction?", answer: "Directional", choices: ["Omnidirectional","Directional","Dipole","Patch"], meta: "Antennas — 2.3" },
+  { text: "A <strong>Yagi</strong> antenna is best suited for:", answer: "Point-to-point links requiring focused gain in one direction", choices: ["Point-to-point links requiring focused gain in one direction","General indoor coverage","Providing 360° coverage in a large office","Cellular tower backhaul"], meta: "Antennas — 2.3" },
+  { text: "An omnidirectional antenna is most appropriate for:", answer: "Providing 360° horizontal coverage in an open office", choices: ["Providing 360° horizontal coverage in an open office","Bridging two buildings","Focusing signal down a long corridor","Point-to-point outdoor links"], meta: "Antennas — 2.3" },
+
+  // Autonomous vs. Lightweight AP
+  { text: "Which AP type manages its own configuration <strong>independently</strong> without a controller?", answer: "Autonomous AP", choices: ["Autonomous AP","Lightweight AP","Controller-based AP","Cloud-managed AP"], meta: "AP Types — 2.3" },
+  { text: "Which AP type forwards traffic and config decisions to a <strong>Wireless LAN Controller (WLC)</strong>?", answer: "Lightweight AP", choices: ["Autonomous AP","Lightweight AP","Fat AP","Standalone AP"], meta: "AP Types — 2.3" },
+  { text: "What protocol do lightweight APs use to communicate with a WLC?", answer: "CAPWAP (Control and Provisioning of Wireless Access Points)", choices: ["CAPWAP (Control and Provisioning of Wireless Access Points)","LWAPP only","SNMP","Telnet"], meta: "AP Types — 2.3" },
+  { text: "A large enterprise wants <strong>centralized management</strong> of 200 APs with roaming support. Which AP deployment is preferred?", answer: "Lightweight APs with a Wireless LAN Controller", choices: ["Lightweight APs with a Wireless LAN Controller","Autonomous APs on each floor","Ad hoc mesh with no controller","Fat APs with individual configs"], meta: "AP Types — 2.3" },
+];
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 //  STATE
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
@@ -594,6 +655,7 @@ let fundamentalQs = [], fundamentalIdx = 0, fundamentalScore = { c: 0, w: 0 }, f
 let subnetQ = null, subnetScore = { c: 0, w: 0 };
 let routingQs = [], routingIdx = 0, routingScore = { c: 0, w: 0 }, routingHist = [];
 let switchingQs = [], switchingIdx = 0, switchingScore = { c: 0, w: 0 }, switchingHist = [];
+let wirelessQs = [], wirelessIdx = 0, wirelessScore = { c: 0, w: 0 }, wirelessHist = [];
 
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 //  PORTS
@@ -783,13 +845,33 @@ function nextSwitchingQ() {
   renderSwitchingQ();
 }
 
+// Wireless (2.3)
+
+function renderWirelessQ() {
+  renderMC('wireless', wirelessQs[wirelessIdx], checkWirelessQ);
+  renderDots('wireless-dots', wirelessHist);
+}
+
+function checkWirelessQ(chosen, correct) {
+  resolveMC('wireless', chosen, correct, wirelessScore, wirelessHist);
+  updateScore('wireless', wirelessScore);
+  renderDots('wireless-dots', wirelessHist);
+  document.getElementById('wireless-next').style.display = 'inline-block';
+}
+
+function nextWirelessQ() {
+  wirelessIdx++;
+  if (wirelessIdx >= wirelessQs.length) { wirelessQs = shuffle([...WIRELESS_QUESTIONS]); wirelessIdx = 0; }
+  renderWirelessQ();
+}
+
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 //  NAV
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 const DOMAIN_SECTIONS = {
   domain1: ['ports', 'cables', 'classful', 'fundamental', 'cloud', 'subnetting'],
-  domain2: ['routing', 'switching'],
+  domain2: ['routing', 'switching', 'wireless'],
 };
 
 let activeDomain = 'domain1';
@@ -840,6 +922,7 @@ document.addEventListener('DOMContentLoaded', () => {
   cloudQs       = shuffle([...CLOUD_QUESTIONS]);
   routingQs     = shuffle([...ROUTING_QUESTIONS]);
   switchingQs   = shuffle([...SWITCHING_QUESTIONS]);
+  wirelessQs    = shuffle([...WIRELESS_QUESTIONS]);
   renderPortQ();
   renderCableQ();
   renderClassfulQ();
@@ -848,6 +931,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderSubnetQ();
   renderRoutingQ();
   renderSwitchingQ();
+  renderWirelessQ();
 
   document.getElementById('subnet-answer').addEventListener('keydown', e => {
     if (e.key !== 'Enter') return;
