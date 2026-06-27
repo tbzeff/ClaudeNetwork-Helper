@@ -29,6 +29,7 @@
     <button onclick="toggleDomainDropdown('domain2')">Domain 2 — Network Implementation ▾</button>
     <div class="dropdown-menu" id="domain2-tabs">
       <button class="sec-btn" onclick="selectSection('routing', 'domain2')">🔀 Routing</button>
+      <button class="sec-btn" onclick="selectSection('switching', 'domain2')">🔁 Switching/VLANs</button>
     </div>
   </div>
 </nav>
@@ -149,6 +150,25 @@
       </div>
       <div class="feedback" id="subnet-feedback"></div>
       <button class="next-btn" id="subnet-next" onclick="nextSubnetQ()">Next →</button>
+    </div>
+  </div>
+
+  <!-- ── Switching / VLANs (2.2) ── -->
+  <div id="switching" class="section">
+    <div class="score-bar">
+      <div class="score-item s-correct"><div class="val" id="switching-correct">0</div><div class="lbl">Correct</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item s-wrong"><div class="val" id="switching-wrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item"><div class="val" id="switching-pct">—</div><div class="lbl">Accuracy</div></div>
+    </div>
+    <div class="progress-dots" id="switching-dots"></div>
+    <div class="card">
+      <div class="q-meta" id="switching-meta"></div>
+      <div class="q-text" id="switching-question"></div>
+      <div class="choices" id="switching-choices"></div>
+      <div class="feedback" id="switching-feedback"></div>
+      <button class="next-btn" id="switching-next" onclick="nextSwitchingQ()">Next →</button>
     </div>
   </div>
 

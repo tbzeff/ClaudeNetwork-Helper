@@ -1,4 +1,4 @@
-﻿// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 //  DATA â€” Ports & Protocols
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
@@ -314,6 +314,53 @@ const ROUTING_QUESTIONS = [
   { text: "The router-on-a-stick design uses subinterfaces to route between VLANs over a single <strong>trunk</strong> link. Each subinterface is assigned:", answer: "An IP address and a VLAN encapsulation (802.1Q)", choices: ["An IP address and a VLAN encapsulation (802.1Q)","A separate MAC address per VLAN","A unique physical port per VLAN","A static NAT entry"], meta: "Subinterfaces â€” 2.1" },
 ];
 
+const SWITCHING_QUESTIONS = [
+  // -- VLANs --
+  { text: "What does <strong>VLAN</strong> stand for?", answer: "Virtual Local Area Network", choices: ["Virtual Local Area Network","Variable Link Access Network","Virtual Layer Access Node","Verified LAN"], meta: "VLANs - 2.2" },
+  { text: "What is the primary purpose of a VLAN?", answer: "Segment broadcast domains on a single switch", choices: ["Segment broadcast domains on a single switch","Encrypt traffic between hosts","Increase port speed","Replace the need for routers"], meta: "VLANs - 2.2" },
+  { text: "What is the default VLAN on most managed switches?", answer: "VLAN 1", choices: ["VLAN 1","VLAN 10","VLAN 100","VLAN 4094"], meta: "VLANs - 2.2" },
+  { text: "Traffic from devices in different VLANs can only be routed by:", answer: "A Layer 3 device (router or Layer 3 switch)", choices: ["A Layer 3 device (router or Layer 3 switch)","A standard Layer 2 switch","A hub","A wireless access point"], meta: "VLANs - 2.2" },
+  { text: "A <strong>VLAN database</strong> on a switch stores:", answer: "VLAN IDs and names configured on the switch", choices: ["VLAN IDs and names configured on the switch","MAC address table entries","IP routing table","ARP cache"], meta: "VLANs - 2.2" },
+  { text: "What is a <strong>Switched Virtual Interface (SVI)</strong>?", answer: "A virtual Layer 3 interface on a switch representing a VLAN", choices: ["A virtual Layer 3 interface on a switch representing a VLAN","A physical uplink port","A wireless virtual AP","A tunneled VPN interface"], meta: "VLANs - 2.2" },
+  { text: "An SVI is used on a Layer 3 switch to:", answer: "Route between VLANs without an external router", choices: ["Route between VLANs without an external router","Increase VLAN IDs beyond 4094","Disable spanning tree per VLAN","Mirror traffic to a monitoring port"], meta: "VLANs - 2.2" },
+  // -- Trunk & Access Ports --
+  { text: "A switch port configured as an <strong>access port</strong> belongs to:", answer: "Exactly one VLAN", choices: ["Exactly one VLAN","All VLANs simultaneously","Two VLANs at most","No VLAN"], meta: "Trunk and Access - 2.2" },
+  { text: "A switch port configured as a <strong>trunk port</strong> carries:", answer: "Traffic for multiple VLANs using 802.1Q tags", choices: ["Traffic for multiple VLANs using 802.1Q tags","Traffic for one VLAN only","Only management traffic","Only voice traffic"], meta: "Trunk and Access - 2.2" },
+  { text: "Which IEEE standard defines VLAN tagging on trunk links?", answer: "802.1Q", choices: ["802.1Q","802.1X","802.3af","802.11ac"], meta: "Trunk and Access - 2.2" },
+  { text: "How does 802.1Q tagging work?", answer: "Inserts a 4-byte tag into the Ethernet frame to identify the VLAN", choices: ["Inserts a 4-byte tag into the Ethernet frame to identify the VLAN","Encrypts the frame payload","Adds a new IP header","Appends a trailer with the VLAN ID"], meta: "Trunk and Access - 2.2" },
+  { text: "Which VLAN traffic crosses a trunk link <strong>without a tag</strong>?", answer: "The native VLAN", choices: ["The native VLAN","The management VLAN","VLAN 1 only","The voice VLAN"], meta: "Trunk and Access - 2.2" },
+  { text: "What security risk arises if the native VLAN on two connected trunk ports does <strong>not</strong> match?", answer: "VLAN hopping - frames may cross VLAN boundaries unintentionally", choices: ["VLAN hopping - frames may cross VLAN boundaries unintentionally","Spanning tree loop","Port channel imbalance","Duplex mismatch"], meta: "Trunk and Access - 2.2" },
+  // -- Native VLAN & Voice VLAN --
+  { text: "Best practice is to change the native VLAN from VLAN 1 to an <strong>unused VLAN</strong> in order to:", answer: "Prevent VLAN hopping attacks", choices: ["Prevent VLAN hopping attacks","Increase trunk bandwidth","Enable 802.1X authentication","Support jumbo frames"], meta: "Native VLAN - 2.2" },
+  { text: "A <strong>Voice VLAN</strong> (auxiliary VLAN) is used to:", answer: "Separate VoIP traffic from data traffic on the same port", choices: ["Separate VoIP traffic from data traffic on the same port","Carry only management traffic","Block non-voice frames","Replace the native VLAN"], meta: "Voice VLAN - 2.2" },
+  { text: "A switch port serving both a PC and an IP phone is typically configured with:", answer: "An access VLAN for data and a voice VLAN", choices: ["An access VLAN for data and a voice VLAN","Two trunk ports","A single native VLAN","802.1X only"], meta: "Voice VLAN - 2.2" },
+  // -- Link Aggregation --
+  { text: "What is <strong>link aggregation</strong> (port channeling / bonding)?", answer: "Combining multiple physical links into one logical higher-bandwidth link", choices: ["Combining multiple physical links into one logical higher-bandwidth link","Splitting one link into multiple VLANs","Encrypting traffic across uplinks","Spanning-tree port fast mode"], meta: "Link Aggregation - 2.2" },
+  { text: "Which IEEE standard defines link aggregation / LACP?", answer: "802.3ad (802.1AX)", choices: ["802.3ad (802.1AX)","802.1Q","802.3af","802.11n"], meta: "Link Aggregation - 2.2" },
+  { text: "What does <strong>LACP</strong> stand for?", answer: "Link Aggregation Control Protocol", choices: ["Link Aggregation Control Protocol","Layer Access Control Protocol","Link Assignment and Configuration Protocol","LAN Aggregation Control Peer"], meta: "Link Aggregation - 2.2" },
+  { text: "Link aggregation provides which two key benefits?", answer: "Increased bandwidth and redundancy", choices: ["Increased bandwidth and redundancy","Encryption and compression","VLAN isolation and NAT","QoS prioritization and routing"], meta: "Link Aggregation - 2.2" },
+  // -- Speed & Duplex --
+  { text: "A <strong>duplex mismatch</strong> on a switch port typically causes:", answer: "Late collisions and poor throughput", choices: ["Late collisions and poor throughput","Spanning tree loop","VLAN hopping","SFP transceiver failure"], meta: "Speed and Duplex - 2.2" },
+  { text: "If a switch port is set to <strong>full duplex</strong> but the connected device auto-negotiates to <strong>half duplex</strong>, the result is:", answer: "A duplex mismatch causing collisions and degraded performance", choices: ["A duplex mismatch causing collisions and degraded performance","Automatic correction with no impact","A trunk link","Spanning tree blocking"], meta: "Speed and Duplex - 2.2" },
+  { text: "Which mode allows a switch port to send <strong>and</strong> receive simultaneously?", answer: "Full duplex", choices: ["Full duplex","Half duplex","Auto","LACP"], meta: "Speed and Duplex - 2.2" },
+  // -- Spanning Tree Protocol --
+  { text: "What problem does <strong>Spanning Tree Protocol (STP)</strong> solve?", answer: "Layer 2 switching loops that cause broadcast storms", choices: ["Layer 2 switching loops that cause broadcast storms","IP routing loops","VLAN hopping","Duplicate IP addresses"], meta: "Spanning Tree - 2.2" },
+  { text: "Which IEEE standard defines the original Spanning Tree Protocol?", answer: "802.1D", choices: ["802.1D","802.1Q","802.1W","802.1S"], meta: "Spanning Tree - 2.2" },
+  { text: "Which STP variant is an IEEE standard that converges faster than 802.1D?", answer: "RSTP (802.1W)", choices: ["RSTP (802.1W)","PVST+","MSTP (802.1S)","VTP"], meta: "Spanning Tree - 2.2" },
+  { text: "In STP, the switch with the <strong>lowest Bridge ID</strong> (priority + MAC) is elected as the:", answer: "Root bridge", choices: ["Root bridge","Designated port","Backup bridge","Edge port"], meta: "Spanning Tree - 2.2" },
+  { text: "STP places a port into <strong>blocking state</strong> to:", answer: "Break loops by preventing frames from forwarding on that port", choices: ["Break loops by preventing frames from forwarding on that port","Increase bandwidth","Disable the VLAN","Enable LACP negotiation"], meta: "Spanning Tree - 2.2" },
+  { text: "Which STP port role forwards traffic and is on the path toward the root bridge?", answer: "Root port", choices: ["Root port","Designated port","Blocked/Alternate port","Edge port"], meta: "Spanning Tree - 2.2" },
+  { text: "PortFast should only be enabled on ports connected to:", answer: "End devices (hosts), not other switches", choices: ["End devices (hosts), not other switches","Uplinks to core switches","All trunk ports","Only fiber uplinks"], meta: "Spanning Tree - 2.2" },
+  { text: "A <strong>BPDU Guard</strong> feature shuts down a PortFast-enabled port if it receives a BPDU, protecting against:", answer: "Unauthorized switches being connected to access ports", choices: ["Unauthorized switches being connected to access ports","Duplex mismatches","MAC flooding","VLAN hopping"], meta: "Spanning Tree - 2.2" },
+  // -- MTU / Jumbo Frames --
+  { text: "What is the standard Ethernet MTU (Maximum Transmission Unit)?", answer: "1500 bytes", choices: ["1500 bytes","1518 bytes","9000 bytes","576 bytes"], meta: "MTU / Jumbo Frames - 2.2" },
+  { text: "A <strong>jumbo frame</strong> has an MTU of approximately:", answer: "9000 bytes", choices: ["1500 bytes","4500 bytes","9000 bytes","64000 bytes"], meta: "MTU / Jumbo Frames - 2.2" },
+  { text: "Jumbo frames are commonly used in:", answer: "Storage networks (iSCSI/NFS) and data center high-throughput links", choices: ["Storage networks (iSCSI/NFS) and data center high-throughput links","Wireless 802.11 networks","WAN links to the ISP","Token ring environments"], meta: "MTU / Jumbo Frames - 2.2" },
+  { text: "What happens if a device sends a jumbo frame to a switch port that does <strong>not</strong> support jumbo frames?", answer: "The frame is dropped (too large)", choices: ["The frame is dropped (too large)","The frame is fragmented automatically","The VLAN ID is stripped","Spanning tree blocks the port"], meta: "MTU / Jumbo Frames - 2.2" },
+  { text: "When a switch port speed is set to <strong>auto</strong>, the port uses which mechanism to agree on speed with the connected device?", answer: "Auto-negotiation", choices: ["Auto-negotiation","LACP","BPDU exchange","CDP"], meta: "Speed and Duplex - 2.2" },
+  { text: "Which STP port role is elected on each network segment to <strong>forward traffic away from the root</strong> toward end devices?", answer: "Designated port", choices: ["Root port","Designated port","Blocked/Alternate port","Edge port"], meta: "Spanning Tree - 2.2" },
+];
+
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 //  SUBNETTING MATH
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
@@ -546,6 +593,7 @@ let cloudQs = [], cloudIdx = 0, cloudScore = { c: 0, w: 0 }, cloudHist = [];
 let fundamentalQs = [], fundamentalIdx = 0, fundamentalScore = { c: 0, w: 0 }, fundamentalHist = [];
 let subnetQ = null, subnetScore = { c: 0, w: 0 };
 let routingQs = [], routingIdx = 0, routingScore = { c: 0, w: 0 }, routingHist = [];
+let switchingQs = [], switchingIdx = 0, switchingScore = { c: 0, w: 0 }, switchingHist = [];
 
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 //  PORTS
@@ -715,13 +763,33 @@ function nextRoutingQ() {
   renderRoutingQ();
 }
 
+// Switching / VLANs
+
+function renderSwitchingQ() {
+  renderMC('switching', switchingQs[switchingIdx], checkSwitchingQ);
+  renderDots('switching-dots', switchingHist);
+}
+
+function checkSwitchingQ(chosen, correct) {
+  resolveMC('switching', chosen, correct, switchingScore, switchingHist);
+  updateScore('switching', switchingScore);
+  renderDots('switching-dots', switchingHist);
+  document.getElementById('switching-next').style.display = 'inline-block';
+}
+
+function nextSwitchingQ() {
+  switchingIdx++;
+  if (switchingIdx >= switchingQs.length) { switchingQs = shuffle([...SWITCHING_QUESTIONS]); switchingIdx = 0; }
+  renderSwitchingQ();
+}
+
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 //  NAV
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 const DOMAIN_SECTIONS = {
   domain1: ['ports', 'cables', 'classful', 'fundamental', 'cloud', 'subnetting'],
-  domain2: ['routing'],
+  domain2: ['routing', 'switching'],
 };
 
 let activeDomain = 'domain1';
@@ -771,6 +839,7 @@ document.addEventListener('DOMContentLoaded', () => {
   fundamentalQs = shuffle([...FUNDAMENTALS_QUESTIONS]);
   cloudQs       = shuffle([...CLOUD_QUESTIONS]);
   routingQs     = shuffle([...ROUTING_QUESTIONS]);
+  switchingQs   = shuffle([...SWITCHING_QUESTIONS]);
   renderPortQ();
   renderCableQ();
   renderClassfulQ();
@@ -778,6 +847,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCloudQ();
   renderSubnetQ();
   renderRoutingQ();
+  renderSwitchingQ();
 
   document.getElementById('subnet-answer').addEventListener('keydown', e => {
     if (e.key !== 'Enter') return;
