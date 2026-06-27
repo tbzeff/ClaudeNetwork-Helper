@@ -33,6 +33,7 @@ Open `networkplus.html` in a browser. No installation required.
 | Routing | 2.1 | Done |
 | Switching / VLANs | 2.2 | Done |
 | Wireless | 2.3 | Done |
+| Physical Installations | 2.4 | Done ✅ |
 | DNS Record Types | 3.4 | Not yet |
 | DR Concepts | 3.3 | Not yet |
 | Security Concepts | 4.1 | Not yet |

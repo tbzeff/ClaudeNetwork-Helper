@@ -31,6 +31,7 @@
       <button class="sec-btn" onclick="selectSection('routing', 'domain2')">🔀 Routing</button>
       <button class="sec-btn" onclick="selectSection('switching', 'domain2')">🔁 Switching/VLANs</button>
       <button class="sec-btn" onclick="selectSection('wireless', 'domain2')">📶 Wireless</button>
+      <button class="sec-btn" onclick="selectSection('physical', 'domain2')">🏗️ Physical Install</button>
     </div>
   </div>
 </nav>
@@ -208,6 +209,26 @@
       <div class="choices" id="routing-choices"></div>
       <div class="feedback" id="routing-feedback"></div>
       <button class="next-btn" id="routing-next" onclick="nextRoutingQ()">Next →</button>
+    </div>
+  </div>
+
+
+  <!-- ── Physical Installations (2.4) ── -->
+  <div id="physical" class="section">
+    <div class="score-bar">
+      <div class="score-item s-correct"><div class="val" id="physical-correct">0</div><div class="lbl">Correct</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item s-wrong"><div class="val" id="physical-wrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item"><div class="val" id="physical-pct">—</div><div class="lbl">Accuracy</div></div>
+    </div>
+    <div class="progress-dots" id="physical-dots"></div>
+    <div class="card">
+      <div class="q-meta" id="physical-meta"></div>
+      <div class="q-text" id="physical-question"></div>
+      <div class="choices" id="physical-choices"></div>
+      <div class="feedback" id="physical-feedback"></div>
+      <button class="next-btn" id="physical-next" onclick="nextPhysicalQ()">Next →</button>
     </div>
   </div>
 

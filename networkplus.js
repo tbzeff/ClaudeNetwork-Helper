@@ -644,6 +644,67 @@ const WIRELESS_QUESTIONS = [
   { text: "A large enterprise wants <strong>centralized management</strong> of 200 APs with roaming support. Which AP deployment is preferred?", answer: "Lightweight APs with a Wireless LAN Controller", choices: ["Lightweight APs with a Wireless LAN Controller","Autonomous APs on each floor","Ad hoc mesh with no controller","Fat APs with individual configs"], meta: "AP Types — 2.3" },
 ];
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+
+// ======================================================
+//  DATA -- Physical Installations (2.4)
+// ======================================================
+
+const PHYSICAL_QUESTIONS = [
+  // IDF / MDF
+  { text: "What does <strong>MDF</strong> stand for in structured cabling?", answer: "Main Distribution Frame", choices: ["Main Distribution Frame","Media Distribution Facility","Managed Data Facility","Main Data Feed"], meta: "IDF/MDF — 2.4" },
+  { text: "What does <strong>IDF</strong> stand for in structured cabling?", answer: "Intermediate Distribution Frame", choices: ["Intermediate Distribution Frame","Internal Data Facility","Interconnect Distribution Frame","Internet Data Feed"], meta: "IDF/MDF — 2.4" },
+  { text: "Which distribution frame is the <strong>central point</strong> that connects to the service provider and all IDFs?", answer: "MDF", choices: ["MDF","IDF","POP","DMZ"], meta: "IDF/MDF — 2.4" },
+  { text: "An IDF typically connects <strong>floor-level wiring</strong> back to which location?", answer: "MDF", choices: ["MDF","ISP","PBX","DMZ"], meta: "IDF/MDF — 2.4" },
+
+  // Rack size
+  { text: "One rack unit (1U) equals how many inches of vertical space?", answer: "1.75 inches", choices: ["1 inch","1.75 inches","2 inches","2.5 inches"], meta: "Rack Size — 2.4" },
+  { text: "A standard full-size data center rack is typically how many rack units tall?", answer: "42U", choices: ["24U","36U","42U","52U"], meta: "Rack Size — 2.4" },
+  { text: "A 2U server occupies how many inches of vertical rack space?", answer: "3.5 inches", choices: ["1.75 inches","2.5 inches","3.5 inches","4 inches"], meta: "Rack Size — 2.4" },
+
+  // Port-side exhaust/intake
+  { text: "In a hot-aisle/cold-aisle data center layout, equipment should draw cool air from the cold aisle through which side?", answer: "Intake (front)", choices: ["Intake (front)","Exhaust (rear)","Top vent","Side panel"], meta: "Port-side Exhaust/Intake — 2.4" },
+  { text: "Which airflow strategy places server exhausts facing each other to isolate hot air?", answer: "Hot-aisle containment", choices: ["Cold-aisle containment","Hot-aisle containment","Blanking panel isolation","Plenum cooling"], meta: "Port-side Exhaust/Intake — 2.4" },
+  { text: "Blanking panels in a rack are used to:", answer: "Prevent hot exhaust air from recirculating to the intake", choices: ["Prevent hot exhaust air from recirculating to the intake","Add extra mounting space","Provide grounding","Increase power capacity"], meta: "Port-side Exhaust/Intake — 2.4" },
+  { text: "A switch labeled <strong>'port-side exhaust'</strong> means airflow:", answer: "Enters from the non-port side and exits through the port side", choices: ["Enters from the non-port side and exits through the port side","Enters from the port side and exits the rear","Ports face the cold aisle and draw cool air","The device has no active cooling"], meta: "Port-side Exhaust/Intake — 2.4" },
+
+  // Patch panels
+  { text: "A <strong>patch panel</strong> in a structured cabling system primarily serves to:", answer: "Terminate horizontal cable runs and provide flexible port connections", choices: ["Terminate horizontal cable runs and provide flexible port connections","Amplify network signals","Convert fiber to copper","Provide PoE power"], meta: "Patch Panels — 2.4" },
+  { text: "Which type of patch panel accepts pre-terminated modules (e.g., keystone jacks) that can be individually replaced?", answer: "Modular patch panel", choices: ["Fixed patch panel","Modular patch panel","Fiber distribution panel","Swing-arm panel"], meta: "Patch Panels — 2.4" },
+  { text: "A <strong>fiber distribution panel</strong> (also called a fiber patch panel) is used to:", answer: "Terminate and manage fiber optic cable connections", choices: ["Terminate and manage fiber optic cable connections","Connect copper Ethernet runs","Power IP phones","Store spare SFP transceivers"], meta: "Fiber Distribution Panel — 2.4" },
+
+  // Lockable
+  { text: "Why are MDF/IDF rooms and racks typically kept <strong>locked</strong>?", answer: "To prevent unauthorized physical access to network infrastructure", choices: ["To prevent unauthorized physical access to network infrastructure","To maintain humidity control","To reduce cable clutter","To comply with PoE standards"], meta: "Lockable — 2.4" },
+  { text: "Which physical security measure specifically restricts access to network equipment enclosures?", answer: "Lockable rack cabinet", choices: ["Lockable rack cabinet","VLAN segmentation","ACL rules","Firewall zones"], meta: "Lockable — 2.4" },
+
+  // UPS
+  { text: "What does <strong>UPS</strong> stand for in the context of power infrastructure?", answer: "Uninterruptible Power Supply", choices: ["Uninterruptible Power Supply","Universal Power Switch","Unified Power System","Unregulated Power Source"], meta: "Power — UPS — 2.4" },
+  { text: "A UPS primarily protects network equipment from:", answer: "Power outages and voltage fluctuations", choices: ["Power outages and voltage fluctuations","Excessive heat","Electromagnetic interference","Cable crosstalk"], meta: "Power — UPS — 2.4" },
+  { text: "Which type of UPS continuously converts AC to DC and back, providing the cleanest power with zero switchover time?", answer: "Online (double-conversion) UPS", choices: ["Online (double-conversion) UPS","Standby (offline) UPS","Line-interactive UPS","Ferroresonant UPS"], meta: "Power — UPS — 2.4" },
+
+  // PDU
+  { text: "What does <strong>PDU</strong> stand for in a data center power context?", answer: "Power Distribution Unit", choices: ["Power Distribution Unit","Protocol Data Unit","Primary Distribution Utility","Patch Delivery Unit"], meta: "Power — PDU — 2.4" },
+  { text: "A <strong>managed PDU</strong> differs from a basic power strip because it:", answer: "Allows remote monitoring and individual outlet control", choices: ["Allows remote monitoring and individual outlet control","Provides UPS battery backup","Converts 3-phase to single-phase power","Increases amperage to equipment"], meta: "Power — PDU — 2.4" },
+  { text: "What is the purpose of monitoring <strong>power load</strong> in a rack?", answer: "To avoid exceeding the circuit breaker capacity and causing outages", choices: ["To avoid exceeding the circuit breaker capacity and causing outages","To reduce cable length","To improve Wi-Fi signal","To set VLAN priorities"], meta: "Power — Load — 2.4" },
+
+  // Voltage
+  { text: "Standard single-phase electrical power in the United States is typically:", answer: "120V AC", choices: ["120V AC","240V AC","48V DC","12V DC"], meta: "Power — Voltage — 2.4" },
+  { text: "High-density data center equipment often uses <strong>208V or 240V</strong> power because:", answer: "Higher voltage reduces current draw and heat for the same wattage", choices: ["Higher voltage reduces current draw and heat for the same wattage","It is cheaper than 120V","It requires smaller breakers","It is the only voltage UPS units accept"], meta: "Power — Voltage — 2.4" },
+
+  // Environmental - humidity
+  { text: "What is the recommended <strong>relative humidity range</strong> in a data center to prevent static buildup and condensation?", answer: "40%–60%", choices: ["10%–20%","40%–60%","70%–80%","Above 90%"], meta: "Environmental — Humidity — 2.4" },
+  { text: "Low humidity in a data center primarily increases the risk of:", answer: "Electrostatic discharge (ESD) damaging equipment", choices: ["Electrostatic discharge (ESD) damaging equipment","Condensation on circuit boards","Overheating CPUs","Cable corrosion"], meta: "Environmental — Humidity — 2.4" },
+  { text: "High humidity in a data center primarily increases the risk of:", answer: "Condensation causing short circuits", choices: ["Condensation causing short circuits","Static electricity","Fire","Higher power bills"], meta: "Environmental — Humidity — 2.4" },
+
+  // Environmental - temperature
+  { text: "ASHRAE recommends a data center inlet temperature range of approximately:", answer: "64.4°F–80.6°F (18°C–27°C)", choices: ["32°F–50°F (0°C–10°C)","64.4°F–80.6°F (18°C–27°C)","85°F–95°F (29°C–35°C)","Above 100°F (38°C)"], meta: "Environmental — Temperature — 2.4" },
+  { text: "What device is used to monitor temperature and humidity within server racks or data center rooms?", answer: "Environmental sensor / HVAC monitor", choices: ["Environmental sensor / HVAC monitor","KVM switch","Protocol analyzer","PoE injector"], meta: "Environmental — Temperature — 2.4" },
+
+  // Environmental - fire suppression
+  { text: "Which fire suppression system is <strong>safe for use around electronic equipment</strong> because it does not leave residue?", answer: "Clean agent (gaseous) suppression", choices: ["Clean agent (gaseous) suppression","Wet-pipe sprinkler","Foam suppression","Dry chemical suppression"], meta: "Environmental — Fire Suppression — 2.4" },
+  { text: "Why are traditional water-based sprinkler systems <strong>problematic</strong> in data centers?", answer: "Water can cause electrical short circuits and hardware damage", choices: ["Water can cause electrical short circuits and hardware damage","They require high pressure","They cost more than clean agents","They activate too slowly"], meta: "Environmental — Fire Suppression — 2.4" },
+  { text: "Which clean-agent suppression system works by <strong>interrupting the chemical chain reaction</strong> of fire?", answer: "FM-200 (HFC-227ea)", choices: ["FM-200 (HFC-227ea)","CO2 system","Wet-pipe sprinkler","Dry chemical"], meta: "Environmental — Fire Suppression — 2.4" },
+];
+
 //  STATE
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
@@ -656,6 +717,7 @@ let subnetQ = null, subnetScore = { c: 0, w: 0 };
 let routingQs = [], routingIdx = 0, routingScore = { c: 0, w: 0 }, routingHist = [];
 let switchingQs = [], switchingIdx = 0, switchingScore = { c: 0, w: 0 }, switchingHist = [];
 let wirelessQs = [], wirelessIdx = 0, wirelessScore = { c: 0, w: 0 }, wirelessHist = [];
+let physicalQs = [], physicalIdx = 0, physicalScore = { c: 0, w: 0 }, physicalHist = [];
 
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 //  PORTS
@@ -865,13 +927,33 @@ function nextWirelessQ() {
   renderWirelessQ();
 }
 
+// Physical Installations (2.4)
+
+function renderPhysicalQ() {
+  renderMC('physical', physicalQs[physicalIdx], checkPhysicalQ);
+  renderDots('physical-dots', physicalHist);
+}
+
+function checkPhysicalQ(chosen, correct) {
+  resolveMC('physical', chosen, correct, physicalScore, physicalHist);
+  updateScore('physical', physicalScore);
+  renderDots('physical-dots', physicalHist);
+  document.getElementById('physical-next').style.display = 'inline-block';
+}
+
+function nextPhysicalQ() {
+  physicalIdx++;
+  if (physicalIdx >= physicalQs.length) { physicalQs = shuffle([...PHYSICAL_QUESTIONS]); physicalIdx = 0; }
+  renderPhysicalQ();
+}
+
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 //  NAV
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 const DOMAIN_SECTIONS = {
   domain1: ['ports', 'cables', 'classful', 'fundamental', 'cloud', 'subnetting'],
-  domain2: ['routing', 'switching', 'wireless'],
+  domain2: ['routing', 'switching', 'wireless', 'physical'],
 };
 
 let activeDomain = 'domain1';
@@ -923,6 +1005,7 @@ document.addEventListener('DOMContentLoaded', () => {
   routingQs     = shuffle([...ROUTING_QUESTIONS]);
   switchingQs   = shuffle([...SWITCHING_QUESTIONS]);
   wirelessQs    = shuffle([...WIRELESS_QUESTIONS]);
+  physicalQs   = shuffle([...PHYSICAL_QUESTIONS]);
   renderPortQ();
   renderCableQ();
   renderClassfulQ();
@@ -932,6 +1015,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderRoutingQ();
   renderSwitchingQ();
   renderWirelessQ();
+  renderPhysicalQ();
 
   document.getElementById('subnet-answer').addEventListener('keydown', e => {
     if (e.key !== 'Enter') return;
