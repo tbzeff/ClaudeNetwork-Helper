@@ -529,7 +529,7 @@ function resolveMC(prefix, chosen, correct, score, hist) {
   const ok = chosen === correct;
   const fb = document.getElementById(`${prefix}-feedback`);
   fb.className   = 'feedback ' + (ok ? 'correct' : 'wrong');
-  fb.textContent = ok ? 'âœ“ Correct!' : `âœ— Answer: ${correct}`;
+  fb.textContent = ok ? '✔ Correct!' : `✘ Answer: ${correct}`;
   fb.style.display = 'block';
   if (ok) score.c++; else score.w++;
   hist.push(ok);
@@ -856,7 +856,7 @@ function checkSubnetQ() {
   inp.disabled  = true;
   const fb = document.getElementById('subnet-feedback');
   fb.className   = 'feedback ' + (ok ? 'correct' : 'wrong');
-  fb.textContent = ok ? 'âœ“ Correct!' : `âœ— Answer: ${subnetQ.answer}`;
+  fb.textContent = ok ? '✔ Correct!' : `✘ Answer: ${subnetQ.answer}`;
   fb.style.display = 'block';
   if (ok) subnetScore.c++; else subnetScore.w++;
   updateScore('subnet', subnetScore);
