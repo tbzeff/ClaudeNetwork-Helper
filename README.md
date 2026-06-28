@@ -2,6 +2,8 @@
 
 A browser-based flashcard and quiz tool for the CompTIA Network+ N10-009 exam. No build step, no server, no dependencies — open `networkplus.html` directly in any browser.
 
+**Live:** https://tbzeff.github.io/ClaudeNetwork-Helper/
+
 ## Purpose
 
 Covers all five N10-009 exam domains through interactive multiple-choice questions and free-text exercises. Tracks your score per section so you can focus on weak areas before the exam.
