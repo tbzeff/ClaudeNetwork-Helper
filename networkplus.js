@@ -705,6 +705,55 @@ const PHYSICAL_QUESTIONS = [
   { text: "Which clean-agent suppression system works by <strong>interrupting the chemical chain reaction</strong> of fire?", answer: "FM-200 (HFC-227ea)", choices: ["FM-200 (HFC-227ea)","CO2 system","Wet-pipe sprinkler","Dry chemical"], meta: "Environmental — Fire Suppression — 2.4" },
 ];
 
+// ======================================================
+//  DATA -- Organizational Processes & Procedures (3.1)
+// ======================================================
+
+const ORGPROC_QUESTIONS = [
+  // Documentation - diagrams
+  { text: "Which type of network diagram shows the <strong>actual physical placement</strong> of cabling, devices, and racks?", answer: "Physical network diagram", choices: ["Physical network diagram","Logical network diagram","Rack diagram","Wireless heat map"], meta: "Documentation — 3.1" },
+  { text: "Which type of network diagram shows <strong>IP addressing, VLANs, and data flow</strong> rather than physical placement?", answer: "Logical network diagram", choices: ["Physical network diagram","Logical network diagram","Cable map","Asset inventory"], meta: "Documentation — 3.1" },
+  { text: "A <strong>rack diagram</strong> is used to document:", answer: "The physical layout of equipment within a server rack", choices: ["The physical layout of equipment within a server rack","IP subnet assignments","VLAN trunking configuration","Wireless signal strength"], meta: "Documentation — 3.1" },
+  { text: "A <strong>cable map</strong> is primarily used to:", answer: "Trace which cable connects which two endpoints", choices: ["Trace which cable connects which two endpoints","Track software license keys","Record SLA terms","Document firewall rules"], meta: "Documentation — 3.1" },
+  { text: "Which document set typically includes <strong>Layer 1, Layer 2, and Layer 3</strong> network diagrams to show physical media, VLANs/switching, and routing/IP addressing respectively?", answer: "Layer 1/2/3 network diagrams", choices: ["Layer 1/2/3 network diagrams","Asset inventory","Baseline configuration","SLA documentation"], meta: "Documentation — 3.1" },
+
+  // Documentation - asset inventory
+  { text: "An <strong>asset inventory</strong> typically tracks all of the following EXCEPT:", answer: "Real-time traffic flow statistics", choices: ["Hardware specifications","Software and licensing details","Warranty information","Real-time traffic flow statistics"], meta: "Asset Inventory — 3.1" },
+  { text: "Tracking the <strong>warranty expiration date</strong> of a switch belongs in which type of documentation?", answer: "Asset inventory", choices: ["Asset inventory","Wireless heat map","Baseline configuration","Change request log"], meta: "Asset Inventory — 3.1" },
+
+  // Documentation - IPAM
+  { text: "What does <strong>IPAM</strong> stand for?", answer: "IP Address Management", choices: ["IP Address Management","Internal Protocol Access Method","IP Allocation Monitor","Internet Provider Address Mapping"], meta: "IPAM — 3.1" },
+  { text: "What is the primary purpose of an <strong>IPAM</strong> solution?", answer: "To track and manage IP address allocation, subnets, and DNS/DHCP integration", choices: ["To track and manage IP address allocation, subnets, and DNS/DHCP integration","To monitor CPU and memory usage on servers","To enforce firewall ACLs","To back up router configurations"], meta: "IPAM — 3.1" },
+
+  // Documentation - SLA
+  { text: "What does <strong>SLA</strong> stand for?", answer: "Service Level Agreement", choices: ["Service Level Agreement","System Level Access","Service Location Address","Standard License Agreement"], meta: "SLA — 3.1" },
+  { text: "An SLA with an ISP most commonly defines guarantees for:", answer: "Uptime, response time, and performance metrics", choices: ["Uptime, response time, and performance metrics","Physical rack dimensions","VLAN numbering schemes","Wireless channel assignments"], meta: "SLA — 3.1" },
+
+  // Documentation - wireless heat maps
+  { text: "What is the purpose of a <strong>wireless heat map</strong>?", answer: "To visualize Wi-Fi signal strength and coverage throughout a physical space", choices: ["To visualize Wi-Fi signal strength and coverage throughout a physical space","To document switch port assignments","To track AP firmware versions","To show VLAN-to-SSID mappings"], meta: "Wireless Heat Maps — 3.1" },
+  { text: "A wireless site survey used to generate a heat map helps identify:", answer: "Dead zones and areas of channel interference before AP placement", choices: ["Dead zones and areas of channel interference before AP placement","Switch port security violations","DHCP scope exhaustion","Routing table inconsistencies"], meta: "Wireless Heat Maps — 3.1" },
+
+  // Life-cycle management
+  { text: "What does <strong>EOL</strong> mean for a network device?", answer: "End-of-Life — the vendor no longer manufactures or sells the product", choices: ["End-of-Life — the vendor no longer manufactures or sells the product","End-of-Lease — the rental contract has expired","End-of-Logging — log retention has stopped","Equipment Operating Limit reached"], meta: "Life-cycle Management — 3.1" },
+  { text: "What does <strong>EOS</strong> mean for a network device?", answer: "End-of-Support — the vendor no longer provides updates, patches, or technical support", choices: ["End-of-Support — the vendor no longer provides updates, patches, or technical support","End-of-Service — the device has been physically removed","End-of-Subscription — licensing has lapsed","End-of-Session — a user's connection has timed out"], meta: "Life-cycle Management — 3.1" },
+  { text: "Applying a <strong>patch</strong> to network equipment is part of which life-cycle process?", answer: "Software management", choices: ["Software management","Decommissioning","Change management","Asset inventory"], meta: "Life-cycle Management — 3.1" },
+  { text: "A device that has reached <strong>EOL but is still supported</strong> by the vendor with security patches is best described as:", answer: "End-of-Life but not yet End-of-Support", choices: ["End-of-Life but not yet End-of-Support","Fully decommissioned","Out of the asset inventory","No longer requiring documentation"], meta: "Life-cycle Management — 3.1" },
+  { text: "Which life-cycle process involves <strong>securely removing data and properly disposing of or repurposing</strong> retired equipment?", answer: "Decommissioning", choices: ["Decommissioning","Change management","Baseline configuration","Patch management"], meta: "Life-cycle Management — 3.1" },
+  { text: "Updating a switch's <strong>firmware</strong> to fix a known vulnerability falls under which category?", answer: "Software management", choices: ["Software management","Change request only","Asset inventory","Decommissioning"], meta: "Life-cycle Management — 3.1" },
+
+  // Change management
+  { text: "What is the primary purpose of a <strong>change management</strong> process?", answer: "To formally request, review, approve, and track modifications to the network", choices: ["To formally request, review, approve, and track modifications to the network","To inventory hardware assets","To monitor real-time bandwidth usage","To generate wireless heat maps"], meta: "Change Management — 3.1" },
+  { text: "Before implementing a network change, an administrator should submit a:", answer: "Change request", choices: ["Change request","Baseline configuration","Asset tag","SLA renewal"], meta: "Change Management — 3.1" },
+  { text: "Why is a documented <strong>change management</strong> process important even for seemingly minor configuration changes?", answer: "It provides accountability, a rollback plan, and a record of what changed and why", choices: ["It provides accountability, a rollback plan, and a record of what changed and why","It is required only for hardware purchases","It replaces the need for backups","It eliminates the need for testing"], meta: "Change Management — 3.1" },
+
+  // Config management
+  { text: "What is a <strong>production configuration</strong>?", answer: "The configuration currently running and active on a live device", choices: ["The configuration currently running and active on a live device","A saved copy of a config stored offsite for recovery","The vendor's factory default settings","The approved standard a device's config is compared against"], meta: "Configuration Management — 3.1" },
+  { text: "What is a <strong>baseline configuration</strong>?", answer: "A documented, known-good configuration used as a reference point for comparison", choices: ["A documented, known-good configuration used as a reference point for comparison","The factory default settings of a device","The most recent configuration backup","A configuration template for new VLANs"], meta: "Configuration Management — 3.1" },
+  { text: "What is the difference between a <strong>baseline (golden) configuration</strong> and a <strong>backup configuration</strong>?", answer: "The baseline is the approved standard to compare against; a backup is a saved copy of the current running config", choices: ["The baseline is the approved standard to compare against; a backup is a saved copy of the current running config","They are the same thing","A baseline is stored offsite, a backup is stored locally","A backup is only used during decommissioning"], meta: "Configuration Management — 3.1" },
+  { text: "Comparing a device's current configuration against its <strong>baseline/golden config</strong> primarily helps detect:", answer: "Unauthorized or unintended configuration drift", choices: ["Unauthorized or unintended configuration drift","Hardware failures","Wireless interference","Cable attenuation"], meta: "Configuration Management — 3.1" },
+  { text: "Storing a <strong>production configuration backup</strong> off the device itself is important because it:", answer: "Allows quick recovery if the device fails or its config is corrupted", choices: ["Allows quick recovery if the device fails or its config is corrupted","Increases the device's CPU performance","Is required for IPAM integration","Removes the need for change requests"], meta: "Configuration Management — 3.1" },
+];
+
 //  STATE
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
@@ -718,6 +767,7 @@ let routingQs = [], routingIdx = 0, routingScore = { c: 0, w: 0 }, routingHist =
 let switchingQs = [], switchingIdx = 0, switchingScore = { c: 0, w: 0 }, switchingHist = [];
 let wirelessQs = [], wirelessIdx = 0, wirelessScore = { c: 0, w: 0 }, wirelessHist = [];
 let physicalQs = [], physicalIdx = 0, physicalScore = { c: 0, w: 0 }, physicalHist = [];
+let orgprocQs = [], orgprocIdx = 0, orgprocScore = { c: 0, w: 0 }, orgprocHist = [];
 
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 //  PORTS
@@ -947,6 +997,26 @@ function nextPhysicalQ() {
   renderPhysicalQ();
 }
 
+// Organizational Processes & Procedures (3.1)
+
+function renderOrgProcQ() {
+  renderMC('orgproc', orgprocQs[orgprocIdx], checkOrgProcQ);
+  renderDots('orgproc-dots', orgprocHist);
+}
+
+function checkOrgProcQ(chosen, correct) {
+  resolveMC('orgproc', chosen, correct, orgprocScore, orgprocHist);
+  updateScore('orgproc', orgprocScore);
+  renderDots('orgproc-dots', orgprocHist);
+  document.getElementById('orgproc-next').style.display = 'inline-block';
+}
+
+function nextOrgProcQ() {
+  orgprocIdx++;
+  if (orgprocIdx >= orgprocQs.length) { orgprocQs = shuffle([...ORGPROC_QUESTIONS]); orgprocIdx = 0; }
+  renderOrgProcQ();
+}
+
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 //  NAV
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
@@ -954,6 +1024,7 @@ function nextPhysicalQ() {
 const DOMAIN_SECTIONS = {
   domain1: ['ports', 'cables', 'classful', 'fundamental', 'cloud', 'subnetting'],
   domain2: ['routing', 'switching', 'wireless', 'physical'],
+  domain3: ['orgproc'],
 };
 
 let activeDomain = 'domain1';
@@ -1006,6 +1077,7 @@ document.addEventListener('DOMContentLoaded', () => {
   switchingQs   = shuffle([...SWITCHING_QUESTIONS]);
   wirelessQs    = shuffle([...WIRELESS_QUESTIONS]);
   physicalQs   = shuffle([...PHYSICAL_QUESTIONS]);
+  orgprocQs    = shuffle([...ORGPROC_QUESTIONS]);
   renderPortQ();
   renderCableQ();
   renderClassfulQ();
@@ -1016,6 +1088,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderSwitchingQ();
   renderWirelessQ();
   renderPhysicalQ();
+  renderOrgProcQ();
 
   document.getElementById('subnet-answer').addEventListener('keydown', e => {
     if (e.key !== 'Enter') return;

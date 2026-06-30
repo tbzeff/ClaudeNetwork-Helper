@@ -34,6 +34,12 @@
       <button class="sec-btn" onclick="selectSection('physical', 'domain2')">🏗️ Physical Install</button>
     </div>
   </div>
+  <div class="domain-dropdown" id="dd-domain3">
+    <button onclick="toggleDomainDropdown('domain3')">Domain 3 — Network Operations ▾</button>
+    <div class="dropdown-menu" id="domain3-tabs">
+      <button class="sec-btn" onclick="selectSection('orgproc', 'domain3')">📑 Org Processes</button>
+    </div>
+  </div>
 </nav>
 
 <main>
@@ -229,6 +235,25 @@
       <div class="choices" id="physical-choices"></div>
       <div class="feedback" id="physical-feedback"></div>
       <button class="next-btn" id="physical-next" onclick="nextPhysicalQ()">Next →</button>
+    </div>
+  </div>
+
+  <!-- ── Organizational Processes & Procedures (3.1) ── -->
+  <div id="orgproc" class="section">
+    <div class="score-bar">
+      <div class="score-item s-correct"><div class="val" id="orgproc-correct">0</div><div class="lbl">Correct</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item s-wrong"><div class="val" id="orgproc-wrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item"><div class="val" id="orgproc-pct">—</div><div class="lbl">Accuracy</div></div>
+    </div>
+    <div class="progress-dots" id="orgproc-dots"></div>
+    <div class="card">
+      <div class="q-meta" id="orgproc-meta"></div>
+      <div class="q-text" id="orgproc-question"></div>
+      <div class="choices" id="orgproc-choices"></div>
+      <div class="feedback" id="orgproc-feedback"></div>
+      <button class="next-btn" id="orgproc-next" onclick="nextOrgProcQ()">Next →</button>
     </div>
   </div>
 
