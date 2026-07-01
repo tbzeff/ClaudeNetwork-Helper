@@ -39,7 +39,7 @@ Open `networkplus.html` in a browser. No installation required.
 | Org Processes & Procedures | 3.1 | Done ✅ |
 | Network Monitoring | 3.2 | Done ✅ |
 | IPv4/IPv6 Services | 3.4 | Unverified 🟡 |
-| DR Concepts | 3.3 | Unverified 🟡 |
+| DR Concepts | 3.3 | Done ✅ |
 | Access & Management | 3.5 | Unverified 🟡 |
 | Security Concepts | 4.1 | Not yet |
 | Attack Types | 4.2 | Not yet |
