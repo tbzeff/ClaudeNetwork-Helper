@@ -754,6 +754,226 @@ const ORGPROC_QUESTIONS = [
   { text: "Storing a <strong>production configuration backup</strong> off the device itself is important because it:", answer: "Allows quick recovery if the device fails or its config is corrupted", choices: ["Allows quick recovery if the device fails or its config is corrupted","Increases the device's CPU performance","Is required for IPAM integration","Removes the need for change requests"], meta: "Configuration Management — 3.1" },
 ];
 
+// ======================================================
+//  DATA -- Network Monitoring Technologies (3.2)
+// ======================================================
+
+const MONITORING_QUESTIONS = [
+  // SNMP
+  { text: "What does <strong>SNMP</strong> stand for?", answer: "Simple Network Management Protocol", choices: ["Simple Network Management Protocol","Secure Network Monitoring Protocol","Simple Node Messaging Protocol","Standard Network Management Path"], meta: "SNMP — 3.2" },
+  { text: "In SNMP, what is a <strong>MIB</strong>?", answer: "A Management Information Base — a hierarchical database defining the manageable objects on a device", choices: ["A Management Information Base — a hierarchical database defining the manageable objects on a device","A backup of the device's running configuration","The encrypted tunnel used by SNMPv3","A log file of all SNMP GET requests"], meta: "SNMP — 3.2" },
+  { text: "What is an SNMP <strong>trap</strong>?", answer: "An unsolicited message sent from a managed device to the manager when a significant event occurs", choices: ["An unsolicited message sent from a managed device to the manager when a significant event occurs","A scheduled poll sent from the manager to a device","A password used to authenticate SNMP requests","A rule that blocks unauthorized SNMP access"], meta: "SNMP — 3.2" },
+  { text: "How does an SNMP <strong>trap</strong> differ from the manager actively polling a device with a GET request?", answer: "A trap is pushed by the device immediately when an event occurs, rather than waiting for the manager to ask", choices: ["A trap is pushed by the device immediately when an event occurs, rather than waiting for the manager to ask","A trap is encrypted while GET requests are not","A trap only works with SNMPv1","A trap requires a community string but GET does not"], meta: "SNMP — 3.2" },
+  { text: "In SNMPv1 and SNMPv2c, what mechanism is used (in plaintext) to control read/write access to a device?", answer: "Community strings", choices: ["Community strings","MIB tokens","OID keys","Trap filters"], meta: "SNMP — 3.2" },
+  { text: "Which SNMP version was the first to add <strong>authentication and encryption</strong> for messages between manager and agent?", answer: "SNMPv3", choices: ["SNMPv1","SNMPv2c","SNMPv3","Syslog"], meta: "SNMP — 3.2" },
+  { text: "Why is <strong>SNMPv2c</strong> considered less secure than SNMPv3 for production networks?", answer: "It relies on plaintext community strings with no built-in encryption", choices: ["It relies on plaintext community strings with no built-in encryption","It cannot generate traps","It only supports UDP port 514","It cannot poll more than one OID at a time"], meta: "SNMP — 3.2" },
+  { text: "A monitoring server receives an unsolicited alert the instant a switch interface goes down, instead of waiting for its next scheduled poll. Which SNMP feature produced this alert?", answer: "An SNMP trap", choices: ["An SNMP trap","A GET request","A community string","A MIB walk"], meta: "Scenario — 3.2" },
+
+  // Flow data
+  { text: "What does <strong>flow data</strong> (e.g., NetFlow, sFlow, IPFIX) capture about network traffic?", answer: "Summarized metadata such as source/destination IP, ports, and byte/packet counts — not the full payload", choices: ["Summarized metadata such as source/destination IP, ports, and byte/packet counts — not the full payload","The complete payload of every packet","Only SNMP trap messages","CPU and memory statistics from routers"], meta: "Flow Data — 3.2" },
+  { text: "Which monitoring method is best suited to quickly identifying the <strong>top bandwidth-consuming hosts</strong> on a network without capturing full packet contents?", answer: "Flow data", choices: ["Flow data","Packet capture","SNMP trap","Syslog"], meta: "Flow Data — 3.2" },
+  { text: "A network administrator wants a lightweight, ongoing view of which internal hosts talk to which external destinations and how much traffic each conversation generates, without the storage overhead of full packet capture. Which technology fits this need?", answer: "Flow data (e.g., NetFlow/sFlow/IPFIX)", choices: ["Flow data (e.g., NetFlow/sFlow/IPFIX)","Full packet capture","SNMP community strings","Configuration baselining"], meta: "Scenario — 3.2" },
+
+  // Packet capture
+  { text: "How does <strong>packet capture</strong> differ from flow data monitoring?", answer: "Packet capture records the full contents of packets, including payload, rather than just summarized metadata", choices: ["Packet capture records the full contents of packets, including payload, rather than just summarized metadata","Packet capture only works over UDP","Packet capture cannot be used for troubleshooting","Packet capture is a synonym for flow data"], meta: "Packet Capture — 3.2" },
+  { text: "Which tool is commonly used to perform a <strong>packet capture</strong> for deep protocol-level analysis?", answer: "Wireshark (or tcpdump)", choices: ["Wireshark (or tcpdump)", "A SIEM dashboard", "An IPAM console", "A MIB browser"], meta: "Packet Capture — 3.2" },
+
+  // Port mirroring
+  { text: "What does <strong>port mirroring</strong> do on a switch?", answer: "Copies traffic from one or more source ports to a designated monitoring port for capture and analysis", choices: ["Copies traffic from one or more source ports to a designated monitoring port for capture and analysis","Duplicates a VLAN across two switches","Balances traffic load across redundant uplinks","Blocks traffic on unused ports"], meta: "Port Mirroring — 3.2" },
+  { text: "What is <strong>SPAN</strong> (as used on Cisco switches)?", answer: "Cisco's implementation of port mirroring, used to send a copy of traffic to a monitoring device", choices: ["Cisco's implementation of port mirroring, used to send a copy of traffic to a monitoring device","A spanning-tree loop prevention protocol","A method of aggregating multiple physical links","A wireless roaming protocol"], meta: "Port Mirroring — 3.2" },
+  { text: "A security analyst needs to run a packet capture tool to inspect full traffic traversing a switch, but cannot install an agent on every connected host. Which switch feature should be configured to feed that traffic to the analyst's capture device?", answer: "Port mirroring (SPAN)", choices: ["Port mirroring (SPAN)","SNMP trap forwarding","Syslog forwarding","IPAM synchronization"], meta: "Scenario — 3.2" },
+
+  // Baseline metrics / anomaly alerting
+  { text: "What is a network <strong>baseline metric</strong>?", answer: "A recorded measurement of normal performance (e.g., bandwidth, CPU, latency) used as a point of comparison", choices: ["A recorded measurement of normal performance (e.g., bandwidth, CPU, latency) used as a point of comparison","The factory-default settings of a monitoring tool","A backup copy of a device configuration","The minimum acceptable SLA uptime percentage"], meta: "Baseline & Anomaly Alerting — 3.2" },
+  { text: "What is <strong>anomaly-based alerting</strong> in network monitoring?", answer: "Generating alerts when current metrics deviate significantly from an established baseline", choices: ["Generating alerts when current metrics deviate significantly from an established baseline","Alerting only on SNMP trap messages","Alerting whenever a device configuration changes","Alerting based on a fixed, hardcoded threshold that never adapts"], meta: "Baseline & Anomaly Alerting — 3.2" },
+  { text: "Recording a device's normal bandwidth and CPU utilization over time, then alerting only when usage deviates well outside that established range, describes which combination of concepts?", answer: "Baseline metrics with anomaly-based alerting", choices: ["Baseline metrics with anomaly-based alerting","Port mirroring","SNMP community strings","Ad hoc network discovery"], meta: "Baseline & Anomaly Alerting — 3.2" },
+
+  // Log aggregation
+  { text: "What is the role of <strong>Syslog</strong> in network monitoring?", answer: "A standard protocol/format used to forward log messages from devices to a central logging server", choices: ["A standard protocol/format used to forward log messages from devices to a central logging server","A protocol for polling device status", "A method for capturing full packet payloads", "A tool for mapping IP address allocation"], meta: "Log Aggregation — 3.2" },
+  { text: "What does <strong>SIEM</strong> stand for, and what is its purpose?", answer: "Security Information and Event Management — aggregates and correlates log data from multiple sources to detect and alert on security events", choices: ["Security Information and Event Management — aggregates and correlates log data from multiple sources to detect and alert on security events","Simple Internet Event Monitor — tracks uptime of internet-facing services","Secure Interface Endpoint Manager — manages VPN endpoints","Server Inventory and Equipment Mapping — tracks hardware assets"], meta: "Log Aggregation — 3.2" },
+  { text: "How do Syslog and a SIEM typically work together?", answer: "Syslog transports log messages to a central collector, and the SIEM ingests, correlates, and analyzes those logs for meaningful alerts", choices: ["Syslog transports log messages to a central collector, and the SIEM ingests, correlates, and analyzes those logs for meaningful alerts","They perform the same function and are never used together","SIEM replaces the need for any logging protocol","Syslog encrypts SIEM traffic"], meta: "Log Aggregation — 3.2" },
+  { text: "Which two technologies work together to centrally collect and correlate log data from firewalls, servers, and switches in order to detect coordinated security incidents?", answer: "Syslog (for collection) and a SIEM (for correlation and analysis)", choices: ["Syslog (for collection) and a SIEM (for correlation and analysis)","SNMP traps and IPAM","Flow data and port mirroring alone","A baseline configuration and change management log"], meta: "Log Aggregation — 3.2" },
+
+  // API integration
+  { text: "Why do modern network monitoring platforms commonly rely on <strong>API integration</strong> with cloud providers and SaaS platforms?", answer: "To pull performance and status data from services that don't expose SNMP, such as cloud infrastructure and hosted applications", choices: ["To pull performance and status data from services that don't expose SNMP, such as cloud infrastructure and hosted applications","To replace the need for any authentication","To physically connect to remote devices","To generate wireless heat maps"], meta: "API Integration — 3.2" },
+  { text: "A company's monitoring platform needs visibility into a third-party SaaS application's uptime and performance, but the vendor does not support SNMP polling. What should the monitoring platform use instead?", answer: "API integration with the vendor's service", choices: ["API integration with the vendor's service","A configured SNMP trap", "Port mirroring on the vendor's switch", "A wireless heat map"], meta: "API Integration — 3.2" },
+
+  // Network discovery
+  { text: "What is the purpose of a <strong>network discovery</strong> tool in a monitoring solution?", answer: "To automatically identify devices connected to the network and add them to inventory/monitoring", choices: ["To automatically identify devices connected to the network and add them to inventory/monitoring","To capture full packet payloads","To generate SLA reports","To manage IP address leases"], meta: "Network Discovery — 3.2" },
+  { text: "What is the difference between <strong>ad hoc</strong> and <strong>scheduled</strong> network discovery?", answer: "Ad hoc discovery is run manually on demand, while scheduled discovery runs automatically at set intervals", choices: ["Ad hoc discovery is run manually on demand, while scheduled discovery runs automatically at set intervals","Ad hoc discovery only finds wireless devices; scheduled only finds wired devices","Scheduled discovery requires SNMPv3; ad hoc does not","There is no functional difference"], meta: "Network Discovery — 3.2" },
+  { text: "A monitoring platform automatically scans for newly connected devices every night at 2 AM without any manual intervention. Which type of network discovery is this?", answer: "Scheduled network discovery", choices: ["Scheduled network discovery","Ad hoc network discovery","Anomaly-based discovery","Flow-based discovery"], meta: "Network Discovery — 3.2" },
+
+  // Traffic analysis
+  { text: "What is the goal of <strong>traffic analysis</strong> in network monitoring?", answer: "To examine collected traffic data (e.g., flow or packet data) to identify usage patterns, top talkers, and protocol distribution", choices: ["To examine collected traffic data (e.g., flow or packet data) to identify usage patterns, top talkers, and protocol distribution","To assign static IP addresses","To back up device configurations","To physically trace cable runs"], meta: "Traffic Analysis — 3.2" },
+  { text: "A monitoring solution reports that video streaming protocols now make up an unusually high share of egress traffic compared to last month. This finding is a product of which monitoring activity?", answer: "Traffic analysis", choices: ["Traffic analysis","Configuration monitoring","Network discovery","API integration"], meta: "Traffic Analysis — 3.2" },
+
+  // Performance / availability / config monitoring solutions
+  { text: "What does <strong>performance monitoring</strong> track over time?", answer: "Metrics such as latency, throughput, jitter, and error rates", choices: ["Metrics such as latency, throughput, jitter, and error rates","Which devices are physically racked where","Software license expiration dates","Wireless heat map coverage"], meta: "Monitoring Solutions — 3.2" },
+  { text: "What does <strong>availability monitoring</strong> primarily measure?", answer: "Whether a device or service is up and reachable, often via periodic ICMP polling", choices: ["Whether a device or service is up and reachable, often via periodic ICMP polling","The bandwidth consumed by top talkers","The encryption strength of SNMP messages","The physical temperature of a data center"], meta: "Monitoring Solutions — 3.2" },
+  { text: "What does <strong>configuration monitoring</strong> detect?", answer: "Unauthorized or unexpected changes to a device's configuration compared to its known-good state", choices: ["Unauthorized or unexpected changes to a device's configuration compared to its known-good state","CPU temperature spikes","Wireless signal degradation","DHCP scope exhaustion"], meta: "Monitoring Solutions — 3.2" },
+  { text: "A monitoring platform automatically alerts an administrator whenever a router's running configuration changes without a corresponding change request. Which monitoring solution is responsible for detecting this?", answer: "Configuration monitoring", choices: ["Configuration monitoring","Availability monitoring","Traffic analysis","API integration"], meta: "Scenario — 3.2" },
+];
+
+const DR_QUESTIONS = [
+  // DR metrics — RPO
+  { text: "What does <strong>RPO (Recovery Point Objective)</strong> define?", answer: "The maximum acceptable amount of data loss, measured as a point in time before the incident", choices: ["The maximum acceptable amount of data loss, measured as a point in time before the incident","The maximum acceptable time to restore a service after an outage","The average time it takes to repair a failed component","The average time a system runs before it fails"], meta: "DR Metrics — 3.3" },
+  { text: "An organization sets an RPO of <strong>4 hours</strong>. What does this mean in practice?", answer: "The business can tolerate losing up to 4 hours of data, so backups/replication must occur at least every 4 hours", choices: ["The business can tolerate losing up to 4 hours of data, so backups/replication must occur at least every 4 hours","Services must be fully restored within 4 hours of an outage","A failed device must be repaired within 4 hours","Failures should occur no more than once every 4 hours"], meta: "DR Metrics — 3.3" },
+  { text: "Which DR metric most directly drives how <strong>frequently</strong> you must back up or replicate data?", answer: "RPO (Recovery Point Objective)", choices: ["RPO (Recovery Point Objective)","RTO (Recovery Time Objective)","MTTR (Mean Time To Repair)","MTBF (Mean Time Between Failures)"], meta: "DR Metrics — 3.3" },
+
+  // DR metrics — RTO
+  { text: "What does <strong>RTO (Recovery Time Objective)</strong> define?", answer: "The maximum acceptable amount of time a service can be down before it must be restored", choices: ["The maximum acceptable amount of time a service can be down before it must be restored","The maximum acceptable amount of data loss measured in time","The average time between two consecutive system failures","The average time required to repair a failed component"], meta: "DR Metrics — 3.3" },
+  { text: "A company requires that its email service be back online within <strong>2 hours</strong> of any outage. Which DR metric does this describe?", answer: "RTO (Recovery Time Objective)", choices: ["RTO (Recovery Time Objective)","RPO (Recovery Point Objective)","MTBF (Mean Time Between Failures)","MTTR (Mean Time To Repair)"], meta: "DR Metrics — 3.3" },
+  { text: "What is the key difference between <strong>RTO and RPO</strong>?", answer: "RTO is how quickly service must be restored; RPO is how much data loss (measured in time) is acceptable", choices: ["RTO is how quickly service must be restored; RPO is how much data loss (measured in time) is acceptable","RTO measures data loss; RPO measures restoration time","They are two names for the same metric","RTO applies only to hardware; RPO applies only to software"], meta: "DR Metrics — 3.3" },
+
+  // DR metrics — MTTR
+  { text: "What does <strong>MTTR (Mean Time To Repair)</strong> measure?", answer: "The average time required to repair a failed component or system and return it to service", choices: ["The average time required to repair a failed component or system and return it to service","The average time a system operates before failing","The acceptable amount of data loss in a disaster","The point in time to which data must be recoverable"], meta: "DR Metrics — 3.3" },
+  { text: "A lower <strong>MTTR</strong> value indicates what about an organization's operations?", answer: "Failures are being resolved and systems restored more quickly", choices: ["Failures are being resolved and systems restored more quickly","Systems fail more often","Backups are taken more frequently","Data loss during a disaster is greater"], meta: "DR Metrics — 3.3" },
+
+  // DR metrics — MTBF
+  { text: "What does <strong>MTBF (Mean Time Between Failures)</strong> measure?", answer: "The average time a repairable system operates between failures — a measure of reliability", choices: ["The average time a repairable system operates between failures — a measure of reliability","The average time needed to repair a failed device","The maximum tolerable downtime for a service","The frequency at which backups must be taken"], meta: "DR Metrics — 3.3" },
+  { text: "A higher <strong>MTBF</strong> value indicates what about a device?", answer: "It is more reliable, running longer on average before a failure occurs", choices: ["It is more reliable, running longer on average before a failure occurs","It is repaired more slowly after a failure","It loses more data during an outage","It must be backed up more often"], meta: "DR Metrics — 3.3" },
+  { text: "Which two DR metrics describe hardware reliability and repair speed, rather than acceptable downtime or data loss?", answer: "MTBF (reliability) and MTTR (repair speed)", choices: ["MTBF (reliability) and MTTR (repair speed)","RTO and RPO","RPO and MTBF","RTO and MTTR"], meta: "DR Metrics — 3.3" },
+
+  // DR sites — cold
+  { text: "What characterizes a <strong>cold site</strong>?", answer: "A facility with space, power, and cooling but no configured equipment or current data — the cheapest option with the longest recovery time", choices: ["A facility with space, power, and cooling but no configured equipment or current data — the cheapest option with the longest recovery time","A fully equipped site with real-time data replication ready to take over instantly","A partially equipped site with some hardware and periodically updated data","A mobile trailer that can be driven to any location"], meta: "DR Sites — 3.3" },
+  { text: "Which DR site type has the <strong>lowest cost</strong> but the <strong>longest recovery time</strong>?", answer: "Cold site", choices: ["Cold site","Warm site","Hot site","Active-active site"], meta: "DR Sites — 3.3" },
+
+  // DR sites — warm
+  { text: "What characterizes a <strong>warm site</strong>?", answer: "A partially equipped facility with some hardware and connectivity in place and periodically updated data, requiring some setup before takeover", choices: ["A partially equipped facility with some hardware and connectivity in place and periodically updated data, requiring some setup before takeover","An empty facility with only power and cooling","A fully mirrored facility ready to take over in seconds","A backup stored offsite on tape"], meta: "DR Sites — 3.3" },
+  { text: "A DR site has servers and network gear installed and receives data updates once a day, but still needs configuration and the latest data restored before it can run production. Which site type is this?", answer: "Warm site", choices: ["Warm site","Cold site","Hot site","Screened subnet"], meta: "DR Sites — 3.3" },
+
+  // DR sites — hot
+  { text: "What characterizes a <strong>hot site</strong>?", answer: "A fully equipped, continuously updated duplicate of production that can take over operations almost immediately — the most expensive option", choices: ["A fully equipped, continuously updated duplicate of production that can take over operations almost immediately — the most expensive option","A facility with only power and cooling and no equipment","A partially equipped site with daily data updates","An offsite tape backup vault"], meta: "DR Sites — 3.3" },
+  { text: "Which DR site type offers the <strong>fastest recovery</strong> but at the <strong>highest cost</strong>?", answer: "Hot site", choices: ["Hot site","Warm site","Cold site","Tabletop site"], meta: "DR Sites — 3.3" },
+  { text: "An organization with a very short RTO needs a DR facility that mirrors production in near-real time and can fail over almost instantly. Which site type meets this requirement?", answer: "Hot site", choices: ["Hot site","Warm site","Cold site","Passive site"], meta: "Scenario — 3.3" },
+
+  // High availability — active-active
+  { text: "In an <strong>active-active</strong> high-availability configuration, how are the nodes used?", answer: "All nodes are online and handling traffic simultaneously, sharing the load", choices: ["All nodes are online and handling traffic simultaneously, sharing the load","One node handles all traffic while the other waits idle as a standby","Nodes alternate, running one hour on and one hour off","Only one node ever runs; the second is powered off until needed"], meta: "High Availability — 3.3" },
+  { text: "What is a key advantage of an <strong>active-active</strong> setup over active-passive?", answer: "It uses all nodes for load sharing, increasing total capacity during normal operation", choices: ["It uses all nodes for load sharing, increasing total capacity during normal operation","It requires no load balancing","It is always cheaper because it uses fewer devices","It never requires data synchronization between nodes"], meta: "High Availability — 3.3" },
+
+  // High availability — active-passive
+  { text: "In an <strong>active-passive</strong> high-availability configuration, how are the nodes used?", answer: "One node actively handles traffic while a standby node remains idle, taking over only if the active node fails", choices: ["One node actively handles traffic while a standby node remains idle, taking over only if the active node fails","Both nodes handle traffic at the same time","Traffic is split evenly across all nodes at all times","All nodes are powered off until a disaster occurs"], meta: "High Availability — 3.3" },
+  { text: "A pair of firewalls is configured so that one processes all traffic while the second sits on standby and takes over only if the first fails. Which HA model is this?", answer: "Active-passive", choices: ["Active-passive","Active-active","Cold site","Round-robin"], meta: "Scenario — 3.3" },
+
+  // Testing — tabletop
+  { text: "What is a <strong>tabletop exercise</strong> in disaster recovery testing?", answer: "A discussion-based walkthrough where the team talks through the DR plan step by step, without touching production systems", choices: ["A discussion-based walkthrough where the team talks through the DR plan step by step, without touching production systems","A live failover of production systems to the DR site","An automated script that verifies backups nightly","A penetration test of the DR facility"], meta: "DR Testing — 3.3" },
+  { text: "Why might an organization choose a <strong>tabletop exercise</strong> to test its DR plan?", answer: "It validates the plan and team readiness through discussion without the risk or cost of disrupting live systems", choices: ["It validates the plan and team readiness through discussion without the risk or cost of disrupting live systems","It is the only way to confirm hardware actually fails over","It permanently replaces the need for real failover testing","It encrypts the DR documentation"], meta: "DR Testing — 3.3" },
+
+  // Testing — validation
+  { text: "What is the purpose of a <strong>validation test</strong> in DR?", answer: "To actively verify that recovery procedures, systems, and data restores actually work as intended", choices: ["To actively verify that recovery procedures, systems, and data restores actually work as intended","To discuss the DR plan verbally without using any systems","To calculate the RPO and RTO values","To document the asset inventory"], meta: "DR Testing — 3.3" },
+  { text: "How does a <strong>validation test</strong> differ from a tabletop exercise?", answer: "A validation test actually exercises recovery systems/procedures, while a tabletop exercise is a discussion-only walkthrough", choices: ["A validation test actually exercises recovery systems/procedures, while a tabletop exercise is a discussion-only walkthrough","A validation test is discussion-only, while a tabletop involves live systems","They are identical in scope and method","A validation test only measures MTBF"], meta: "DR Testing — 3.3" },
+];
+
+// ======================================================
+//  DATA -- IPv4 and IPv6 Network Services (3.4)
+// ======================================================
+
+const SERVICES_QUESTIONS = [
+  // DHCP — core components
+  { text: "What is a DHCP <strong>scope</strong>?", answer: "The range of IP addresses a DHCP server is configured to lease to clients on a subnet", choices: ["The range of IP addresses a DHCP server is configured to lease to clients on a subnet","A single IP permanently tied to one device","The length of time a client keeps its address","The gateway address handed out to clients"], meta: "DHCP — 3.4" },
+  { text: "What is a DHCP <strong>reservation</strong>?", answer: "A mapping that always assigns the same IP address to a specific device based on its MAC address", choices: ["A mapping that always assigns the same IP address to a specific device based on its MAC address","A block of addresses the server is told never to hand out","The total pool of addresses available for lease","A backup copy of the DHCP database"], meta: "DHCP — 3.4" },
+  { text: "What is a DHCP <strong>exclusion</strong>?", answer: "One or more addresses inside a scope that the DHCP server is prevented from leasing", choices: ["One or more addresses inside a scope that the DHCP server is prevented from leasing","An address permanently bound to a MAC address","A client that is denied any lease","The default gateway option"], meta: "DHCP — 3.4" },
+  { text: "What does the DHCP <strong>lease time</strong> control?", answer: "How long a client may keep an assigned IP address before it must renew", choices: ["How long a client may keep an assigned IP address before it must renew","The total number of addresses in the scope","Which DNS server the client uses","How often the server backs up its database"], meta: "DHCP — 3.4" },
+  { text: "Which of the following is delivered to clients as a DHCP <strong>option</strong>?", answer: "Default gateway, DNS servers, domain name, and NTP server", choices: ["Default gateway, DNS servers, domain name, and NTP server","The client's MAC address","The switch port the client is on","The cable category in use"], meta: "DHCP — 3.4" },
+  { text: "What is the purpose of a DHCP <strong>relay agent (IP helper)</strong>?", answer: "It forwards DHCP broadcast messages from clients to a DHCP server on a different subnet", choices: ["It forwards DHCP broadcast messages from clients to a DHCP server on a different subnet","It encrypts DHCP traffic between client and server","It blocks rogue DHCP servers on the LAN","It assigns IPv6 addresses without a server"], meta: "DHCP — 3.4" },
+  { text: "Why is a DHCP relay / IP helper needed when the DHCP server is on another subnet?", answer: "Routers do not forward broadcasts by default, so the relay converts the client's broadcast into a unicast to the remote server", choices: ["Routers do not forward broadcasts by default, so the relay converts the client's broadcast into a unicast to the remote server","DHCP only works over TCP, which routers block","Clients cannot generate broadcasts","The server can only lease addresses to its own MAC"], meta: "DHCP — 3.4" },
+
+  // SLAAC
+  { text: "What does <strong>SLAAC</strong> stand for?", answer: "Stateless Address Autoconfiguration", choices: ["Stateless Address Autoconfiguration","Static Local Address Assignment Control","Secure LAN Address Allocation Configuration","Stateful Layer Address Configuration"], meta: "SLAAC — 3.4" },
+  { text: "How does <strong>SLAAC</strong> let an IPv6 host obtain an address?", answer: "The host builds its own address using the prefix advertised by a router in a Router Advertisement (RA)", choices: ["The host builds its own address using the prefix advertised by a router in a Router Advertisement (RA)","A DHCP server assigns and tracks each address","The address is manually typed by an administrator","The host copies the address of its default gateway"], meta: "SLAAC — 3.4" },
+  { text: "Why is SLAAC described as <strong>stateless</strong>?", answer: "No server keeps a record of which host has which address — hosts self-assign from the advertised prefix", choices: ["No server keeps a record of which host has which address — hosts self-assign from the advertised prefix","It never assigns a gateway","It works only on IPv4 networks","It requires a lease renewal every hour"], meta: "SLAAC — 3.4" },
+
+  // DNS — record types
+  { text: "Which DNS record maps a hostname to an <strong>IPv4</strong> address?", answer: "A record", choices: ["A record","AAAA record","CNAME record","PTR record"], meta: "DNS Records — 3.4" },
+  { text: "Which DNS record maps a hostname to an <strong>IPv6</strong> address?", answer: "AAAA record", choices: ["AAAA record","A record","MX record","NS record"], meta: "DNS Records — 3.4" },
+  { text: "Which DNS record creates an <strong>alias</strong> pointing one name to another name?", answer: "CNAME record", choices: ["CNAME record","A record","PTR record","TXT record"], meta: "DNS Records — 3.4" },
+  { text: "Which DNS record identifies the <strong>mail servers</strong> for a domain?", answer: "MX record", choices: ["MX record","NS record","CNAME record","AAAA record"], meta: "DNS Records — 3.4" },
+  { text: "Which DNS record holds arbitrary text and is commonly used for <strong>SPF, DKIM, and domain verification</strong>?", answer: "TXT record", choices: ["TXT record","MX record","PTR record","A record"], meta: "DNS Records — 3.4" },
+  { text: "Which DNS record identifies the <strong>authoritative name servers</strong> for a zone?", answer: "NS record", choices: ["NS record","MX record","CNAME record","AAAA record"], meta: "DNS Records — 3.4" },
+  { text: "Which DNS record maps an <strong>IP address back to a hostname</strong> (reverse lookup)?", answer: "PTR record", choices: ["PTR record","A record","CNAME record","TXT record"], meta: "DNS Records — 3.4" },
+
+  // DNS — zones
+  { text: "What does a DNS <strong>forward lookup zone</strong> resolve?", answer: "A hostname to its IP address", choices: ["A hostname to its IP address","An IP address to its hostname","A MAC address to an IP","A domain to its mail server only"], meta: "DNS Zones — 3.4" },
+  { text: "What does a DNS <strong>reverse lookup zone</strong> resolve, and which record type does it use?", answer: "An IP address to a hostname, using PTR records", choices: ["An IP address to a hostname, using PTR records","A hostname to an IP address, using A records","A domain to its name servers, using NS records","A name to an alias, using CNAME records"], meta: "DNS Zones — 3.4" },
+  { text: "What is the difference between a <strong>primary</strong> and a <strong>secondary</strong> DNS zone?", answer: "The primary holds the read/write master copy; the secondary holds a read-only copy obtained by zone transfer", choices: ["The primary holds the read/write master copy; the secondary holds a read-only copy obtained by zone transfer","The primary is read-only and the secondary is writable","The primary handles IPv4 and the secondary handles IPv6","They are identical but on different ports"], meta: "DNS Zones — 3.4" },
+
+  // DNS — authoritative / recursive
+  { text: "What is an <strong>authoritative</strong> DNS answer?", answer: "A response that comes directly from a name server responsible for (hosting) that zone", choices: ["A response that comes directly from a name server responsible for (hosting) that zone","A response served from a resolver's cache","Any response that arrives over DoH","A response from the client's hosts file"], meta: "DNS Resolution — 3.4" },
+  { text: "What makes a DNS answer <strong>non-authoritative</strong>?", answer: "It is returned from a resolver's cache rather than directly from the zone's own name server", choices: ["It is returned from a resolver's cache rather than directly from the zone's own name server","It fails DNSSEC validation","It uses a PTR record","It is always incorrect"], meta: "DNS Resolution — 3.4" },
+  { text: "What is a <strong>recursive</strong> DNS query?", answer: "A query where the resolver does the full work of chasing referrals until it returns a final answer to the client", choices: ["A query where the resolver does the full work of chasing referrals until it returns a final answer to the client","A query the client sends directly to each root and TLD server itself","A query that only ever hits the local cache","A query restricted to reverse lookups"], meta: "DNS Resolution — 3.4" },
+  { text: "What is the role of the local <strong>hosts file</strong> in name resolution?", answer: "It provides static hostname-to-IP mappings that the OS typically checks before querying DNS", choices: ["It provides static hostname-to-IP mappings that the OS typically checks before querying DNS","It stores the DNS server's zone records","It caches DNSSEC signatures","It lists blocked domains for the firewall"], meta: "DNS Resolution — 3.4" },
+
+  // DNS — security / transport
+  { text: "What does <strong>DNSSEC</strong> add to DNS?", answer: "Digital signatures that authenticate DNS records and protect against spoofing and cache poisoning", choices: ["Digital signatures that authenticate DNS records and protect against spoofing and cache poisoning","Encryption of all DNS queries in transit","Load balancing across name servers","Automatic failover to a secondary zone"], meta: "DNS Security — 3.4" },
+  { text: "Does <strong>DNSSEC</strong> encrypt DNS traffic?", answer: "No — it provides authentication and integrity, not confidentiality; the data is still sent in the clear", choices: ["No — it provides authentication and integrity, not confidentiality; the data is still sent in the clear","Yes — it encrypts every query with TLS","Yes — it encrypts only responses","No — it neither signs nor secures anything"], meta: "DNS Security — 3.4" },
+  { text: "What is <strong>DoH (DNS over HTTPS)</strong>?", answer: "DNS queries sent inside encrypted HTTPS, typically over port 443, to preserve privacy", choices: ["DNS queries sent inside encrypted HTTPS, typically over port 443, to preserve privacy","DNS queries signed with DNSSEC keys","DNS resolution done entirely from the hosts file","A protocol that maps IPv6 to IPv4"], meta: "DNS Security — 3.4" },
+  { text: "What is <strong>DoT (DNS over TLS)</strong>, and which port does it use?", answer: "DNS queries encrypted with TLS, using port 853", choices: ["DNS queries encrypted with TLS, using port 853","DNS queries encrypted inside HTTPS on port 443","Plaintext DNS on port 53","DNS signed with DNSSEC on port 53"], meta: "DNS Security — 3.4" },
+  { text: "What is the main difference between <strong>DoH</strong> and <strong>DoT</strong>?", answer: "DoH tunnels DNS inside HTTPS (port 443, blending with web traffic); DoT uses a dedicated TLS port (853)", choices: ["DoH tunnels DNS inside HTTPS (port 443, blending with web traffic); DoT uses a dedicated TLS port (853)","DoH authenticates records while DoT encrypts them","DoT uses port 443 and DoH uses port 853","DoH is unencrypted while DoT is encrypted"], meta: "DNS Security — 3.4" },
+
+  // Time protocols
+  { text: "What is the purpose of <strong>NTP (Network Time Protocol)</strong>, and what port/transport does it use?", answer: "It synchronizes clocks across devices, using UDP port 123", choices: ["It synchronizes clocks across devices, using UDP port 123","It resolves hostnames, using UDP port 53","It leases IP addresses, using UDP ports 67/68","It encrypts time data, using TCP port 853"], meta: "Time Protocols — 3.4" },
+  { text: "What advantage does <strong>PTP (Precision Time Protocol)</strong> have over NTP?", answer: "It achieves far greater accuracy — sub-microsecond — often using hardware timestamping", choices: ["It achieves far greater accuracy — sub-microsecond — often using hardware timestamping","It works without any network connection","It also assigns IP addresses","It encrypts DNS lookups"], meta: "Time Protocols — 3.4" },
+  { text: "What does <strong>NTS (Network Time Security)</strong> add to time synchronization?", answer: "Authentication and integrity for NTP, protecting time data from tampering and spoofing", choices: ["Authentication and integrity for NTP, protecting time data from tampering and spoofing","Sub-nanosecond hardware timestamping","The ability to run NTP over IPv6 only","Automatic DHCP option delivery"], meta: "Time Protocols — 3.4" },
+
+  // Scenario questions
+  { text: "Clients on a remote subnet get an APIPA (169.254.x.x) address and cannot reach the DHCP server, which sits on a different subnet across a router. What should be configured on the router?", answer: "A DHCP relay agent (IP helper) pointing to the DHCP server", choices: ["A DHCP relay agent (IP helper) pointing to the DHCP server","A DHCP exclusion for the APIPA range","A shorter lease time on the scope","A reverse lookup zone for the subnet"], meta: "Scenario — 3.4" },
+  { text: "A network printer keeps getting a different IP from DHCP, breaking a hardcoded print queue. You want it to always receive the same address while still being managed by DHCP. What should you configure?", answer: "A DHCP reservation tying the printer's MAC to a fixed IP", choices: ["A DHCP reservation tying the printer's MAC to a fixed IP","A DHCP exclusion covering the whole scope","A CNAME record for the printer","A shorter DHCP lease time"], meta: "Scenario — 3.4" },
+  { text: "Users can reach a website by IP but not by name, and you confirm the public DNS record is correct. One workstation still fails even after DNS is fixed, resolving the name to an old IP. What is the most likely cause on that workstation?", answer: "A stale static entry in the local hosts file, which is checked before DNS", choices: ["A stale static entry in the local hosts file, which is checked before DNS","A missing MX record","An expired DHCP lease","A disabled reverse lookup zone"], meta: "Scenario — 3.4" },
+  { text: "A security team wants to prevent DNS cache poisoning by ensuring resolvers can verify that DNS responses are genuine and unaltered. Which technology should be deployed?", answer: "DNSSEC", choices: ["DNSSEC","DoH","SLAAC","NTS"], meta: "Scenario — 3.4" },
+  { text: "Email sent from a company's domain is being marked as spam. To publish sender-authentication data (SPF/DKIM) for the domain, which DNS record type is used?", answer: "TXT record", choices: ["TXT record","MX record","PTR record","AAAA record"], meta: "Scenario — 3.4" },
+];
+
+// ======================================================
+//  DATA -- Network Access and Management Methods (3.5)
+// ======================================================
+
+const ACCESS_QUESTIONS = [
+  // VPN — site-to-site
+  { text: "What is a <strong>site-to-site VPN</strong>?", answer: "A permanent encrypted tunnel between two networks (e.g., two office routers/firewalls) that connects entire sites without per-device client software", choices: ["A permanent encrypted tunnel between two networks (e.g., two office routers/firewalls) that connects entire sites without per-device client software","A tunnel a single remote user builds from their laptop to the corporate network","A web page that proxies traffic without any tunnel","A tunnel used only for DNS traffic"], meta: "VPN — 3.5" },
+  { text: "In a <strong>site-to-site VPN</strong>, where are the tunnel endpoints typically located?", answer: "On the gateway devices (routers or firewalls) at each site, so end hosts need no VPN software", choices: ["On the gateway devices (routers or firewalls) at each site, so end hosts need no VPN software","On every individual client computer at both sites","On the ISP's core routers only","On a public DNS server"], meta: "VPN — 3.5" },
+  { text: "A company wants to permanently link its headquarters and branch office networks over the internet so all hosts can communicate transparently. Which VPN type fits best?", answer: "Site-to-site VPN", choices: ["Site-to-site VPN","Client-to-site VPN","Clientless VPN","Split-tunnel client VPN"], meta: "Scenario — 3.5" },
+
+  // VPN — client-to-site
+  { text: "What is a <strong>client-to-site VPN</strong> (remote-access VPN)?", answer: "A VPN where an individual device runs client software to build an encrypted tunnel into the corporate network", choices: ["A VPN where an individual device runs client software to build an encrypted tunnel into the corporate network","A permanent tunnel between two office gateways","A tunnel that connects two data centers","An unencrypted proxy connection"], meta: "VPN — 3.5" },
+  { text: "A traveling employee needs to securely reach internal file servers from a hotel using their laptop. Which VPN type is this?", answer: "Client-to-site (remote-access) VPN", choices: ["Client-to-site (remote-access) VPN","Site-to-site VPN","In-band management","Console connection"], meta: "Scenario — 3.5" },
+
+  // VPN — clientless
+  { text: "What is a <strong>clientless VPN</strong>?", answer: "A remote-access VPN reached through a web browser over HTTPS/TLS, requiring no dedicated VPN client software", choices: ["A remote-access VPN reached through a web browser over HTTPS/TLS, requiring no dedicated VPN client software","A site-to-site tunnel between two firewalls","A VPN that requires a hardware token instead of software","A VPN that only carries voice traffic"], meta: "VPN — 3.5" },
+  { text: "Which technology typically secures a <strong>clientless VPN</strong> session in the browser?", answer: "TLS/SSL over HTTPS", choices: ["TLS/SSL over HTTPS","IPSec ESP in transport mode","Telnet","Plain HTTP"], meta: "VPN — 3.5" },
+
+  // VPN — split vs full tunnel
+  { text: "In a <strong>split-tunnel</strong> VPN configuration, how is client traffic routed?", answer: "Only traffic destined for the corporate network goes through the tunnel; other traffic (e.g., general internet) goes directly out the local connection", choices: ["Only traffic destined for the corporate network goes through the tunnel; other traffic (e.g., general internet) goes directly out the local connection","All traffic from the client is forced through the corporate tunnel","No traffic is encrypted","Traffic is duplicated and sent both ways"], meta: "VPN Tunneling — 3.5" },
+  { text: "In a <strong>full-tunnel</strong> VPN configuration, how is client traffic routed?", answer: "All of the client's traffic — including internet-bound traffic — is sent through the VPN tunnel to the corporate network", choices: ["All of the client's traffic — including internet-bound traffic — is sent through the VPN tunnel to the corporate network","Only corporate-bound traffic uses the tunnel","Only DNS queries use the tunnel","No traffic uses the tunnel"], meta: "VPN Tunneling — 3.5" },
+  { text: "What is a security advantage of <strong>full tunnel</strong> over split tunnel?", answer: "All client traffic can be inspected and filtered by corporate security controls, since nothing bypasses the tunnel", choices: ["All client traffic can be inspected and filtered by corporate security controls, since nothing bypasses the tunnel","It uses less bandwidth on the corporate link","It requires no encryption","It eliminates the need for authentication"], meta: "VPN Tunneling — 3.5" },
+  { text: "What is a common advantage of <strong>split tunnel</strong> over full tunnel?", answer: "It reduces load on the corporate internet link and can improve performance, since only corporate traffic traverses the tunnel", choices: ["It reduces load on the corporate internet link and can improve performance, since only corporate traffic traverses the tunnel","It forces all traffic through corporate inspection","It makes the connection unencrypted","It removes the need for a VPN gateway"], meta: "VPN Tunneling — 3.5" },
+  { text: "A security team requires that remote users' web browsing be filtered by the corporate proxy even while on VPN. Which tunneling mode enforces this?", answer: "Full tunnel", choices: ["Full tunnel","Split tunnel","Clientless mode","Out-of-band mode"], meta: "Scenario — 3.5" },
+
+  // Connection methods — SSH
+  { text: "What does <strong>SSH</strong> provide for device management, and on which port?", answer: "An encrypted command-line (CLI) session to a remote device, over TCP port 22", choices: ["An encrypted command-line (CLI) session to a remote device, over TCP port 22","An unencrypted CLI session over TCP port 23","A graphical desktop over TCP port 3389","A web management page over TCP port 443"], meta: "Connection Methods — 3.5" },
+  { text: "Why is <strong>SSH</strong> preferred over Telnet for remote management?", answer: "SSH encrypts the entire session, whereas Telnet sends credentials and commands in plaintext", choices: ["SSH encrypts the entire session, whereas Telnet sends credentials and commands in plaintext","SSH is faster because it skips authentication","Telnet uses certificates and SSH does not","SSH works only on the local console"], meta: "Connection Methods — 3.5" },
+
+  // Connection methods — console
+  { text: "What is a <strong>console</strong> connection to a network device?", answer: "A direct physical connection (e.g., via a console/rollover cable to a serial or USB console port) used for local management", choices: ["A direct physical connection (e.g., via a console/rollover cable to a serial or USB console port) used for local management","An encrypted CLI session over the network","A browser-based management dashboard","A REST API call to the device"], meta: "Connection Methods — 3.5" },
+  { text: "When is a <strong>console</strong> connection especially useful?", answer: "For initial configuration or when the device has no network reachability (e.g., no IP set or the network is down)", choices: ["For initial configuration or when the device has no network reachability (e.g., no IP set or the network is down)","Only when managing thousands of devices remotely","Only for encrypting internet traffic","Only for browsing the web"], meta: "Connection Methods — 3.5" },
+
+  // Connection methods — GUI
+  { text: "What is a <strong>GUI</strong> connection method for device management?", answer: "A graphical interface, typically a web-based dashboard, used to configure and monitor a device through menus and forms", choices: ["A graphical interface, typically a web-based dashboard, used to configure and monitor a device through menus and forms","A text-only command-line session","A direct serial cable connection","An automated script-driven interface"], meta: "Connection Methods — 3.5" },
+
+  // Connection methods — API
+  { text: "What is an <strong>API</strong> connection method used for in network management?", answer: "Programmatic management, letting scripts and automation tools configure or query devices (often via REST) without manual interaction", choices: ["Programmatic management, letting scripts and automation tools configure or query devices (often via REST) without manual interaction","A graphical web dashboard for manual clicks","A physical serial console session","An encrypted interactive CLI for typing commands by hand"], meta: "Connection Methods — 3.5" },
+  { text: "Which connection method is best suited for <strong>automating</strong> repetitive configuration across many devices?", answer: "API", choices: ["API","Console","GUI","Telnet"], meta: "Connection Methods — 3.5" },
+
+  // Jump box / host
+  { text: "What is a <strong>jump box (jump host)</strong>?", answer: "A hardened intermediary server that administrators connect to first, then use it as a controlled pivot to reach and manage devices in a secured network segment", choices: ["A hardened intermediary server that administrators connect to first, then use it as a controlled pivot to reach and manage devices in a secured network segment","A backup server that stores device configurations","A load balancer that distributes management traffic","A DHCP server dedicated to admins"], meta: "Jump Box — 3.5" },
+  { text: "What is the main security benefit of a <strong>jump box</strong>?", answer: "It centralizes and controls administrative access, providing a single audited, hardened entry point into a protected segment", choices: ["It centralizes and controls administrative access, providing a single audited, hardened entry point into a protected segment","It encrypts all internet browsing for end users","It eliminates the need for authentication","It replaces the need for firewalls entirely"], meta: "Jump Box — 3.5" },
+
+  // In-band vs out-of-band management
+  { text: "What is <strong>in-band management</strong>?", answer: "Managing a device over the same network path that carries production/user data traffic", choices: ["Managing a device over the same network path that carries production/user data traffic","Managing a device over a separate, dedicated management network or channel","Managing a device only through a physical console cable","Managing a device via a cloud API only"], meta: "In-band vs Out-of-band — 3.5" },
+  { text: "What is <strong>out-of-band management</strong>?", answer: "Managing a device through a separate, dedicated channel or network that is independent of the production data path", choices: ["Managing a device through a separate, dedicated channel or network that is independent of the production data path","Managing a device over the same links as user data","Managing a device only from within a VPN tunnel","Managing a device exclusively through a web GUI"], meta: "In-band vs Out-of-band — 3.5" },
+  { text: "Why is <strong>out-of-band management</strong> valuable during a network outage?", answer: "It provides a management path that still works even when the production network is down or congested", choices: ["It provides a management path that still works even when the production network is down or congested","It is always cheaper than in-band management","It removes the need for any authentication","It speeds up production data traffic"], meta: "In-band vs Out-of-band — 3.5" },
+  { text: "An administrator connects to a remote switch through a dedicated management port on a separate network so they can still reach it if the primary links fail. Which method is this?", answer: "Out-of-band management", choices: ["Out-of-band management","In-band management","Split-tunnel VPN","Clientless VPN"], meta: "Scenario — 3.5" },
+];
+
 //  STATE
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
@@ -768,6 +988,10 @@ let switchingQs = [], switchingIdx = 0, switchingScore = { c: 0, w: 0 }, switchi
 let wirelessQs = [], wirelessIdx = 0, wirelessScore = { c: 0, w: 0 }, wirelessHist = [];
 let physicalQs = [], physicalIdx = 0, physicalScore = { c: 0, w: 0 }, physicalHist = [];
 let orgprocQs = [], orgprocIdx = 0, orgprocScore = { c: 0, w: 0 }, orgprocHist = [];
+let monitoringQs = [], monitoringIdx = 0, monitoringScore = { c: 0, w: 0 }, monitoringHist = [];
+let drQs = [], drIdx = 0, drScore = { c: 0, w: 0 }, drHist = [];
+let servicesQs = [], servicesIdx = 0, servicesScore = { c: 0, w: 0 }, servicesHist = [];
+let accessQs = [], accessIdx = 0, accessScore = { c: 0, w: 0 }, accessHist = [];
 
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 //  PORTS
@@ -1017,6 +1241,86 @@ function nextOrgProcQ() {
   renderOrgProcQ();
 }
 
+// Network Monitoring Technologies (3.2)
+
+function renderMonitoringQ() {
+  renderMC('monitoring', monitoringQs[monitoringIdx], checkMonitoringQ);
+  renderDots('monitoring-dots', monitoringHist);
+}
+
+function checkMonitoringQ(chosen, correct) {
+  resolveMC('monitoring', chosen, correct, monitoringScore, monitoringHist);
+  updateScore('monitoring', monitoringScore);
+  renderDots('monitoring-dots', monitoringHist);
+  document.getElementById('monitoring-next').style.display = 'inline-block';
+}
+
+function nextMonitoringQ() {
+  monitoringIdx++;
+  if (monitoringIdx >= monitoringQs.length) { monitoringQs = shuffle([...MONITORING_QUESTIONS]); monitoringIdx = 0; }
+  renderMonitoringQ();
+}
+
+// Disaster Recovery Concepts (3.3)
+
+function renderDrQ() {
+  renderMC('dr', drQs[drIdx], checkDrQ);
+  renderDots('dr-dots', drHist);
+}
+
+function checkDrQ(chosen, correct) {
+  resolveMC('dr', chosen, correct, drScore, drHist);
+  updateScore('dr', drScore);
+  renderDots('dr-dots', drHist);
+  document.getElementById('dr-next').style.display = 'inline-block';
+}
+
+function nextDrQ() {
+  drIdx++;
+  if (drIdx >= drQs.length) { drQs = shuffle([...DR_QUESTIONS]); drIdx = 0; }
+  renderDrQ();
+}
+
+// IPv4 and IPv6 Network Services (3.4)
+
+function renderServicesQ() {
+  renderMC('services', servicesQs[servicesIdx], checkServicesQ);
+  renderDots('services-dots', servicesHist);
+}
+
+function checkServicesQ(chosen, correct) {
+  resolveMC('services', chosen, correct, servicesScore, servicesHist);
+  updateScore('services', servicesScore);
+  renderDots('services-dots', servicesHist);
+  document.getElementById('services-next').style.display = 'inline-block';
+}
+
+function nextServicesQ() {
+  servicesIdx++;
+  if (servicesIdx >= servicesQs.length) { servicesQs = shuffle([...SERVICES_QUESTIONS]); servicesIdx = 0; }
+  renderServicesQ();
+}
+
+// Network Access and Management Methods (3.5)
+
+function renderAccessQ() {
+  renderMC('access', accessQs[accessIdx], checkAccessQ);
+  renderDots('access-dots', accessHist);
+}
+
+function checkAccessQ(chosen, correct) {
+  resolveMC('access', chosen, correct, accessScore, accessHist);
+  updateScore('access', accessScore);
+  renderDots('access-dots', accessHist);
+  document.getElementById('access-next').style.display = 'inline-block';
+}
+
+function nextAccessQ() {
+  accessIdx++;
+  if (accessIdx >= accessQs.length) { accessQs = shuffle([...ACCESS_QUESTIONS]); accessIdx = 0; }
+  renderAccessQ();
+}
+
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 //  NAV
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
@@ -1024,7 +1328,7 @@ function nextOrgProcQ() {
 const DOMAIN_SECTIONS = {
   domain1: ['ports', 'cables', 'classful', 'fundamental', 'cloud', 'subnetting'],
   domain2: ['routing', 'switching', 'wireless', 'physical'],
-  domain3: ['orgproc'],
+  domain3: ['orgproc', 'monitoring', 'dr', 'services', 'access'],
 };
 
 let activeDomain = 'domain1';
@@ -1078,6 +1382,10 @@ document.addEventListener('DOMContentLoaded', () => {
   wirelessQs    = shuffle([...WIRELESS_QUESTIONS]);
   physicalQs   = shuffle([...PHYSICAL_QUESTIONS]);
   orgprocQs    = shuffle([...ORGPROC_QUESTIONS]);
+  monitoringQs = shuffle([...MONITORING_QUESTIONS]);
+  drQs         = shuffle([...DR_QUESTIONS]);
+  servicesQs   = shuffle([...SERVICES_QUESTIONS]);
+  accessQs     = shuffle([...ACCESS_QUESTIONS]);
   renderPortQ();
   renderCableQ();
   renderClassfulQ();
@@ -1089,6 +1397,10 @@ document.addEventListener('DOMContentLoaded', () => {
   renderWirelessQ();
   renderPhysicalQ();
   renderOrgProcQ();
+  renderMonitoringQ();
+  renderDrQ();
+  renderServicesQ();
+  renderAccessQ();
 
   document.getElementById('subnet-answer').addEventListener('keydown', e => {
     if (e.key !== 'Enter') return;

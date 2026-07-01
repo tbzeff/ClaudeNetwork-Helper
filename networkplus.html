@@ -38,6 +38,10 @@
     <button onclick="toggleDomainDropdown('domain3')">Domain 3 — Network Operations ▾</button>
     <div class="dropdown-menu" id="domain3-tabs">
       <button class="sec-btn" onclick="selectSection('orgproc', 'domain3')">📑 Org Processes</button>
+      <button class="sec-btn" onclick="selectSection('monitoring', 'domain3')">📈 Monitoring</button>
+      <button class="sec-btn" onclick="selectSection('dr', 'domain3')">🛟 DR Concepts</button>
+      <button class="sec-btn" onclick="selectSection('services', 'domain3')">🌐 IPv4/IPv6 Services</button>
+      <button class="sec-btn" onclick="selectSection('access', 'domain3')">🔑 Access &amp; Mgmt</button>
     </div>
   </div>
 </nav>
@@ -254,6 +258,81 @@
       <div class="choices" id="orgproc-choices"></div>
       <div class="feedback" id="orgproc-feedback"></div>
       <button class="next-btn" id="orgproc-next" onclick="nextOrgProcQ()">Next →</button>
+    </div>
+  </div>
+
+  <!-- ── Network Monitoring Technologies (3.2) ── -->
+  <div id="monitoring" class="section">
+    <div class="score-bar">
+      <div class="score-item s-correct"><div class="val" id="monitoring-correct">0</div><div class="lbl">Correct</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item s-wrong"><div class="val" id="monitoring-wrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item"><div class="val" id="monitoring-pct">—</div><div class="lbl">Accuracy</div></div>
+    </div>
+    <div class="progress-dots" id="monitoring-dots"></div>
+    <div class="card">
+      <div class="q-meta" id="monitoring-meta"></div>
+      <div class="q-text" id="monitoring-question"></div>
+      <div class="choices" id="monitoring-choices"></div>
+      <div class="feedback" id="monitoring-feedback"></div>
+      <button class="next-btn" id="monitoring-next" onclick="nextMonitoringQ()">Next →</button>
+    </div>
+  </div>
+
+  <!-- ── Disaster Recovery Concepts (3.3) ── -->
+  <div id="dr" class="section">
+    <div class="score-bar">
+      <div class="score-item s-correct"><div class="val" id="dr-correct">0</div><div class="lbl">Correct</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item s-wrong"><div class="val" id="dr-wrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item"><div class="val" id="dr-pct">—</div><div class="lbl">Accuracy</div></div>
+    </div>
+    <div class="progress-dots" id="dr-dots"></div>
+    <div class="card">
+      <div class="q-meta" id="dr-meta"></div>
+      <div class="q-text" id="dr-question"></div>
+      <div class="choices" id="dr-choices"></div>
+      <div class="feedback" id="dr-feedback"></div>
+      <button class="next-btn" id="dr-next" onclick="nextDrQ()">Next →</button>
+    </div>
+  </div>
+
+  <!-- ── IPv4 and IPv6 Network Services (3.4) ── -->
+  <div id="services" class="section">
+    <div class="score-bar">
+      <div class="score-item s-correct"><div class="val" id="services-correct">0</div><div class="lbl">Correct</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item s-wrong"><div class="val" id="services-wrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item"><div class="val" id="services-pct">—</div><div class="lbl">Accuracy</div></div>
+    </div>
+    <div class="progress-dots" id="services-dots"></div>
+    <div class="card">
+      <div class="q-meta" id="services-meta"></div>
+      <div class="q-text" id="services-question"></div>
+      <div class="choices" id="services-choices"></div>
+      <div class="feedback" id="services-feedback"></div>
+      <button class="next-btn" id="services-next" onclick="nextServicesQ()">Next →</button>
+    </div>
+  </div>
+
+  <div id="access" class="section">
+    <div class="score-bar">
+      <div class="score-item s-correct"><div class="val" id="access-correct">0</div><div class="lbl">Correct</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item s-wrong"><div class="val" id="access-wrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item"><div class="val" id="access-pct">—</div><div class="lbl">Accuracy</div></div>
+    </div>
+    <div class="progress-dots" id="access-dots"></div>
+    <div class="card">
+      <div class="q-meta" id="access-meta"></div>
+      <div class="q-text" id="access-question"></div>
+      <div class="choices" id="access-choices"></div>
+      <div class="feedback" id="access-feedback"></div>
+      <button class="next-btn" id="access-next" onclick="nextAccessQ()">Next →</button>
     </div>
   </div>
 

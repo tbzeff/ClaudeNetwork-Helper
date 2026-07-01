@@ -37,8 +37,10 @@ Open `networkplus.html` in a browser. No installation required.
 | Wireless | 2.3 | Done |
 | Physical Installations | 2.4 | Done ✅ |
 | Org Processes & Procedures | 3.1 | Done ✅ |
-| DNS Record Types | 3.4 | Not yet |
-| DR Concepts | 3.3 | Not yet |
+| Network Monitoring | 3.2 | Done ✅ |
+| IPv4/IPv6 Services | 3.4 | Unverified 🟡 |
+| DR Concepts | 3.3 | Unverified 🟡 |
+| Access & Management | 3.5 | Unverified 🟡 |
 | Security Concepts | 4.1 | Not yet |
 | Attack Types | 4.2 | Not yet |
 | Troubleshooting | 5.1–5.5 | Not yet |
