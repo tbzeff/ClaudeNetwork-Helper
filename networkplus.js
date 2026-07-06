@@ -979,6 +979,399 @@ const ACCESS_QUESTIONS = [
 //  STATE
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
+// ── ACRONYMS — N10-009 acronym appendix ──
+// Each entry corresponds to an acronym on the CompTIA Network+ N10-009
+// objectives acronym list. { acr, full }. Plausible wrong expansions used as
+// distractors live in ACRONYM_DECOYS below, keyed by acr.
+const ACRONYM_DATA = [
+  { acr: "A", full: "Address" },
+  { acr: "AAA", full: "Authentication, Authorization, and Accounting" },
+  { acr: "ACL", full: "Access Control List" },
+  { acr: "AH", full: "Authentication Header" },
+  { acr: "AP", full: "Access Point" },
+  { acr: "API", full: "Application Programming Interface" },
+  { acr: "APIPA", full: "Automatic Private Internet Protocol Addressing" },
+  { acr: "ARP", full: "Address Resolution Protocol" },
+  { acr: "AUP", full: "Acceptable Use Policy" },
+  { acr: "BGP", full: "Border Gateway Protocol" },
+  { acr: "BNC", full: "Bayonet Neill–Concelman" },
+  { acr: "BSSID", full: "Basic Service Set Identifier" },
+  { acr: "BYOD", full: "Bring Your Own Device" },
+  { acr: "CAM", full: "Content Addressable Memory" },
+  { acr: "CDN", full: "Content Delivery Network" },
+  { acr: "CDP", full: "Cisco Discovery Protocol" },
+  { acr: "CIA", full: "Confidentiality, Integrity, and Availability" },
+  { acr: "CIDR", full: "Classless Inter-Domain Routing" },
+  { acr: "CLI", full: "Command-line Interface" },
+  { acr: "CNAME", full: "Canonical Name" },
+  { acr: "CPU", full: "Central Processing Unit" },
+  { acr: "CRC", full: "Cyclic Redundancy Check" },
+  { acr: "DAC", full: "Direct Attach Copper" },
+  { acr: "DAS", full: "Direct Attached Storage" },
+  { acr: "DCI", full: "Data Center Interconnect" },
+  { acr: "DDoS", full: "Distributed Denial-of-service" },
+  { acr: "DHCP", full: "Dynamic Host Configuration Protocol" },
+  { acr: "DLP", full: "Data Loss Prevention" },
+  { acr: "DNS", full: "Domain Name System" },
+  { acr: "DNSSEC", full: "Domain Name System Security Extensions" },
+  { acr: "DoH", full: "DNS over Hypertext Transfer Protocol Secure" },
+  { acr: "DoS", full: "Denial-of-service" },
+  { acr: "DoT", full: "DNS over Transport Layer Security" },
+  { acr: "DR", full: "Disaster Recovery" },
+  { acr: "EAP", full: "Extensible Authentication Protocol" },
+  { acr: "EAPoL", full: "Extensible Authentication Protocol over LAN" },
+  { acr: "EIGRP", full: "Enhanced Interior Gateway Routing Protocol" },
+  { acr: "EOL", full: "End-of-life" },
+  { acr: "EOS", full: "End-of-support" },
+  { acr: "ESP", full: "Encapsulating Security Payload" },
+  { acr: "ESSID", full: "Extended Service Set Identifier" },
+  { acr: "EULA", full: "End User License Agreement" },
+  { acr: "FC", full: "Fibre Channel" },
+  { acr: "FHRP", full: "First Hop Redundancy Protocol" },
+  { acr: "FTP", full: "File Transfer Protocol" },
+  { acr: "GDPR", full: "General Data Protection Regulation" },
+  { acr: "GRE", full: "Generic Routing Encapsulation" },
+  { acr: "GUI", full: "Graphical User Interface" },
+  { acr: "HTTP", full: "Hypertext Transfer Protocol" },
+  { acr: "HTTPS", full: "Hypertext Transfer Protocol Secure" },
+  { acr: "IaaS", full: "Infrastructure as a Service" },
+  { acr: "IaC", full: "Infrastructure as Code" },
+  { acr: "IAM", full: "Identity and Access Management" },
+  { acr: "ICMP", full: "Internet Control Message Protocol" },
+  { acr: "ICS", full: "Industrial Control System" },
+  { acr: "IDF", full: "Intermediate Distribution Frame" },
+  { acr: "IDS", full: "Intrusion Detection System" },
+  { acr: "IIoT", full: "Industrial Internet of Things" },
+  { acr: "IKE", full: "Internet Key Exchange" },
+  { acr: "IoT", full: "Internet of Things" },
+  { acr: "IP", full: "Internet Protocol" },
+  { acr: "IPAM", full: "Internet Protocol Address Management" },
+  { acr: "IPS", full: "Intrusion Prevention System" },
+  { acr: "IPSec", full: "Internet Protocol Security" },
+  { acr: "IS-IS", full: "Intermediate System to Intermediate System" },
+  { acr: "LACP", full: "Link Aggregation Control Protocol" },
+  { acr: "LAN", full: "Local Area Network" },
+  { acr: "LC", full: "Local Connector" },
+  { acr: "LDAP", full: "Lightweight Directory Access Protocol" },
+  { acr: "LDAPS", full: "Lightweight Directory Access Protocol over SSL" },
+  { acr: "LLDP", full: "Link Layer Discovery Protocol" },
+  { acr: "MAC", full: "Media Access Control" },
+  { acr: "MDF", full: "Main Distribution Frame" },
+  { acr: "MDIX", full: "Medium Dependent Interface Crossover" },
+  { acr: "MFA", full: "Multifactor Authentication" },
+  { acr: "MIB", full: "Management Information Base" },
+  { acr: "MOU", full: "Memorandum of Understanding" },
+  { acr: "MPO", full: "Multifiber Push On" },
+  { acr: "MTBF", full: "Mean Time Between Failure" },
+  { acr: "MTTR", full: "Mean Time To Repair" },
+  { acr: "MTU", full: "Maximum Transmission Unit" },
+  { acr: "MX", full: "Mail Exchange" },
+  { acr: "NAC", full: "Network Access Control" },
+  { acr: "NAS", full: "Network-attached Storage" },
+  { acr: "NAT", full: "Network Address Translation" },
+  { acr: "NDA", full: "Non-Disclosure Agreement" },
+  { acr: "NFV", full: "Network Functions Virtualization" },
+  { acr: "NIC", full: "Network Interface Cards" },
+  { acr: "NS", full: "Name Server" },
+  { acr: "NTP", full: "Network Time Protocol" },
+  { acr: "NTS", full: "Network Time Security" },
+  { acr: "OS", full: "Operating System" },
+  { acr: "OSI", full: "Open Systems Interconnection" },
+  { acr: "OSPF", full: "Open Shortest Path First" },
+  { acr: "OT", full: "Operational Technology" },
+  { acr: "PaaS", full: "Platform as a Service" },
+  { acr: "PAT", full: "Port Address Translation" },
+  { acr: "PCI DSS", full: "Payment Card Industry Data Security Standards" },
+  { acr: "PDU", full: "Power Distribution Unit" },
+  { acr: "PKI", full: "Public Key Infrastructure" },
+  { acr: "PoE", full: "Power over Ethernet" },
+  { acr: "PSK", full: "Pre-shared Key" },
+  { acr: "PTP", full: "Precision Time Protocol" },
+  { acr: "PTR", full: "Pointer" },
+  { acr: "QoS", full: "Quality of Service" },
+  { acr: "QSFP", full: "Quad Small Form-factor Pluggable" },
+  { acr: "RADIUS", full: "Remote Authentication Dial-in User Service" },
+  { acr: "RBAC", full: "Role-Based Access Control" },
+  { acr: "RDP", full: "Remote Desktop Protocol" },
+  { acr: "RFC", full: "Request for Comments" },
+  { acr: "RFID", full: "Radio Frequency Identification" },
+  { acr: "RIP", full: "Routing Information Protocol" },
+  { acr: "RJ", full: "Registered Jack" },
+  { acr: "RPO", full: "Recovery Point Objective" },
+  { acr: "RSTP", full: "Rapid Spanning Tree Protocol" },
+  { acr: "RTO", full: "Recovery Time Objective" },
+  { acr: "RX", full: "Receive" },
+  { acr: "SaaS", full: "Software as a Service" },
+  { acr: "SAML", full: "Security Assertion Markup Language" },
+  { acr: "SAN", full: "Storage Area Network" },
+  { acr: "SASE", full: "Secure Access Service Edge" },
+  { acr: "SC", full: "Subscriber Connector" },
+  { acr: "SCADA", full: "Supervisory Control and Data Acquisition" },
+  { acr: "SDN", full: "Software-defined Network" },
+  { acr: "SD-WAN", full: "Software-defined Wide Area Network" },
+  { acr: "SFP", full: "Small Form-factor Pluggable" },
+  { acr: "SFTP", full: "Secure File Transfer Protocol" },
+  { acr: "SIEM", full: "Security Information and Event Management" },
+  { acr: "SIP", full: "Session Initiation Protocol" },
+  { acr: "SLA", full: "Service-level Agreement" },
+  { acr: "SLAAC", full: "Stateless Address Autoconfiguration" },
+  { acr: "SMB", full: "Server Message Block" },
+  { acr: "SMTP", full: "Simple Mail Transfer Protocol" },
+  { acr: "SMTPS", full: "Simple Mail Transfer Protocol Secure" },
+  { acr: "SNMP", full: "Simple Network Management Protocol" },
+  { acr: "SOA", full: "Start of Authority" },
+  { acr: "SOW", full: "Statement of Work" },
+  { acr: "SQL", full: "Structured Query Language" },
+  { acr: "SSE", full: "Security Service Edge" },
+  { acr: "SSH", full: "Secure Shell" },
+  { acr: "SSID", full: "Service Set Identifier" },
+  { acr: "SSL", full: "Secure Socket Layer" },
+  { acr: "SSO", full: "Single Sign-on" },
+  { acr: "ST", full: "Straight Tip" },
+  { acr: "STP", full: "Shielded Twisted Pair" },
+  { acr: "SVI", full: "Switch Virtual Interface" },
+  { acr: "TACACS+", full: "Terminal Access Controller Access Control System Plus" },
+  { acr: "TCP", full: "Transmission Control Protocol" },
+  { acr: "TFTP", full: "Trivial File Transfer Protocol" },
+  { acr: "TLS", full: "Transport Layer Security" },
+  { acr: "TTL", full: "Time to Live" },
+  { acr: "TX", full: "Transmit" },
+  { acr: "TXT", full: "Text" },
+  { acr: "UDP", full: "User Datagram Protocol" },
+  { acr: "UPS", full: "Uninterruptible Power Supply" },
+  { acr: "URL", full: "Uniform Resource Locator" },
+  { acr: "USB", full: "Universal Serial Bus" },
+  { acr: "UTM", full: "Unified Threat Management" },
+  { acr: "UTP", full: "Unshielded Twisted Pair" },
+  { acr: "VIP", full: "Virtual IP" },
+  { acr: "VLAN", full: "Virtual Local Area Network" },
+  { acr: "VLSM", full: "Variable Length Subnet Mask" },
+  { acr: "VM", full: "Virtual Machine" },
+  { acr: "VoIP", full: "Voice over IP" },
+  { acr: "VPC", full: "Virtual Private Cloud" },
+  { acr: "VPN", full: "Virtual Private Network" },
+  { acr: "VRRP", full: "Virtual Router Redundancy Protocol" },
+  { acr: "VXLAN", full: "Virtual Extensible LAN" },
+  { acr: "WAN", full: "Wide Area Network" },
+  { acr: "WLAN", full: "Wireless Local Area Network" },
+  { acr: "WPA", full: "Wi-Fi Protected Access" },
+  { acr: "WPS", full: "Wi-Fi Protected Setup" },
+  { acr: "ZTA", full: "Zero Trust Architecture" },
+];
+
+// Plausible WRONG expansions per acronym, used as distractors for the
+// "acronym → meaning" questions so the incorrect options fit the same letters.
+const ACRONYM_DECOYS = {
+  "A": ["Alias", "Authority", "Anycast"],
+  "AAA": ["Access, Authentication, and Auditing", "Authorization, Auditing, and Accounting", "Authentication, Access, and Allocation"],
+  "ACL": ["Access Configuration Layer", "Address Control List", "Application Control List"],
+  "AH": ["Address Handshake", "Authorization Header", "Access Handler"],
+  "AP": ["Access Protocol", "Application Port", "Access Path"],
+  "API": ["Application Protocol Interface", "Automated Programming Integration", "Application Process Interface"],
+  "APIPA": ["Automatic Public Internet Protocol Assignment", "Assigned Private Internet Protocol Address", "Automatic Peer Internet Protocol Allocation"],
+  "ARP": ["Address Routing Protocol", "Automatic Resolution Protocol", "Address Request Protocol"],
+  "AUP": ["Authorized User Policy", "Access Usage Protocol", "Acceptable Usage Provision"],
+  "BGP": ["Balanced Gateway Protocol", "Boundary Gateway Path", "Backbone Gateway Protocol"],
+  "BNC": ["British Naval Connector", "Bayonet Network Connector", "Baseband Node Connector"],
+  "BSSID": ["Broadcast Service Set Identifier", "Base Station Set Identifier", "Basic Signal Set Identifier"],
+  "BYOD": ["Bring Your Own Data", "Buy Your Own Device", "Build Your Own Domain"],
+  "CAM": ["Content Access Memory", "Cache Addressable Memory", "Central Addressable Memory"],
+  "CDN": ["Content Distribution Node", "Cloud Data Network", "Central Delivery Network"],
+  "CDP": ["Cisco Datagram Protocol", "Common Discovery Protocol", "Cisco Directory Protocol"],
+  "CIA": ["Confidentiality, Integrity, and Authentication", "Control, Integrity, and Availability", "Confidentiality, Identity, and Availability"],
+  "CIDR": ["Classful Inter-Domain Routing", "Classless Internal Domain Routing", "Classless Inter-Domain Router"],
+  "CLI": ["Central Logic Interface", "Command-level Interface", "Console Line Interpreter"],
+  "CNAME": ["Common Name", "Cached Name", "Central Name Alias"],
+  "CPU": ["Core Processing Unit", "Central Program Unit", "Computer Processing Unit"],
+  "CRC": ["Cyclic Redundancy Code", "Checksum Redundancy Check", "Cyclic Recovery Check"],
+  "DAC": ["Direct Access Cable", "Data Attach Connector", "Direct Attached Coax"],
+  "DAS": ["Direct Access Storage", "Distributed Attached Storage", "Dedicated Attached Storage"],
+  "DCI": ["Data Center Interface", "Distributed Center Interconnect", "Data Channel Interconnect"],
+  "DDoS": ["Dynamic Denial-of-service", "Distributed Disruption-of-service", "Direct Denial-of-service"],
+  "DHCP": ["Dynamic Host Control Protocol", "Distributed Host Configuration Protocol", "Dynamic Hostname Configuration Protocol"],
+  "DLP": ["Data Leak Protection", "Data Level Protection", "Digital Loss Prevention"],
+  "DNS": ["Domain Name Service", "Dynamic Name System", "Domain Naming Server"],
+  "DNSSEC": ["Domain Name Service Security Extensions", "Domain Name System Secure Encryption", "Domain Name System Security Enforcement"],
+  "DoH": ["DNS over Hypertext Transfer Protocol", "Domain over Hypertext Transfer Protocol Secure", "Data over Hypertext Transfer Protocol Secure"],
+  "DoS": ["Disruption-of-service", "Denial-of-session", "Downgrade-of-service"],
+  "DoT": ["DNS over Transport Layer Session", "Domain over Transport Layer Security", "Data over Transport Layer Security"],
+  "DR": ["Data Recovery", "Disaster Response", "Disk Recovery"],
+  "EAP": ["Encrypted Authentication Protocol", "Extended Access Protocol", "Extensible Access Protocol"],
+  "EAPoL": ["Extensible Authentication Protocol over LDAP", "Encrypted Authentication Protocol over LAN", "Extended Authentication Protocol over LAN"],
+  "EIGRP": ["Extended Interior Gateway Routing Protocol", "Enhanced Interior Gateway Redundancy Protocol", "Enhanced Internal Gateway Routing Protocol"],
+  "EOL": ["End-of-license", "End-of-lease", "Extent-of-life"],
+  "EOS": ["End-of-service", "End-of-sale", "End-of-system"],
+  "ESP": ["Encrypted Security Payload", "Encapsulating Secure Protocol", "Endpoint Security Payload"],
+  "ESSID": ["Enhanced Service Set Identifier", "Extended Signal Set Identifier", "Extended Station Set Identifier"],
+  "EULA": ["End User License Arrangement", "Enterprise User License Agreement", "End User Licensing Authorization"],
+  "FC": ["Fibre Connector", "Fabric Channel", "Fiber Coupler"],
+  "FHRP": ["First Hop Routing Protocol", "Fast Hop Redundancy Protocol", "Failover Hop Redundancy Protocol"],
+  "FTP": ["File Transport Protocol", "Fast Transfer Protocol", "File Transmission Protocol"],
+  "GDPR": ["Global Data Privacy Regulation", "General Data Privacy Rules", "General Data Protection Rights"],
+  "GRE": ["Generic Routing Encryption", "General Routing Encapsulation", "Generic Route Extension"],
+  "GUI": ["Graphical Utility Interface", "General User Interface", "Graphic User Integration"],
+  "HTTP": ["Hypertext Transport Protocol", "Hypertext Transmission Protocol", "High-Throughput Transfer Protocol"],
+  "HTTPS": ["Hypertext Transport Protocol Secure", "Hypertext Transfer Protocol Standard", "Hypertext Transfer Protocol Signed"],
+  "IaaS": ["Internet as a Service", "Integration as a Service", "Infrastructure and Storage Service"],
+  "IaC": ["Infrastructure and Configuration", "Integration as Code", "Infrastructure Access Control"],
+  "IAM": ["Identity and Authentication Management", "Identity Access Management", "Integrated Access Management"],
+  "ICMP": ["Internet Connection Management Protocol", "Internet Control Messaging Protocol", "Internal Control Message Protocol"],
+  "ICS": ["Integrated Control System", "Industrial Computing System", "Internal Control Server"],
+  "IDF": ["Internal Distribution Frame", "Intermediate Data Frame", "Interconnect Distribution Facility"],
+  "IDS": ["Intrusion Defense System", "Internal Detection System", "Intrusion Deterrence System"],
+  "IIoT": ["Integrated Internet of Things", "Internal Internet of Things", "Industrial Interconnect of Things"],
+  "IKE": ["Internet Key Encryption", "Internal Key Exchange", "Integrated Key Exchange"],
+  "IoT": ["Interconnection of Things", "Internet of Technology", "Integration of Things"],
+  "IP": ["Internet Packet", "Internetwork Protocol", "Interface Protocol"],
+  "IPAM": ["Internet Protocol Allocation Manager", "Internet Protocol Access Management", "Internet Protocol Assignment Management"],
+  "IPS": ["Intrusion Protection System", "Internal Prevention System", "Intrusion Policy System"],
+  "IPSec": ["Internet Packet Security", "Internet Protocol Secure", "Internetwork Protocol Security"],
+  "IS-IS": ["Interior System to Interior System", "Intermediate System to Interior System", "Internal System to Internal System"],
+  "LACP": ["Link Access Control Protocol", "Link Aggregation Configuration Protocol", "Logical Aggregation Control Protocol"],
+  "LAN": ["Logical Area Network", "Link Access Node", "Local Access Network"],
+  "LC": ["Large Connector", "Latch Connector", "Line Coupler"],
+  "LDAP": ["Lightweight Directory Authentication Protocol", "Local Directory Access Protocol", "Lightweight Data Access Protocol"],
+  "LDAPS": ["Lightweight Directory Access Protocol Secure", "Local Directory Access Protocol over SSL", "Lightweight Directory Authentication Protocol over SSL"],
+  "LLDP": ["Logical Link Discovery Protocol", "Link Layer Distribution Protocol", "Link Local Discovery Protocol"],
+  "MAC": ["Medium Access Controller", "Media Access Code", "Machine Access Control"],
+  "MDF": ["Master Distribution Frame", "Main Data Frame", "Managed Distribution Facility"],
+  "MDIX": ["Medium Dependent Interface Crossconnect", "Media Dependent Interface Crossover", "Medium Direct Interface Crossover"],
+  "MFA": ["Multiple Factor Authorization", "Multifactor Authorization", "Managed Factor Authentication"],
+  "MIB": ["Managed Information Base", "Management Interface Base", "Monitoring Information Base"],
+  "MOU": ["Memorandum of Use", "Method of Understanding", "Measure of Understanding"],
+  "MPO": ["Multipath Optics", "Multifiber Pull Off", "Multiple Port Optics"],
+  "MTBF": ["Maximum Time Between Failures", "Mean Time Before Failure", "Mean Time Between Faults"],
+  "MTTR": ["Maximum Time To Repair", "Mean Time To Reboot", "Measured Time To Repair"],
+  "MTU": ["Maximum Transfer Unit", "Minimum Transmission Unit", "Maximum Transmission Utilization"],
+  "MX": ["Message Exchange", "Mail Extension", "Managed Exchange"],
+  "NAC": ["Network Authentication Control", "Network Access Configuration", "Node Access Control"],
+  "NAS": ["Network Access Server", "Network Address Storage", "Networked Application Server"],
+  "NAT": ["Network Address Table", "Network Access Translation", "Node Address Translation"],
+  "NDA": ["Network Disclosure Agreement", "Non-Distribution Agreement", "Non-Disclosure Arrangement"],
+  "NFV": ["Network Feature Virtualization", "Networked Firewall Virtualization", "Network Flow Virtualization"],
+  "NIC": ["Network Interface Connector", "Network Internal Cards", "Node Interface Cards"],
+  "NS": ["Network Server", "Name Service", "Namespace Server"],
+  "NTP": ["Network Timing Protocol", "Network Transport Protocol", "Node Time Protocol"],
+  "NTS": ["Network Time Service", "Network Transport Security", "Network Timing Sync"],
+  "OS": ["Operational System", "Open System", "Operating Software"],
+  "OSI": ["Open Standard Interconnection", "Open Systems Interface", "Operating System Interconnection"],
+  "OSPF": ["Open Shortest Path Finder", "Optimal Shortest Path First", "Open System Path First"],
+  "OT": ["Operations Technology", "Optimized Technology", "Operational Telemetry"],
+  "PaaS": ["Product as a Service", "Provisioning as a Service", "Platform and Application Service"],
+  "PAT": ["Port Address Table", "Packet Address Translation", "Protocol Address Translation"],
+  "PCI DSS": ["Payment Card Industry Digital Security Standards", "Personal Card Industry Data Security Standards", "Payment Card Industry Data Safety Standards"],
+  "PDU": ["Power Delivery Unit", "Protocol Data Unit", "Power Distribution Utility"],
+  "PKI": ["Private Key Infrastructure", "Public Key Interchange", "Public Key Identification"],
+  "PoE": ["Power on Ethernet", "Power over Electronics", "Port over Ethernet"],
+  "PSK": ["Public Shared Key", "Private Session Key", "Pre-shared Keyword"],
+  "PTP": ["Point-to-Point Protocol", "Precise Timing Protocol", "Precision Transfer Protocol"],
+  "PTR": ["Protocol Trace", "Path Trace Record", "Port Translation Record"],
+  "QoS": ["Quantity of Service", "Queue of Service", "Quality of Session"],
+  "QSFP": ["Quad Small Form Pluggable", "Quick Small Form-factor Pluggable", "Quad Standard Form-factor Pluggable"],
+  "RADIUS": ["Remote Access Dial-in User Service", "Remote Authentication Dial-in User Server", "Remote Authentication and Identity User Service"],
+  "RBAC": ["Rule-Based Access Control", "Role-Based Authentication Control", "Resource-Based Access Control"],
+  "RDP": ["Remote Data Protocol", "Remote Desktop Provider", "Rapid Desktop Protocol"],
+  "RFC": ["Request for Change", "Requirements for Compliance", "Request for Configuration"],
+  "RFID": ["Radio Frequency Identifier", "Radio Field Identification", "Remote Frequency Identification"],
+  "RIP": ["Router Information Protocol", "Routing Interface Protocol", "Route Information Path"],
+  "RJ": ["Registered Junction", "Rated Jack", "Ribbon Jack"],
+  "RPO": ["Recovery Priority Objective", "Restore Point Objective", "Recovery Process Objective"],
+  "RSTP": ["Rapid Spanning Tree Path", "Reliable Spanning Tree Protocol", "Rapid Switching Tree Protocol"],
+  "RTO": ["Recovery Time Optimization", "Restore Time Objective", "Response Time Objective"],
+  "RX": ["Receiver", "Reception", "Response"],
+  "SaaS": ["System as a Service", "Storage as a Service", "Security as a Service"],
+  "SAML": ["Secure Assertion Markup Language", "Security Authentication Markup Language", "Standard Assertion Markup Language"],
+  "SAN": ["Storage Access Network", "System Area Network", "Secure Area Network"],
+  "SASE": ["Secure Access Service Endpoint", "Secured Application Service Edge", "Secure Access Security Edge"],
+  "SC": ["Screw Connector", "Straight Connector", "Square Connector"],
+  "SCADA": ["System Control and Data Acquisition", "Supervisory Control and Data Analysis", "Supervisory Computer and Data Acquisition"],
+  "SDN": ["Service-defined Network", "Software-driven Networking", "Software Distribution Node"],
+  "SD-WAN": ["Software-defined Wireless Area Network", "Software-distributed Wide Area Network", "Software-defined Web Access Network"],
+  "SFP": ["Small Form Pluggable", "Standard Form-factor Pluggable", "Small Footprint Pluggable"],
+  "SFTP": ["Secure File Transport Protocol", "Simple File Transfer Protocol", "Safe File Transfer Protocol"],
+  "SIEM": ["Security Incident and Event Management", "System Information and Event Management", "Security Information and Event Monitoring"],
+  "SIP": ["Session Internet Protocol", "Secure Initiation Protocol", "Session Initialization Protocol"],
+  "SLA": ["Service-level Arrangement", "System-level Agreement", "Service-level Assurance"],
+  "SLAAC": ["Stateful Address Autoconfiguration", "Static Address Autoconfiguration", "Stateless Address Allocation Control"],
+  "SMB": ["Server Messaging Bus", "System Message Block", "Session Message Block"],
+  "SMTP": ["Simple Mail Transport Protocol", "Standard Mail Transfer Protocol", "Secure Mail Transfer Protocol"],
+  "SMTPS": ["Simple Mail Transfer Protocol Standard", "Secure Mail Transfer Protocol Secure", "Simple Mail Transport Protocol Secure"],
+  "SNMP": ["Simple Network Monitoring Protocol", "Standard Network Management Protocol", "Simple Node Management Protocol"],
+  "SOA": ["Source of Authority", "Start of Address", "State of Authority"],
+  "SOW": ["Scope of Work", "Summary of Work", "Standard of Work"],
+  "SQL": ["Standard Query Language", "Structured Question Language", "Sequential Query Language"],
+  "SSE": ["Secure Service Edge", "Security Service Endpoint", "Secure Software Edge"],
+  "SSH": ["Secure Socket Handler", "Secure Session Host", "System Shell"],
+  "SSID": ["Secure Set Identifier", "Signal Set Identifier", "Station Set Identifier"],
+  "SSL": ["Secure Socket Link", "Secure Session Layer", "System Socket Layer"],
+  "SSO": ["Secure Sign-on", "Single Sign-off", "System Sign-on"],
+  "ST": ["Straight Terminal", "Standard Tip", "Square Tip"],
+  "STP": ["Shielded Twisted Path", "Structured Twisted Pair", "Single Twisted Pair"],
+  "SVI": ["Switched Virtual Interface", "Switch Virtual Instance", "System Virtual Interface"],
+  "TACACS+": ["Terminal Access Control Access Control System Plus", "Terminal Access Controller Access Configuration System Plus", "Trusted Access Controller Access Control System Plus"],
+  "TCP": ["Transfer Control Protocol", "Transmission Connection Protocol", "Transport Control Protocol"],
+  "TFTP": ["Trivial File Transport Protocol", "Text File Transfer Protocol", "Temporary File Transfer Protocol"],
+  "TLS": ["Transport Level Security", "Transmission Layer Security", "Transport Layer Session"],
+  "TTL": ["Time to Load", "Total Time Live", "Time to Leave"],
+  "TX": ["Transfer", "Transmitter", "Transaction"],
+  "TXT": ["Transmit Text", "Text Exchange", "Text Transfer"],
+  "UDP": ["User Data Protocol", "Universal Datagram Protocol", "User Datagram Packet"],
+  "UPS": ["Universal Power Supply", "Unified Power Supply", "Uninterruptible Power System"],
+  "URL": ["Universal Resource Locator", "Uniform Resource Link", "Unified Resource Locator"],
+  "USB": ["Universal System Bus", "Universal Serial Board", "Unified Serial Bus"],
+  "UTM": ["Universal Threat Management", "Unified Traffic Management", "Unified Threat Mitigation"],
+  "UTP": ["Untwisted Pair", "Unshielded Terminated Pair", "Universal Twisted Pair"],
+  "VIP": ["Virtual Interface Point", "Virtual IP Protocol", "Variable IP"],
+  "VLAN": ["Virtual Link Area Network", "Virtualized Local Access Network", "Variable Local Area Network"],
+  "VLSM": ["Variable Length Subnet Method", "Variable Length Subnetwork Mask", "Variable Logic Subnet Mask"],
+  "VM": ["Virtual Memory", "Virtual Module", "Virtualization Manager"],
+  "VoIP": ["Video over IP", "Voice on IP", "Voice over IPv6"],
+  "VPC": ["Virtual Public Cloud", "Virtual Private Connection", "Virtual Private Container"],
+  "VPN": ["Virtual Public Network", "Virtual Personal Network", "Verified Private Network"],
+  "VRRP": ["Virtual Router Routing Protocol", "Virtual Redundancy Routing Protocol", "Virtual Router Redundancy Path"],
+  "VXLAN": ["Virtual Extended LAN", "Virtual Exchange LAN", "Virtual Extreme LAN"],
+  "WAN": ["Wireless Area Network", "Wide Access Network", "Wired Area Network"],
+  "WLAN": ["Wired Local Area Network", "Wireless Link Area Network", "Wide Local Area Network"],
+  "WPA": ["Wireless Protected Access", "Wi-Fi Private Access", "Wi-Fi Protected Authentication"],
+  "WPS": ["Wi-Fi Protected Security", "Wireless Protected Setup", "Wi-Fi Provisioning Setup"],
+  "ZTA": ["Zero Trust Access", "Zero Trust Authentication", "Zoned Trust Architecture"],
+};
+
+// Fraction of acronyms that also get a (harder-to-guess) reverse question.
+// Reverse (meaning → acronym) is easier, so it is kept less frequent.
+const ACRONYM_REVERSE_FRACTION = 0.3;
+
+function buildAcronymQuestions() {
+  const allFulls = ACRONYM_DATA.map(a => a.full);
+  const allAcrs  = ACRONYM_DATA.map(a => a.acr);
+
+  // Forward: acronym → meaning, with plausible same-acronym decoys.
+  const forward = ACRONYM_DATA.map(entry => {
+    const decoys = (ACRONYM_DECOYS[entry.acr] ||
+      shuffle(allFulls.filter(f => f !== entry.full)).slice(0, 3)).slice(0, 3);
+    return {
+      text: `What does <strong>${entry.acr}</strong> stand for?`,
+      answer: entry.full,
+      choices: [entry.full, ...decoys],
+      meta: "Acronym → Meaning",
+    };
+  });
+
+  // Reverse: meaning → acronym, for a sampled (less frequent) subset.
+  const reverseCount = Math.round(ACRONYM_DATA.length * ACRONYM_REVERSE_FRACTION);
+  const reverse = shuffle([...ACRONYM_DATA]).slice(0, reverseCount).map(entry => {
+    const distractors = shuffle(allAcrs.filter(a => a !== entry.acr)).slice(0, 3);
+    return {
+      text: `Which acronym stands for <strong>"${entry.full}"</strong>?`,
+      answer: entry.acr,
+      choices: [entry.acr, ...distractors],
+      meta: "Meaning → Acronym",
+    };
+  });
+
+  return shuffle([...forward, ...reverse]);
+}
+
 let portQs = [], portIdx = 0, portScore = { c: 0, w: 0 }, portHist = [];
 let cableQs = [], cableIdx = 0, cableScore = { c: 0, w: 0 }, cableHist = [];
 let classfulQs = [], classfulIdx = 0, classfulScore = { c: 0, w: 0 }, classfulHist = [];
@@ -994,6 +1387,7 @@ let monitoringQs = [], monitoringIdx = 0, monitoringScore = { c: 0, w: 0 }, moni
 let drQs = [], drIdx = 0, drScore = { c: 0, w: 0 }, drHist = [];
 let servicesQs = [], servicesIdx = 0, servicesScore = { c: 0, w: 0 }, servicesHist = [];
 let accessQs = [], accessIdx = 0, accessScore = { c: 0, w: 0 }, accessHist = [];
+let acronymQs = [], acronymIdx = 0, acronymScore = { c: 0, w: 0 }, acronymHist = [];
 
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 //  PORTS
@@ -1323,6 +1717,26 @@ function nextAccessQ() {
   renderAccessQ();
 }
 
+// Acronyms (N10-009 acronym appendix)
+
+function renderAcronymQ() {
+  renderMC('acronym', acronymQs[acronymIdx], checkAcronymQ);
+  renderDots('acronym-dots', acronymHist);
+}
+
+function checkAcronymQ(chosen, correct) {
+  resolveMC('acronym', chosen, correct, acronymScore, acronymHist);
+  updateScore('acronym', acronymScore);
+  renderDots('acronym-dots', acronymHist);
+  document.getElementById('acronym-next').style.display = 'inline-block';
+}
+
+function nextAcronymQ() {
+  acronymIdx++;
+  if (acronymIdx >= acronymQs.length) { acronymQs = buildAcronymQuestions(); acronymIdx = 0; }
+  renderAcronymQ();
+}
+
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 //  NAV
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
@@ -1351,6 +1765,16 @@ function selectSection(name, domainId) {
   // Close dropdown
   document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
   showSection(name);
+}
+
+// Standalone top-level section (sibling of the domain dropdowns, e.g. Acronyms)
+function selectStandalone(name) {
+  activeDomain = null;
+  document.querySelectorAll('.domain-dropdown > button').forEach(b => b.classList.remove('active'));
+  document.querySelector(`#dd-${name} > button`).classList.add('active');
+  document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(name).classList.add('active');
 }
 
 function showSection(name) {
@@ -1388,6 +1812,7 @@ document.addEventListener('DOMContentLoaded', () => {
   drQs         = shuffle([...DR_QUESTIONS]);
   servicesQs   = shuffle([...SERVICES_QUESTIONS]);
   accessQs     = shuffle([...ACCESS_QUESTIONS]);
+  acronymQs    = buildAcronymQuestions();
   renderPortQ();
   renderCableQ();
   renderClassfulQ();
@@ -1403,6 +1828,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderDrQ();
   renderServicesQ();
   renderAccessQ();
+  renderAcronymQ();
 
   document.getElementById('subnet-answer').addEventListener('keydown', e => {
     if (e.key !== 'Enter') return;

@@ -44,6 +44,9 @@
       <button class="sec-btn" onclick="selectSection('access', 'domain3')">🔑 Access &amp; Mgmt</button>
     </div>
   </div>
+  <div class="domain-dropdown" id="dd-acronyms">
+    <button onclick="selectStandalone('acronyms')">🔤 Acronyms</button>
+  </div>
 </nav>
 
 <main>
@@ -333,6 +336,25 @@
       <div class="choices" id="access-choices"></div>
       <div class="feedback" id="access-feedback"></div>
       <button class="next-btn" id="access-next" onclick="nextAccessQ()">Next →</button>
+    </div>
+  </div>
+
+  <!-- ── Acronyms (N10-009 acronym appendix) ── -->
+  <div id="acronyms" class="section">
+    <div class="score-bar">
+      <div class="score-item s-correct"><div class="val" id="acronym-correct">0</div><div class="lbl">Correct</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item s-wrong"><div class="val" id="acronym-wrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item"><div class="val" id="acronym-pct">—</div><div class="lbl">Accuracy</div></div>
+    </div>
+    <div class="progress-dots" id="acronym-dots"></div>
+    <div class="card">
+      <div class="q-meta" id="acronym-meta"></div>
+      <div class="q-text" id="acronym-question"></div>
+      <div class="choices" id="acronym-choices"></div>
+      <div class="feedback" id="acronym-feedback"></div>
+      <button class="next-btn" id="acronym-next" onclick="nextAcronymQ()">Next →</button>
     </div>
   </div>
 
