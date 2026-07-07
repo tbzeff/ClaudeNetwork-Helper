@@ -49,6 +49,7 @@
     <div class="dropdown-menu" id="domain4-tabs">
       <button class="sec-btn" onclick="selectSection('security', 'domain4')">🛡️ Security Concepts</button>
       <button class="sec-btn" onclick="selectSection('attacks', 'domain4')">💥 Attack Types</button>
+      <button class="sec-btn" onclick="selectSection('defenses', 'domain4')">🔒 Security Defenses</button>
     </div>
   </div>
   <div class="domain-dropdown" id="dd-acronyms">
@@ -381,6 +382,25 @@
       <div class="choices" id="attacks-choices"></div>
       <div class="feedback" id="attacks-feedback"></div>
       <button class="next-btn" id="attacks-next" onclick="nextAttackQ()">Next →</button>
+    </div>
+  </div>
+
+  <!-- ── Security Features, Defense Techniques, Solutions (4.3) ── -->
+  <div id="defenses" class="section">
+    <div class="score-bar">
+      <div class="score-item s-correct"><div class="val" id="defenses-correct">0</div><div class="lbl">Correct</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item s-wrong"><div class="val" id="defenses-wrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item"><div class="val" id="defenses-pct">—</div><div class="lbl">Accuracy</div></div>
+    </div>
+    <div class="progress-dots" id="defenses-dots"></div>
+    <div class="card">
+      <div class="q-meta" id="defenses-meta"></div>
+      <div class="q-text" id="defenses-question"></div>
+      <div class="choices" id="defenses-choices"></div>
+      <div class="feedback" id="defenses-feedback"></div>
+      <button class="next-btn" id="defenses-next" onclick="nextDefenseQ()">Next →</button>
     </div>
   </div>
 

@@ -1116,6 +1116,63 @@ const ATTACK_QUESTIONS = [
   { text: "Which malware type <strong>self-replicates and spreads across a network without user interaction</strong>?", answer: "Worm", choices: ["Worm","Virus","Trojan","Spyware"], meta: "Malware — 4.2" },
 ];
 
+// ======================================================
+//  DATA -- Security Features, Defense Techniques, Solutions (4.3)
+// ======================================================
+
+const DEFENSE_QUESTIONS = [
+  // ── Device hardening ──
+  { text: "What is <strong>device hardening</strong>?", answer: "Reducing a device's attack surface by disabling unnecessary features and applying secure configurations", choices: ["Reducing a device's attack surface by disabling unnecessary features and applying secure configurations","Physically bolting a device into a locked rack","Encrypting all traffic leaving the device","Installing redundant power supplies for uptime"], meta: "Device Hardening — 4.3" },
+  { text: "Why should you <strong>disable unused ports and services</strong> on a network device?", answer: "Every open port or running service is a potential entry point, so disabling them reduces the attack surface", choices: ["Every open port or running service is a potential entry point, so disabling them reduces the attack surface","It increases the device's total throughput","It is required to enable jumbo frames","It automatically encrypts management traffic"], meta: "Device Hardening — 4.3" },
+  { text: "Which of the following is a fundamental <strong>device hardening</strong> step for any new switch or router?", answer: "Change the default administrator password", choices: ["Change the default administrator password","Leave the default password so IT can recover it easily","Enable every available service by default","Disable logging to save storage"], meta: "Device Hardening — 4.3" },
+  { text: "Why is it critical to <strong>change default passwords</strong> on network devices?", answer: "Default credentials are publicly documented and are among the first things attackers try", choices: ["Default credentials are publicly documented and are among the first things attackers try","Default passwords slow down the CPU","Default passwords cannot be typed remotely","Changing them enables Power over Ethernet"], meta: "Device Hardening — 4.3" },
+  { text: "Disabling an unused physical switch port helps prevent which of the following?", answer: "An unauthorized user plugging into an open jack and gaining network access", choices: ["An unauthorized user plugging into an open jack and gaining network access","A broadcast storm on the trunk uplink","A duplicate IP address on the subnet","A spanning tree root bridge election"], meta: "Device Hardening — 4.3" },
+
+  // ── NAC: general ──
+  { text: "What is the purpose of <strong>Network Access Control (NAC)</strong>?", answer: "To authenticate and evaluate devices before granting them access to the network", choices: ["To authenticate and evaluate devices before granting them access to the network","To balance traffic load across multiple servers","To compress data before it crosses the WAN","To assign IP addresses from a DHCP scope"], meta: "NAC — 4.3" },
+
+  // ── NAC: port security ──
+  { text: "What does switch <strong>port security</strong> do?", answer: "Restricts which and how many MAC addresses are allowed to send traffic on a switch port", choices: ["Restricts which and how many MAC addresses are allowed to send traffic on a switch port","Encrypts all frames leaving the port","Assigns the port to the correct VLAN automatically","Increases the port's speed and duplex"], meta: "NAC — 4.3" },
+  { text: "Which attack is <strong>port security</strong> most directly designed to mitigate?", answer: "MAC flooding (CAM table overflow) by limiting the number of MAC addresses per port", choices: ["MAC flooding (CAM table overflow) by limiting the number of MAC addresses per port","DNS cache poisoning","A phishing campaign","A distributed denial-of-service flood"], meta: "NAC — 4.3" },
+  { text: "A <strong>sticky MAC</strong> address in port security refers to:", answer: "A dynamically learned MAC that the switch saves so only that device is permitted on the port", choices: ["A dynamically learned MAC that the switch saves so only that device is permitted on the port","A MAC address that changes every few seconds","A broadcast MAC used for flooding","A MAC reserved for the default gateway"], meta: "NAC — 4.3" },
+  { text: "When a port-security violation occurs, a port in the default <strong>shutdown</strong> violation mode will:", answer: "Enter an error-disabled state and stop forwarding traffic", choices: ["Enter an error-disabled state and stop forwarding traffic","Silently allow the traffic but log it","Automatically move the device to a guest VLAN","Reboot the entire switch"], meta: "NAC — 4.3" },
+
+  // ── NAC: 802.1X ──
+  { text: "What is <strong>802.1X</strong>?", answer: "A port-based network access control standard that authenticates devices before allowing them onto the network", choices: ["A port-based network access control standard that authenticates devices before allowing them onto the network","A wireless encryption cipher","A routing protocol for large networks","A cabling standard for 10 Gbps Ethernet"], meta: "NAC — 4.3" },
+  { text: "In an <strong>802.1X</strong> deployment, the device requesting access (e.g., a laptop) is called the:", answer: "Supplicant", choices: ["Supplicant","Authenticator","Authentication server","Certificate authority"], meta: "NAC — 4.3" },
+  { text: "In <strong>802.1X</strong>, which component is the switch or wireless AP that controls port access?", answer: "The authenticator", choices: ["The authenticator","The supplicant","The RADIUS server","The domain controller"], meta: "NAC — 4.3" },
+  { text: "Which server role most commonly acts as the <strong>authentication server</strong> in an 802.1X design?", answer: "A RADIUS server", choices: ["A RADIUS server","A DHCP server","A DNS resolver","An NTP server"], meta: "NAC — 4.3" },
+
+  // ── NAC: MAC filtering ──
+  { text: "What is <strong>MAC filtering</strong>?", answer: "Permitting or denying network access based on a device's hardware (MAC) address", choices: ["Permitting or denying network access based on a device's hardware (MAC) address","Filtering packets based on destination TCP port","Blocking websites by URL category","Encrypting frames based on their MAC address"], meta: "NAC — 4.3" },
+  { text: "Why is <strong>MAC filtering</strong> considered a weak stand-alone security control?", answer: "MAC addresses can be easily spoofed, so an attacker can copy an allowed MAC to bypass it", choices: ["MAC addresses can be easily spoofed, so an attacker can copy an allowed MAC to bypass it","MAC addresses change every time a device reboots","It requires a certificate authority to function","It only works on fiber connections"], meta: "NAC — 4.3" },
+
+  // ── Key management ──
+  { text: "What is <strong>key management</strong> in network security?", answer: "The processes for generating, distributing, storing, rotating, and revoking cryptographic keys", choices: ["The processes for generating, distributing, storing, rotating, and revoking cryptographic keys","The practice of assigning static IP addresses to servers","A method of labeling patch panel ports","The scheduling of firmware upgrades"], meta: "Key Management — 4.3" },
+  { text: "Why is proper <strong>key rotation</strong> an important part of key management?", answer: "Periodically replacing keys limits how much data is exposed if a key is ever compromised", choices: ["Periodically replacing keys limits how much data is exposed if a key is ever compromised","It increases the length of every packet","It removes the need for firewalls","It speeds up DNS resolution"], meta: "Key Management — 4.3" },
+
+  // ── Security rules: ACL ──
+  { text: "What is an <strong>access control list (ACL)</strong> on a router or firewall?", answer: "An ordered set of permit/deny rules that filter traffic based on criteria such as IP address, port, or protocol", choices: ["An ordered set of permit/deny rules that filter traffic based on criteria such as IP address, port, or protocol","A list of MAC addresses learned by a switch","A directory of usernames and passwords","A table mapping hostnames to IP addresses"], meta: "Security Rules — 4.3" },
+  { text: "Most ACLs end with an implicit rule that does what to any traffic not explicitly permitted?", answer: "Denies it (implicit deny at the end of the list)", choices: ["Denies it (implicit deny at the end of the list)","Permits it by default","Logs it and forwards it","Encrypts it automatically"], meta: "Security Rules — 4.3" },
+  { text: "Because ACLs are processed <strong>top-down</strong>, why does rule order matter?", answer: "The first matching rule is applied, so a broad rule placed too early can override more specific rules below it", choices: ["The first matching rule is applied, so a broad rule placed too early can override more specific rules below it","Rules are processed randomly each time","Only the last rule in the list is ever evaluated","Order has no effect on how ACLs are applied"], meta: "Security Rules — 4.3" },
+
+  // ── Security rules: URL filtering ──
+  { text: "What does <strong>URL filtering</strong> do?", answer: "Allows or blocks access to specific websites based on their URL or web address", choices: ["Allows or blocks access to specific websites based on their URL or web address","Filters traffic based on the source MAC address","Encrypts DNS queries between client and resolver","Assigns VLANs based on the destination URL"], meta: "Security Rules — 4.3" },
+
+  // ── Security rules: content filtering ──
+  { text: "What does <strong>content filtering</strong> do?", answer: "Blocks or allows traffic based on the content or category of the material, such as adult, gambling, or malware sites", choices: ["Blocks or allows traffic based on the content or category of the material, such as adult, gambling, or malware sites","Compresses web pages to save bandwidth","Balances requests across web servers","Caches frequently visited pages locally"], meta: "Security Rules — 4.3" },
+  { text: "How does <strong>content filtering</strong> generally differ from URL filtering?", answer: "Content filtering blocks by category or the actual content/keywords, while URL filtering blocks specific web addresses", choices: ["Content filtering blocks by category or the actual content/keywords, while URL filtering blocks specific web addresses","Content filtering only works on encrypted traffic","URL filtering inspects packet payloads while content filtering does not","They are two names for the exact same feature"], meta: "Security Rules — 4.3" },
+
+  // ── Zones: trusted vs. untrusted ──
+  { text: "In firewall design, what is a <strong>trusted zone</strong>?", answer: "The internal network segment that is under organizational control and considered relatively secure", choices: ["The internal network segment that is under organizational control and considered relatively secure","The public internet outside the firewall","A network reserved only for guest Wi-Fi","Any segment that has no firewall protection"], meta: "Security Zones — 4.3" },
+  { text: "What is an <strong>untrusted zone</strong>?", answer: "A network such as the public internet that is outside organizational control and treated as hostile", choices: ["A network such as the public internet that is outside organizational control and treated as hostile","The internal LAN behind the firewall","A VLAN dedicated to management traffic","A directly connected loopback interface"], meta: "Security Zones — 4.3" },
+
+  // ── Zones: screened subnet ──
+  { text: "What is a <strong>screened subnet</strong> (formerly called a DMZ)?", answer: "A buffer network between the trusted internal LAN and the untrusted internet that hosts public-facing services", choices: ["A buffer network between the trusted internal LAN and the untrusted internet that hosts public-facing services","A VLAN that carries only voice traffic","A subnet reserved for out-of-band management","An encrypted tunnel between two branch offices"], meta: "Security Zones — 4.3" },
+  { text: "Which type of server is a good candidate to place in a <strong>screened subnet</strong>?", answer: "A public-facing web or email server that must be reachable from the internet", choices: ["A public-facing web or email server that must be reachable from the internet","The internal Active Directory domain controller","A workstation used by an accountant","The core distribution switch"], meta: "Security Zones — 4.3" },
+  { text: "What is the main security benefit of placing public servers in a <strong>screened subnet</strong>?", answer: "If a public server is compromised, the attacker is still isolated from the trusted internal network", choices: ["If a public server is compromised, the attacker is still isolated from the trusted internal network","It doubles the internet bandwidth available to those servers","It removes the need to patch those servers","It allows those servers to skip authentication"], meta: "Security Zones — 4.3" },
+];
+
 //  STATE
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
@@ -1529,6 +1586,7 @@ let servicesQs = [], servicesIdx = 0, servicesScore = { c: 0, w: 0 }, servicesHi
 let accessQs = [], accessIdx = 0, accessScore = { c: 0, w: 0 }, accessHist = [];
 let securityQs = [], securityIdx = 0, securityScore = { c: 0, w: 0 }, securityHist = [];
 let attackQs = [], attackIdx = 0, attackScore = { c: 0, w: 0 }, attackHist = [];
+let defenseQs = [], defenseIdx = 0, defenseScore = { c: 0, w: 0 }, defenseHist = [];
 let acronymQs = [], acronymIdx = 0, acronymScore = { c: 0, w: 0 }, acronymHist = [];
 
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
@@ -1899,6 +1957,26 @@ function nextAttackQ() {
   renderAttackQ();
 }
 
+// Security Features, Defense Techniques, Solutions (4.3)
+
+function renderDefenseQ() {
+  renderMC('defenses', defenseQs[defenseIdx], checkDefenseQ);
+  renderDots('defenses-dots', defenseHist);
+}
+
+function checkDefenseQ(chosen, correct) {
+  resolveMC('defenses', chosen, correct, defenseScore, defenseHist);
+  updateScore('defenses', defenseScore);
+  renderDots('defenses-dots', defenseHist);
+  document.getElementById('defenses-next').style.display = 'inline-block';
+}
+
+function nextDefenseQ() {
+  defenseIdx++;
+  if (defenseIdx >= defenseQs.length) { defenseQs = shuffle([...DEFENSE_QUESTIONS]); defenseIdx = 0; }
+  renderDefenseQ();
+}
+
 // Acronyms (N10-009 acronym appendix)
 
 function renderAcronymQ() {
@@ -1927,7 +2005,7 @@ const DOMAIN_SECTIONS = {
   domain1: ['ports', 'cables', 'classful', 'fundamental', 'cloud', 'subnetting'],
   domain2: ['routing', 'switching', 'wireless', 'physical'],
   domain3: ['orgproc', 'monitoring', 'dr', 'services', 'access'],
-  domain4: ['security', 'attacks'],
+  domain4: ['security', 'attacks', 'defenses'],
 };
 
 let activeDomain = 'domain1';
@@ -1997,6 +2075,7 @@ document.addEventListener('DOMContentLoaded', () => {
   accessQs     = shuffle([...ACCESS_QUESTIONS]);
   securityQs   = shuffle([...SECURITY_QUESTIONS]);
   attackQs     = shuffle([...ATTACK_QUESTIONS]);
+  defenseQs    = shuffle([...DEFENSE_QUESTIONS]);
   acronymQs    = buildAcronymQuestions();
   renderPortQ();
   renderCableQ();
@@ -2015,6 +2094,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderAccessQ();
   renderSecurityQ();
   renderAttackQ();
+  renderDefenseQ();
   renderAcronymQ();
 
   document.getElementById('subnet-answer').addEventListener('keydown', e => {
