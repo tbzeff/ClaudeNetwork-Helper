@@ -1052,6 +1052,70 @@ const SECURITY_QUESTIONS = [
   { text: "In the context of segmentation, what does <strong>BYOD</strong> refer to?", answer: "Bring Your Own Device — personal devices that are often segmented onto a separate network due to lower trust", choices: ["Bring Your Own Device — personal devices that are often segmented onto a separate network due to lower trust","Build Your Own Domain — a private DNS zone","Backup Your Own Data — a user backup policy","Bring Your Own Data — a data-migration process"], meta: "Segmentation — 4.1" },
 ];
 
+// ======================================================
+//  DATA -- Attack Types (4.2)
+// ======================================================
+
+const ATTACK_QUESTIONS = [
+  // ── DoS / DDoS ──
+  { text: "What is a <strong>denial-of-service (DoS)</strong> attack?", answer: "An attack that floods or overwhelms a system or service so it becomes unavailable to legitimate users", choices: ["An attack that floods or overwhelms a system or service so it becomes unavailable to legitimate users","An attack that secretly reads data as it crosses the network","An attack that alters a device's ARP cache","An attack that tricks a user into revealing credentials"], meta: "DoS/DDoS — 4.2" },
+  { text: "How does a <strong>distributed denial-of-service (DDoS)</strong> attack differ from a standard DoS attack?", answer: "The attack traffic originates from many compromised hosts (a botnet) at once rather than a single source", choices: ["The attack traffic originates from many compromised hosts (a botnet) at once rather than a single source","It targets only wireless networks","It encrypts the victim's files for ransom","It only works against DNS servers"], meta: "DoS/DDoS — 4.2" },
+  { text: "What is the primary <strong>impact</strong> of a successful DoS/DDoS attack on a network?", answer: "Loss of availability — legitimate users cannot reach the targeted service", choices: ["Loss of availability — legitimate users cannot reach the targeted service","Silent theft of confidential data","Permanent modification of stored records","Unauthorized privilege escalation"], meta: "DoS/DDoS — 4.2" },
+  { text: "A network of malware-infected computers remotely controlled to launch a DDoS is called a:", answer: "Botnet", choices: ["Botnet","Honeynet","Screened subnet","Broadcast domain"], meta: "DoS/DDoS — 4.2" },
+
+  // ── VLAN hopping ──
+  { text: "What is a <strong>VLAN hopping</strong> attack?", answer: "An attack that lets a device send or receive traffic on a VLAN it should not have access to", choices: ["An attack that lets a device send or receive traffic on a VLAN it should not have access to","An attack that exhausts a DHCP scope","An attack that floods a switch's MAC address table","An attack that forges ARP replies"], meta: "VLAN Hopping — 4.2" },
+  { text: "Which two techniques are commonly used to perform <strong>VLAN hopping</strong>?", answer: "Switch spoofing (negotiating a trunk) and double tagging (nested 802.1Q tags)", choices: ["Switch spoofing (negotiating a trunk) and double tagging (nested 802.1Q tags)","MAC flooding and ARP poisoning","DNS spoofing and DHCP starvation","Phishing and tailgating"], meta: "VLAN Hopping — 4.2" },
+  { text: "In a <strong>double-tagging</strong> VLAN hopping attack, the attacker relies on the switch stripping which tag first?", answer: "The outer tag matching the native VLAN, leaving the inner tag to reach the target VLAN", choices: ["The outer tag matching the native VLAN, leaving the inner tag to reach the target VLAN","The inner tag, discarding the frame entirely","Both tags simultaneously","Neither tag, forwarding the frame unchanged"], meta: "VLAN Hopping — 4.2" },
+
+  // ── MAC flooding ──
+  { text: "What is a <strong>MAC flooding</strong> attack?", answer: "Overwhelming a switch's MAC address table with bogus addresses so it fails open and floods frames out all ports", choices: ["Overwhelming a switch's MAC address table with bogus addresses so it fails open and floods frames out all ports","Sending forged ARP replies to poison the ARP cache","Exhausting a DHCP server's address pool","Redirecting DNS lookups to a malicious server"], meta: "MAC Flooding — 4.2" },
+  { text: "What is the attacker's goal in a <strong>MAC flooding</strong> attack?", answer: "To force the switch to broadcast frames out all ports so the attacker can capture traffic meant for others", choices: ["To force the switch to broadcast frames out all ports so the attacker can capture traffic meant for others","To crash the switch's power supply","To assign the attacker a trusted VLAN","To spoof the default gateway's IP address"], meta: "MAC Flooding — 4.2" },
+  { text: "When a switch's CAM table is overflowed by MAC flooding, it begins behaving like which device?", answer: "A hub, flooding all frames out every port", choices: ["A hub, flooding all frames out every port","A router, dropping all broadcast traffic","A firewall, blocking unknown MACs","A load balancer, distributing frames evenly"], meta: "MAC Flooding — 4.2" },
+
+  // ── ARP poisoning / spoofing ──
+  { text: "What is <strong>ARP poisoning (ARP spoofing)</strong>?", answer: "Sending forged ARP messages to associate the attacker's MAC with another host's IP, redirecting traffic", choices: ["Sending forged ARP messages to associate the attacker's MAC with another host's IP, redirecting traffic","Flooding a switch's MAC table with random addresses","Overwhelming a server with traffic from many hosts","Impersonating a legitimate wireless access point"], meta: "ARP Poisoning — 4.2" },
+  { text: "ARP poisoning most commonly enables which follow-on attack?", answer: "An on-path (man-in-the-middle) attack that intercepts traffic between two hosts", choices: ["An on-path (man-in-the-middle) attack that intercepts traffic between two hosts","A DHCP scope exhaustion","A double-tagged VLAN hop","A brute-force password attack"], meta: "ARP Poisoning — 4.2" },
+  { text: "Why is <strong>ARP</strong> vulnerable to spoofing?", answer: "ARP has no authentication, so hosts accept unsolicited ARP replies and update their cache", choices: ["ARP has no authentication, so hosts accept unsolicited ARP replies and update their cache","ARP encrypts replies with a weak cipher","ARP relies on DNS for name resolution","ARP only works across routed subnets"], meta: "ARP Poisoning — 4.2" },
+
+  // ── DNS poisoning / spoofing ──
+  { text: "What is <strong>DNS poisoning (DNS spoofing)</strong>?", answer: "Corrupting DNS data so a hostname resolves to an attacker-controlled IP address", choices: ["Corrupting DNS data so a hostname resolves to an attacker-controlled IP address","Flooding a DNS server so it stops responding","Encrypting DNS queries to hide them","Registering many similar domain names"], meta: "DNS Poisoning — 4.2" },
+  { text: "What is the typical <strong>impact</strong> of a successful DNS spoofing attack on users?", answer: "Users are silently redirected to malicious sites even when typing the correct domain name", choices: ["Users are silently redirected to malicious sites even when typing the correct domain name","Users lose all internet connectivity immediately","Users' files are encrypted for ransom","Users' switch ports are disabled"], meta: "DNS Poisoning — 4.2" },
+  { text: "Which technology best defends against DNS cache poisoning by authenticating DNS records?", answer: "DNSSEC", choices: ["DNSSEC","MAC filtering","802.1X","Port security"], meta: "DNS Poisoning — 4.2" },
+
+  // ── Rogue DHCP / Rogue AP ──
+  { text: "What is a <strong>rogue DHCP server</strong> attack?", answer: "An unauthorized DHCP server that hands out incorrect IP settings, often pointing clients to a malicious gateway or DNS", choices: ["An unauthorized DHCP server that hands out incorrect IP settings, often pointing clients to a malicious gateway or DNS","A DHCP server that runs out of available addresses","A switch feature that blocks DHCP traffic","A DNS server that caches poisoned records"], meta: "Rogue DHCP/AP — 4.2" },
+  { text: "Which switch security feature is designed to stop <strong>rogue DHCP servers</strong>?", answer: "DHCP snooping, which permits DHCP offers only from trusted ports", choices: ["DHCP snooping, which permits DHCP offers only from trusted ports","MAC flooding protection","Spanning tree BPDU guard","DNS over HTTPS"], meta: "Rogue DHCP/AP — 4.2" },
+  { text: "What is a <strong>rogue access point</strong>?", answer: "An unauthorized wireless AP connected to the network, creating an unsecured entry point", choices: ["An unauthorized wireless AP connected to the network, creating an unsecured entry point","A properly configured guest AP with a captive portal","An AP that has failed and stopped broadcasting","A controller-managed lightweight AP"], meta: "Rogue DHCP/AP — 4.2" },
+
+  // ── Evil twin ──
+  { text: "What is an <strong>evil twin</strong> attack?", answer: "A malicious access point that mimics a legitimate SSID to trick users into connecting to it", choices: ["A malicious access point that mimics a legitimate SSID to trick users into connecting to it","A duplicate DHCP server on the same subnet","Two switches with the same MAC address","A cloned MAC address on a wired port"], meta: "Evil Twin — 4.2" },
+  { text: "How does an <strong>evil twin</strong> differ from a generic rogue AP?", answer: "An evil twin specifically impersonates a trusted SSID to lure users, often to capture credentials or intercept traffic", choices: ["An evil twin specifically impersonates a trusted SSID to lure users, often to capture credentials or intercept traffic","An evil twin is always authorized by IT","An evil twin only affects wired networks","An evil twin cannot intercept any traffic"], meta: "Evil Twin — 4.2" },
+
+  // ── On-path attack ──
+  { text: "What is an <strong>on-path attack</strong> (formerly man-in-the-middle)?", answer: "An attacker secretly positions themselves between two communicating parties to intercept or alter traffic", choices: ["An attacker secretly positions themselves between two communicating parties to intercept or alter traffic","An attacker floods a target with traffic to take it offline","An attacker guesses passwords repeatedly","An attacker physically follows an employee through a door"], meta: "On-Path — 4.2" },
+  { text: "Which of these techniques can be used to set up an <strong>on-path attack</strong>?", answer: "ARP poisoning to redirect a victim's traffic through the attacker", choices: ["ARP poisoning to redirect a victim's traffic through the attacker","MAC flooding to disable the switch permanently","A tabletop exercise","DHCP reservation"], meta: "On-Path — 4.2" },
+
+  // ── Social engineering: phishing ──
+  { text: "What is <strong>phishing</strong>?", answer: "Sending fraudulent messages that appear legitimate to trick users into revealing credentials or clicking malicious links", choices: ["Sending fraudulent messages that appear legitimate to trick users into revealing credentials or clicking malicious links","Intercepting traffic between two hosts","Flooding a switch's MAC table","Impersonating a wireless access point"], meta: "Social Engineering — 4.2" },
+  { text: "Phishing, dumpster diving, shoulder surfing, and tailgating are all examples of what category of attack?", answer: "Social engineering — manipulating people rather than exploiting technical flaws", choices: ["Social engineering — manipulating people rather than exploiting technical flaws","Denial-of-service attacks","Layer 2 switching attacks","Cryptographic attacks"], meta: "Social Engineering — 4.2" },
+
+  // ── Social engineering: dumpster diving ──
+  { text: "What is <strong>dumpster diving</strong> as a social-engineering technique?", answer: "Searching through discarded trash to find sensitive information such as documents, notes, or hardware", choices: ["Searching through discarded trash to find sensitive information such as documents, notes, or hardware","Watching someone type their password over their shoulder","Following an employee through a secured door","Sending a fraudulent email to harvest credentials"], meta: "Social Engineering — 4.2" },
+
+  // ── Social engineering: shoulder surfing ──
+  { text: "What is <strong>shoulder surfing</strong>?", answer: "Observing a person's screen or keyboard from nearby to steal passwords or other sensitive data", choices: ["Observing a person's screen or keyboard from nearby to steal passwords or other sensitive data","Digging through trash for discarded documents","Impersonating IT staff over the phone","Redirecting DNS queries to a fake site"], meta: "Social Engineering — 4.2" },
+
+  // ── Social engineering: tailgating ──
+  { text: "What is <strong>tailgating</strong> in physical security?", answer: "Following an authorized person through a secured door to gain entry without valid credentials", choices: ["Following an authorized person through a secured door to gain entry without valid credentials","Flooding a network with excessive traffic","Reading data over an attacker's shoulder","Sending mass fraudulent emails"], meta: "Social Engineering — 4.2" },
+
+  // ── Malware ──
+  { text: "What is <strong>malware</strong>?", answer: "Malicious software designed to damage, disrupt, or gain unauthorized access to a system", choices: ["Malicious software designed to damage, disrupt, or gain unauthorized access to a system","A misconfigured but legitimate application","A hardware failure in a network device","An outdated but harmless driver"], meta: "Malware — 4.2" },
+  { text: "Which of the following is a common <strong>type of malware</strong>?", answer: "Ransomware, which encrypts a victim's files and demands payment for the key", choices: ["Ransomware, which encrypts a victim's files and demands payment for the key","A screened subnet placed between two firewalls","An 802.1X authentication server","A DHCP reservation for a printer"], meta: "Malware — 4.2" },
+  { text: "A piece of malware that disguises itself as legitimate software to trick a user into installing it is a:", answer: "Trojan (Trojan horse)", choices: ["Trojan (Trojan horse)","Worm","Rootkit","Logic bomb"], meta: "Malware — 4.2" },
+  { text: "Which malware type <strong>self-replicates and spreads across a network without user interaction</strong>?", answer: "Worm", choices: ["Worm","Virus","Trojan","Spyware"], meta: "Malware — 4.2" },
+];
+
 //  STATE
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
@@ -1464,6 +1528,7 @@ let drQs = [], drIdx = 0, drScore = { c: 0, w: 0 }, drHist = [];
 let servicesQs = [], servicesIdx = 0, servicesScore = { c: 0, w: 0 }, servicesHist = [];
 let accessQs = [], accessIdx = 0, accessScore = { c: 0, w: 0 }, accessHist = [];
 let securityQs = [], securityIdx = 0, securityScore = { c: 0, w: 0 }, securityHist = [];
+let attackQs = [], attackIdx = 0, attackScore = { c: 0, w: 0 }, attackHist = [];
 let acronymQs = [], acronymIdx = 0, acronymScore = { c: 0, w: 0 }, acronymHist = [];
 
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
@@ -1814,6 +1879,26 @@ function nextSecurityQ() {
   renderSecurityQ();
 }
 
+// Attack Types (4.2)
+
+function renderAttackQ() {
+  renderMC('attacks', attackQs[attackIdx], checkAttackQ);
+  renderDots('attacks-dots', attackHist);
+}
+
+function checkAttackQ(chosen, correct) {
+  resolveMC('attacks', chosen, correct, attackScore, attackHist);
+  updateScore('attacks', attackScore);
+  renderDots('attacks-dots', attackHist);
+  document.getElementById('attacks-next').style.display = 'inline-block';
+}
+
+function nextAttackQ() {
+  attackIdx++;
+  if (attackIdx >= attackQs.length) { attackQs = shuffle([...ATTACK_QUESTIONS]); attackIdx = 0; }
+  renderAttackQ();
+}
+
 // Acronyms (N10-009 acronym appendix)
 
 function renderAcronymQ() {
@@ -1842,7 +1927,7 @@ const DOMAIN_SECTIONS = {
   domain1: ['ports', 'cables', 'classful', 'fundamental', 'cloud', 'subnetting'],
   domain2: ['routing', 'switching', 'wireless', 'physical'],
   domain3: ['orgproc', 'monitoring', 'dr', 'services', 'access'],
-  domain4: ['security'],
+  domain4: ['security', 'attacks'],
 };
 
 let activeDomain = 'domain1';
@@ -1911,6 +1996,7 @@ document.addEventListener('DOMContentLoaded', () => {
   servicesQs   = shuffle([...SERVICES_QUESTIONS]);
   accessQs     = shuffle([...ACCESS_QUESTIONS]);
   securityQs   = shuffle([...SECURITY_QUESTIONS]);
+  attackQs     = shuffle([...ATTACK_QUESTIONS]);
   acronymQs    = buildAcronymQuestions();
   renderPortQ();
   renderCableQ();
@@ -1928,6 +2014,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderServicesQ();
   renderAccessQ();
   renderSecurityQ();
+  renderAttackQ();
   renderAcronymQ();
 
   document.getElementById('subnet-answer').addEventListener('keydown', e => {
