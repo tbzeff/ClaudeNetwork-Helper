@@ -44,6 +44,12 @@
       <button class="sec-btn" onclick="selectSection('access', 'domain3')">🔑 Access &amp; Mgmt</button>
     </div>
   </div>
+  <div class="domain-dropdown" id="dd-domain4">
+    <button onclick="toggleDomainDropdown('domain4')">Domain 4 — Network Security ▾</button>
+    <div class="dropdown-menu" id="domain4-tabs">
+      <button class="sec-btn" onclick="selectSection('security', 'domain4')">🛡️ Security Concepts</button>
+    </div>
+  </div>
   <div class="domain-dropdown" id="dd-acronyms">
     <button onclick="selectStandalone('acronyms')">🔤 Acronyms</button>
   </div>
@@ -336,6 +342,25 @@
       <div class="choices" id="access-choices"></div>
       <div class="feedback" id="access-feedback"></div>
       <button class="next-btn" id="access-next" onclick="nextAccessQ()">Next →</button>
+    </div>
+  </div>
+
+  <!-- ── Basic Network Security Concepts (4.1) ── -->
+  <div id="security" class="section">
+    <div class="score-bar">
+      <div class="score-item s-correct"><div class="val" id="security-correct">0</div><div class="lbl">Correct</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item s-wrong"><div class="val" id="security-wrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item"><div class="val" id="security-pct">—</div><div class="lbl">Accuracy</div></div>
+    </div>
+    <div class="progress-dots" id="security-dots"></div>
+    <div class="card">
+      <div class="q-meta" id="security-meta"></div>
+      <div class="q-text" id="security-question"></div>
+      <div class="choices" id="security-choices"></div>
+      <div class="feedback" id="security-feedback"></div>
+      <button class="next-btn" id="security-next" onclick="nextSecurityQ()">Next →</button>
     </div>
   </div>
 

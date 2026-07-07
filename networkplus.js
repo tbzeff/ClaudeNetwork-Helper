@@ -976,6 +976,82 @@ const ACCESS_QUESTIONS = [
   { text: "An administrator SSHes into a <strong>console/terminal server</strong> that has serial connections to each device's console port, letting them manage gear over a path separate from production. This combines SSH with which management method?", answer: "Out-of-band management", choices: ["Out-of-band management","In-band management","Full-tunnel VPN","Clientless VPN"], meta: "Scenario — 3.5" },
 ];
 
+// ======================================================
+//  DATA -- Basic Network Security Concepts (4.1)
+// ======================================================
+
+const SECURITY_QUESTIONS = [
+  // ── CIA triad ──
+  { text: "In the <strong>CIA triad</strong>, what does <strong>Confidentiality</strong> ensure?", answer: "That information is accessible only to authorized parties", choices: ["That information is accessible only to authorized parties","That information is not altered by unauthorized parties","That information and systems are available when needed","That every action can be traced to a user"], meta: "CIA Triad — 4.1" },
+  { text: "In the <strong>CIA triad</strong>, what does <strong>Integrity</strong> ensure?", answer: "That data is not modified or corrupted by unauthorized parties", choices: ["That data is not modified or corrupted by unauthorized parties","That data is kept secret from unauthorized parties","That data is available on demand","That users cannot deny their actions"], meta: "CIA Triad — 4.1" },
+  { text: "In the <strong>CIA triad</strong>, what does <strong>Availability</strong> ensure?", answer: "That systems and data are accessible to authorized users when needed", choices: ["That systems and data are accessible to authorized users when needed","That data cannot be read by unauthorized parties","That data cannot be altered undetected","That all traffic is encrypted"], meta: "CIA Triad — 4.1" },
+  { text: "Encrypting a database of customer records so only authorized staff can read it primarily protects which part of the <strong>CIA triad</strong>?", answer: "Confidentiality", choices: ["Confidentiality","Integrity","Availability","Accounting"], meta: "CIA Triad — 4.1" },
+  { text: "Using a cryptographic <strong>hash</strong> to detect whether a downloaded file was tampered with primarily protects which part of the CIA triad?", answer: "Integrity", choices: ["Integrity","Confidentiality","Availability","Authentication"], meta: "CIA Triad — 4.1" },
+  { text: "Deploying redundant servers and backups so a service stays online during a failure primarily protects which part of the CIA triad?", answer: "Availability", choices: ["Availability","Confidentiality","Integrity","Non-repudiation"], meta: "CIA Triad — 4.1" },
+
+  // ── Risk-related terms ──
+  { text: "What is a <strong>vulnerability</strong>?", answer: "A weakness or flaw in a system that could be exploited", choices: ["A weakness or flaw in a system that could be exploited","A person or event that could cause harm","The act of taking advantage of a weakness","The probability and impact of a loss"], meta: "Risk Terms — 4.1" },
+  { text: "What is a <strong>threat</strong>?", answer: "A potential danger or actor that could exploit a vulnerability and cause harm", choices: ["A potential danger or actor that could exploit a vulnerability and cause harm","A weakness in a system's design or configuration","The likelihood and impact of a negative event","A control that reduces exposure"], meta: "Risk Terms — 4.1" },
+  { text: "What is an <strong>exploit</strong>?", answer: "The method, code, or technique used to take advantage of a vulnerability", choices: ["The method, code, or technique used to take advantage of a vulnerability","A weakness in a system","The potential for loss or damage","A person who attacks a system"], meta: "Risk Terms — 4.1" },
+  { text: "What is <strong>risk</strong> in security terms?", answer: "The likelihood that a threat will exploit a vulnerability, combined with the resulting impact", choices: ["The likelihood that a threat will exploit a vulnerability, combined with the resulting impact","A flaw in software or hardware","A piece of code that attacks a weakness","A malicious insider"], meta: "Risk Terms — 4.1" },
+
+  // ── Logical security: encryption ──
+  { text: "What does encrypting <strong>data in transit</strong> protect against?", answer: "Interception or eavesdropping of data as it moves across a network", choices: ["Interception or eavesdropping of data as it moves across a network","Theft of a powered-off hard drive","Deletion of files at rest","Physical access to a server room"], meta: "Encryption — 4.1" },
+  { text: "Which technology is commonly used to encrypt <strong>data in transit</strong> for web traffic?", answer: "TLS (HTTPS)", choices: ["TLS (HTTPS)","BitLocker","AES-encrypted backup tapes","A hashing algorithm"], meta: "Encryption — 4.1" },
+  { text: "What does encrypting <strong>data at rest</strong> protect?", answer: "Stored data on disks, databases, or media if the storage is lost or stolen", choices: ["Stored data on disks, databases, or media if the storage is lost or stolen","Packets travelling across the internet","Data only while it is displayed on screen","Traffic inside a VPN tunnel"], meta: "Encryption — 4.1" },
+  { text: "Full-disk encryption on a laptop is an example of protecting data in which state?", answer: "Data at rest", choices: ["Data at rest","Data in transit","Data in use","Data in motion"], meta: "Encryption — 4.1" },
+
+  // ── PKI / certificates ──
+  { text: "What is <strong>PKI (Public Key Infrastructure)</strong>?", answer: "A framework of certificate authorities, keys, and policies for issuing and managing digital certificates", choices: ["A framework of certificate authorities, keys, and policies for issuing and managing digital certificates","A protocol for assigning IP addresses","A method of load balancing across servers","A type of symmetric encryption cipher"], meta: "PKI / Certificates — 4.1" },
+  { text: "What does a <strong>digital certificate</strong> bind together?", answer: "A public key to the verified identity of its owner", choices: ["A public key to the verified identity of its owner","A username to a password","A MAC address to an IP address","A VLAN to a switch port"], meta: "PKI / Certificates — 4.1" },
+  { text: "What is the role of a <strong>Certificate Authority (CA)</strong> in PKI?", answer: "A trusted entity that issues and digitally signs certificates, vouching for the holder's identity", choices: ["A trusted entity that issues and digitally signs certificates, vouching for the holder's identity","A server that stores encrypted backups","A device that filters malicious URLs","A protocol that distributes DHCP leases"], meta: "PKI / Certificates — 4.1" },
+
+  // ── IAM: authentication factors / MFA ──
+  { text: "What is <strong>multifactor authentication (MFA)</strong>?", answer: "Requiring two or more independent factors from different categories (something you know, have, or are)", choices: ["Requiring two or more independent factors from different categories (something you know, have, or are)","Requiring two different passwords","Logging in once to access many systems","Encrypting credentials in transit"], meta: "IAM — 4.1" },
+  { text: "A login that requires a password <em>and</em> a code from a hardware token is combining which two authentication factors?", answer: "Something you know and something you have", choices: ["Something you know and something you have","Something you know and something you know","Something you are and somewhere you are","Something you have and something you have"], meta: "IAM — 4.1" },
+  { text: "A fingerprint scan is an example of which authentication factor?", answer: "Something you are (inherence/biometric)", choices: ["Something you are (inherence/biometric)","Something you know","Something you have","Somewhere you are"], meta: "IAM — 4.1" },
+
+  // ── IAM: SSO ──
+  { text: "What is <strong>single sign-on (SSO)</strong>?", answer: "Authenticating once to gain access to multiple independent systems without logging in again", choices: ["Authenticating once to gain access to multiple independent systems without logging in again","Requiring multiple factors to log in","Signing every packet with a certificate","Using one password that is the same everywhere"], meta: "IAM — 4.1" },
+
+  // ── IAM: RADIUS / TACACS+ / LDAP / SAML ──
+  { text: "What is <strong>RADIUS</strong> primarily used for?", answer: "Centralized AAA (authentication, authorization, and accounting) for network access", choices: ["Centralized AAA (authentication, authorization, and accounting) for network access","Encrypting files stored on disk","Resolving hostnames to IP addresses","Distributing IP addresses to clients"], meta: "IAM — 4.1" },
+  { text: "Which AAA protocol is Cisco-developed, uses <strong>TCP port 49</strong>, separates authentication/authorization/accounting, and encrypts the entire packet payload?", answer: "TACACS+", choices: ["TACACS+","RADIUS","LDAP","SAML"], meta: "IAM — 4.1" },
+  { text: "A key difference between <strong>TACACS+</strong> and <strong>RADIUS</strong> is that:", answer: "TACACS+ encrypts the full payload and separates AAA functions, while RADIUS encrypts only the password and combines authentication with authorization", choices: ["TACACS+ encrypts the full payload and separates AAA functions, while RADIUS encrypts only the password and combines authentication with authorization","RADIUS uses TCP while TACACS+ uses UDP exclusively","RADIUS is Cisco-proprietary and TACACS+ is an open standard","TACACS+ cannot perform accounting"], meta: "IAM — 4.1" },
+  { text: "What is <strong>LDAP</strong> used for?", answer: "Querying and modifying a directory service of users, groups, and resources", choices: ["Querying and modifying a directory service of users, groups, and resources","Encrypting web traffic","Assigning VLAN tags","Tunneling remote-access VPNs"], meta: "IAM — 4.1" },
+  { text: "What is <strong>SAML</strong> commonly used for?", answer: "Exchanging XML-based authentication/authorization assertions for federated single sign-on between web applications", choices: ["Exchanging XML-based authentication/authorization assertions for federated single sign-on between web applications","Encrypting data at rest on a database","Assigning IP addresses to hosts","Detecting intrusions on a network"], meta: "IAM — 4.1" },
+
+  // ── IAM: time-based auth ──
+  { text: "What is <strong>time-based authentication</strong>?", answer: "Restricting or granting access based on time conditions, such as permitted login hours or a time-limited one-time code", choices: ["Restricting or granting access based on time conditions, such as permitted login hours or a time-limited one-time code","Requiring a fingerprint at login","Encrypting credentials with a timestamp only","Allowing access only from a specific IP address"], meta: "IAM — 4.1" },
+
+  // ── Authorization: least privilege / RBAC ──
+  { text: "What does the principle of <strong>least privilege</strong> state?", answer: "Users and processes should be granted only the minimum access needed to perform their tasks", choices: ["Users and processes should be granted only the minimum access needed to perform their tasks","Every user should have administrator rights for convenience","Access should be granted based on network location","All users get the same baseline permissions"], meta: "Authorization — 4.1" },
+  { text: "What is <strong>role-based access control (RBAC)</strong>?", answer: "Granting permissions based on a user's assigned role or job function rather than to each individual", choices: ["Granting permissions based on a user's assigned role or job function rather than to each individual","Granting access based on the time of day","Assigning permissions randomly to reduce predictability","Allowing users to set their own permissions"], meta: "Authorization — 4.1" },
+
+  // ── Geofencing ──
+  { text: "What is <strong>geofencing</strong> in a security context?", answer: "Using a device's geographic location to allow or restrict access within a defined virtual boundary", choices: ["Using a device's geographic location to allow or restrict access within a defined virtual boundary","Encrypting traffic based on region","Physically fencing off a data center","Assigning IP addresses by country"], meta: "IAM — 4.1" },
+
+  // ── Physical security ──
+  { text: "How do <strong>security cameras (CCTV)</strong> contribute to physical security?", answer: "They deter intruders and provide monitoring and a recorded record of physical activity", choices: ["They deter intruders and provide monitoring and a recorded record of physical activity","They encrypt data leaving the building","They authenticate users to the network","They filter malicious network traffic"], meta: "Physical Security — 4.1" },
+  { text: "Which control is a <strong>physical security</strong> measure for protecting network equipment?", answer: "Door and cabinet locks restricting access to equipment", choices: ["Door and cabinet locks restricting access to equipment","An access control list on a router","Full-disk encryption","A firewall rule"], meta: "Physical Security — 4.1" },
+
+  // ── Deception: honeypot / honeynet ──
+  { text: "What is a <strong>honeypot</strong>?", answer: "A decoy system designed to attract attackers and study their behavior away from real assets", choices: ["A decoy system designed to attract attackers and study their behavior away from real assets","A hardened server that stores encryption keys","A backup site used during disasters","A firewall that blocks all inbound traffic"], meta: "Deception — 4.1" },
+  { text: "What is a <strong>honeynet</strong>?", answer: "A network of multiple honeypots that simulates a realistic environment to lure and observe attackers", choices: ["A network of multiple honeypots that simulates a realistic environment to lure and observe attackers","A VLAN reserved for guest users","A mesh of wireless access points","An encrypted tunnel between two sites"], meta: "Deception — 4.1" },
+
+  // ── Compliance: data locality / PCI DSS / GDPR ──
+  { text: "What does <strong>data locality</strong> (data residency) refer to in compliance?", answer: "Requirements that data be stored and processed within a specific geographic or jurisdictional boundary", choices: ["Requirements that data be stored and processed within a specific geographic or jurisdictional boundary","Storing data as close to the user as possible for speed","Keeping all data on a single local server","Caching frequently used data locally"], meta: "Compliance — 4.1" },
+  { text: "What does <strong>PCI DSS</strong> regulate?", answer: "The secure handling, processing, and storage of payment card (credit/debit) data", choices: ["The secure handling, processing, and storage of payment card (credit/debit) data","The privacy of EU residents' personal data","The protection of healthcare records","Government classified information"], meta: "Compliance — 4.1" },
+  { text: "What is the primary focus of the <strong>GDPR</strong>?", answer: "Protecting the personal data and privacy rights of individuals in the European Union", choices: ["Protecting the personal data and privacy rights of individuals in the European Union","Securing credit card transactions worldwide","Regulating US healthcare data","Setting encryption standards for the military"], meta: "Compliance — 4.1" },
+
+  // ── Segmentation: IoT/IIoT, SCADA/ICS/OT, Guest, BYOD ──
+  { text: "Why is <strong>network segmentation</strong> a recommended security practice?", answer: "It isolates systems into separate zones, limiting the spread of an attack and reducing the attack surface", choices: ["It isolates systems into separate zones, limiting the spread of an attack and reducing the attack surface","It increases overall bandwidth on the LAN","It removes the need for firewalls","It encrypts all internal traffic automatically"], meta: "Segmentation — 4.1" },
+  { text: "Why are <strong>IoT/IIoT</strong> devices commonly placed on a <strong>segmented</strong> network?", answer: "They are often less secure and infrequently patched, so isolating them limits the risk to critical systems", choices: ["They are often less secure and infrequently patched, so isolating them limits the risk to critical systems","They require more bandwidth than other devices","They cannot use IP addresses","They must share a VLAN with servers"], meta: "Segmentation — 4.1" },
+  { text: "What are <strong>SCADA/ICS/OT</strong> systems, and why are they segmented?", answer: "Operational-technology/industrial control systems that manage physical processes; they are isolated because compromise can affect safety and they are hard to patch", choices: ["Operational-technology/industrial control systems that manage physical processes; they are isolated because compromise can affect safety and they are hard to patch","Cloud storage services segmented for billing","Guest wireless portals for visitors","Backup appliances kept on a separate VLAN for speed"], meta: "Segmentation — 4.1" },
+  { text: "Why should a <strong>guest network</strong> be segmented from the internal corporate network?", answer: "To keep untrusted visitor devices from reaching internal systems and data", choices: ["To keep untrusted visitor devices from reaching internal systems and data","To give guests faster internet than employees","To avoid assigning guests IP addresses","To force all guest traffic through a VPN"], meta: "Segmentation — 4.1" },
+  { text: "In the context of segmentation, what does <strong>BYOD</strong> refer to?", answer: "Bring Your Own Device — personal devices that are often segmented onto a separate network due to lower trust", choices: ["Bring Your Own Device — personal devices that are often segmented onto a separate network due to lower trust","Build Your Own Domain — a private DNS zone","Backup Your Own Data — a user backup policy","Bring Your Own Data — a data-migration process"], meta: "Segmentation — 4.1" },
+];
+
 //  STATE
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
@@ -1387,6 +1463,7 @@ let monitoringQs = [], monitoringIdx = 0, monitoringScore = { c: 0, w: 0 }, moni
 let drQs = [], drIdx = 0, drScore = { c: 0, w: 0 }, drHist = [];
 let servicesQs = [], servicesIdx = 0, servicesScore = { c: 0, w: 0 }, servicesHist = [];
 let accessQs = [], accessIdx = 0, accessScore = { c: 0, w: 0 }, accessHist = [];
+let securityQs = [], securityIdx = 0, securityScore = { c: 0, w: 0 }, securityHist = [];
 let acronymQs = [], acronymIdx = 0, acronymScore = { c: 0, w: 0 }, acronymHist = [];
 
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
@@ -1717,6 +1794,26 @@ function nextAccessQ() {
   renderAccessQ();
 }
 
+// Basic Network Security Concepts (4.1)
+
+function renderSecurityQ() {
+  renderMC('security', securityQs[securityIdx], checkSecurityQ);
+  renderDots('security-dots', securityHist);
+}
+
+function checkSecurityQ(chosen, correct) {
+  resolveMC('security', chosen, correct, securityScore, securityHist);
+  updateScore('security', securityScore);
+  renderDots('security-dots', securityHist);
+  document.getElementById('security-next').style.display = 'inline-block';
+}
+
+function nextSecurityQ() {
+  securityIdx++;
+  if (securityIdx >= securityQs.length) { securityQs = shuffle([...SECURITY_QUESTIONS]); securityIdx = 0; }
+  renderSecurityQ();
+}
+
 // Acronyms (N10-009 acronym appendix)
 
 function renderAcronymQ() {
@@ -1745,6 +1842,7 @@ const DOMAIN_SECTIONS = {
   domain1: ['ports', 'cables', 'classful', 'fundamental', 'cloud', 'subnetting'],
   domain2: ['routing', 'switching', 'wireless', 'physical'],
   domain3: ['orgproc', 'monitoring', 'dr', 'services', 'access'],
+  domain4: ['security'],
 };
 
 let activeDomain = 'domain1';
@@ -1812,6 +1910,7 @@ document.addEventListener('DOMContentLoaded', () => {
   drQs         = shuffle([...DR_QUESTIONS]);
   servicesQs   = shuffle([...SERVICES_QUESTIONS]);
   accessQs     = shuffle([...ACCESS_QUESTIONS]);
+  securityQs   = shuffle([...SECURITY_QUESTIONS]);
   acronymQs    = buildAcronymQuestions();
   renderPortQ();
   renderCableQ();
@@ -1828,6 +1927,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderDrQ();
   renderServicesQ();
   renderAccessQ();
+  renderSecurityQ();
   renderAcronymQ();
 
   document.getElementById('subnet-answer').addEventListener('keydown', e => {

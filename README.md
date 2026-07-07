@@ -41,7 +41,7 @@ Open `networkplus.html` in a browser. No installation required.
 | IPv4/IPv6 Services | 3.4 | Done ✅ |
 | DR Concepts | 3.3 | Done ✅ |
 | Access & Management | 3.5 | Done ✅ |
-| Security Concepts | 4.1 | Not yet |
+| Security Concepts | 4.1 | Unverified 🟡 |
 | Attack Types | 4.2 | Not yet |
 | Troubleshooting | 5.1–5.5 | Not yet |
 | Acronyms | Objectives appendix | Done ✅ |
