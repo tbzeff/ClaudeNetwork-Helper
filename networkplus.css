@@ -207,3 +207,27 @@ strong { color: #93c5fd; }
   transition: opacity 0.15s;
 }
 .submit-btn:hover { opacity: 0.85; }
+
+/* ── Mobile: horizontally scrollable domain nav ── */
+@media (max-width: 640px) {
+  #domain-nav {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+  .domain-dropdown { flex: 0 0 auto; }              /* keep buttons on one row */
+  .domain-dropdown > button { white-space: nowrap; padding: 10px 16px; }
+
+  /* The scrolling nav clips its children, so pin the open dropdown to the
+     viewport instead. --menu-top is set by toggleDomainDropdown() on open. */
+  .dropdown-menu {
+    position: fixed;
+    top: var(--menu-top, 100%);
+    left: 0;
+    right: 0;
+    min-width: 0;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+  }
+}

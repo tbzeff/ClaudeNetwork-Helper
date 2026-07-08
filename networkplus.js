@@ -2025,7 +2025,13 @@ function toggleDomainDropdown(domainId) {
   const isOpen = menu.classList.contains('open');
   // Close all dropdowns
   document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
-  if (!isOpen) menu.classList.add('open');
+  if (!isOpen) {
+    // On mobile the nav scrolls horizontally and clips its children, so the
+    // menu is position:fixed there — pin it just below the nav bar.
+    const navBottom = document.getElementById('domain-nav').getBoundingClientRect().bottom;
+    menu.style.setProperty('--menu-top', navBottom + 'px');
+    menu.classList.add('open');
+  }
 }
 
 function selectSection(name, domainId) {
