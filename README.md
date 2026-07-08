@@ -43,7 +43,7 @@ Open `networkplus.html` in a browser. No installation required.
 | Access & Management | 3.5 | Done ✅ |
 | Security Concepts | 4.1 | Done ✅ |
 | Attack Types | 4.2 | Done ✅ |
-| Security Defenses | 4.3 | Unverified 🟡 |
+| Security Defenses | 4.3 | Done ✅ |
 | Troubleshooting | 5.1–5.5 | Not yet |
 | Acronyms | Objectives appendix | Done ✅ |
 
