@@ -48,7 +48,7 @@ Open `networkplus.html` in a browser. No installation required.
 | Cabling & Physical Issues | 5.2 | Done ✅ |
 | Network Service Issues | 5.3 | Done ✅ |
 | Performance Issues | 5.4 | Done ✅ |
-| Tools & Protocols | 5.5 | Unverified 🟡 |
+| Tools & Protocols | 5.5 | Done ✅ |
 | Acronyms | Objectives appendix | Done ✅ |
 
 ## Acronyms Section

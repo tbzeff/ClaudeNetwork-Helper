@@ -1452,7 +1452,7 @@ const TOOLS_QUESTIONS = [
   { text: "On Windows, which command traces the Layer 3 path to a destination?", answer: "tracert", choices: ["tracert","traceroute","dig","ss"], meta: "traceroute / tracert — 5.5" },
 
   // ── Software: nslookup ──
-  { text: "Users report a website is down, but you suspect DNS. Which tool queries a DNS server to resolve a name to an IP (and works on both Windows and Linux)?", answer: "nslookup", choices: ["nslookup","netstat","arp","toner probe"], meta: "nslookup — 5.5" },
+  { text: "Users report a website is down, but you suspect DNS. Which tool queries a DNS server to resolve a name to an IP and is built into both Windows and Linux?", answer: "nslookup", choices: ["nslookup","dig","arp","toner probe"], meta: "nslookup — 5.5" },
   { text: "You want to confirm which DNS server answered a query and what record it returned for a hostname. Which basic tool is appropriate?", answer: "nslookup", choices: ["nslookup","ping","tracert","ipconfig"], meta: "nslookup — 5.5" },
 
   // ── Software: tcpdump ──
@@ -1486,6 +1486,7 @@ const TOOLS_QUESTIONS = [
 
   // ── Software: speed tester ──
   { text: "A user complains their connection is 'slow.' Which tool measures actual upload/download throughput to compare against the provisioned bandwidth?", answer: "A speed tester", choices: ["A speed tester","nslookup","arp","a visual fault locator"], meta: "Speed Tester — 5.5" },
+  { text: "A speed tester reports 180 Mbps download on a circuit provisioned for 500 Mbps. What has the tool established?", answer: "Measured throughput is well below the provisioned bandwidth, pointing to congestion or a bottleneck to investigate", choices: ["Measured throughput is well below the provisioned bandwidth, pointing to congestion or a bottleneck to investigate","The circuit's provisioned bandwidth has been physically increased","DNS resolution is failing","The cable is terminated incorrectly"], meta: "Speed Tester — 5.5" },
 
   // ── Hardware: toner / toner probe ──
   { text: "In a wiring closet full of unlabeled cables, which hardware tool pair lets you place a tone on one end and audibly find the matching cable at the other end?", answer: "A toner (tone generator) and probe", choices: ["A toner (tone generator) and probe","A cable tester","A Wi-Fi analyzer","A protocol analyzer"], meta: "Toner Probe — 5.5" },
@@ -1501,6 +1502,7 @@ const TOOLS_QUESTIONS = [
 
   // ── Hardware: Wi-Fi analyzer ──
   { text: "Users report unreliable wireless in one area. Which tool shows channel usage, signal strength, and interference so you can pick better channels or AP placement?", answer: "A Wi-Fi analyzer", choices: ["A Wi-Fi analyzer","A cable tester","A toner probe","netstat"], meta: "Wi-Fi Analyzer — 5.5" },
+  { text: "A Wi-Fi analyzer shows five nearby APs all broadcasting on 2.4 GHz channel 6. What does this output identify?", answer: "Co-channel interference — the APs must contend for airtime on the same channel", choices: ["Co-channel interference — the APs must contend for airtime on the same channel","A duplicate IP address on the wireless subnet","An exhausted PoE power budget","A fiber break between the APs"], meta: "Wi-Fi Analyzer — 5.5" },
 
   // ── Hardware: visual fault locator ──
   { text: "You suspect a break or a tight bend in a fiber run. Which tool injects visible (usually red) laser light so the fault glows at the break?", answer: "A visual fault locator (VFL)", choices: ["A visual fault locator (VFL)","A toner probe","A cable tester","A Wi-Fi analyzer"], meta: "Visual Fault Locator — 5.5" },
@@ -1511,6 +1513,7 @@ const TOOLS_QUESTIONS = [
 
   // ── Device commands: show route ──
   { text: "A router is not forwarding traffic to a remote subnet. Which command displays the routing table and installed routes/next hops?", answer: "show route (show ip route)", choices: ["show route (show ip route)","show mac-address-table","show interface","show arp"], meta: "show route — 5.5" },
+  { text: "'show route' on a router lists no entry matching a destination network, and no default route is present. What happens to packets destined for that network?", answer: "They are dropped as unreachable, because no matching route exists", choices: ["They are dropped as unreachable, because no matching route exists","They are flooded out every interface","They are queued until a route appears","They are sent to the DNS server for resolution"], meta: "show route — 5.5" },
 
   // ── Device commands: show interface ──
   { text: "You suspect a link has errors. Which command shows an interface's status, speed/duplex, and counters like CRC errors and drops?", answer: "show interface", choices: ["show interface","show vlan","show config","show route"], meta: "show interface — 5.5" },
