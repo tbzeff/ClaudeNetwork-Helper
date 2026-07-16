@@ -52,6 +52,16 @@
       <button class="sec-btn" onclick="selectSection('defenses', 'domain4')">🔒 Security Defenses</button>
     </div>
   </div>
+  <div class="domain-dropdown" id="dd-domain5">
+    <button onclick="toggleDomainDropdown('domain5')">Domain 5 — Network Troubleshooting ▾</button>
+    <div class="dropdown-menu" id="domain5-tabs">
+      <button class="sec-btn" onclick="selectSection('troubleshoot', 'domain5')">🧭 Troubleshooting Methodology</button>
+      <button class="sec-btn" onclick="selectSection('cabling', 'domain5')">🔌 Cabling & Physical Issues</button>
+      <button class="sec-btn" onclick="selectSection('svcissues', 'domain5')">🛠️ Network Service Issues</button>
+      <button class="sec-btn" onclick="selectSection('perf', 'domain5')">📉 Performance Issues</button>
+      <button class="sec-btn" onclick="selectSection('tools', 'domain5')">🧰 Tools & Protocols</button>
+    </div>
+  </div>
   <div class="domain-dropdown" id="dd-acronyms">
     <button onclick="selectStandalone('acronyms')">🔤 Acronyms</button>
   </div>
@@ -401,6 +411,101 @@
       <div class="choices" id="defenses-choices"></div>
       <div class="feedback" id="defenses-feedback"></div>
       <button class="next-btn" id="defenses-next" onclick="nextDefenseQ()">Next →</button>
+    </div>
+  </div>
+
+  <!-- ── Troubleshooting Methodology (5.1) ── -->
+  <div id="troubleshoot" class="section">
+    <div class="score-bar">
+      <div class="score-item s-correct"><div class="val" id="troubleshoot-correct">0</div><div class="lbl">Correct</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item s-wrong"><div class="val" id="troubleshoot-wrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item"><div class="val" id="troubleshoot-pct">—</div><div class="lbl">Accuracy</div></div>
+    </div>
+    <div class="progress-dots" id="troubleshoot-dots"></div>
+    <div class="card">
+      <div class="q-meta" id="troubleshoot-meta"></div>
+      <div class="q-text" id="troubleshoot-question"></div>
+      <div class="choices" id="troubleshoot-choices"></div>
+      <div class="feedback" id="troubleshoot-feedback"></div>
+      <button class="next-btn" id="troubleshoot-next" onclick="nextTroubleshootQ()">Next →</button>
+    </div>
+  </div>
+
+  <!-- ── Cabling & Physical Interface Issues (5.2) ── -->
+  <div id="cabling" class="section">
+    <div class="score-bar">
+      <div class="score-item s-correct"><div class="val" id="cabling-correct">0</div><div class="lbl">Correct</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item s-wrong"><div class="val" id="cabling-wrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item"><div class="val" id="cabling-pct">—</div><div class="lbl">Accuracy</div></div>
+    </div>
+    <div class="progress-dots" id="cabling-dots"></div>
+    <div class="card">
+      <div class="q-meta" id="cabling-meta"></div>
+      <div class="q-text" id="cabling-question"></div>
+      <div class="choices" id="cabling-choices"></div>
+      <div class="feedback" id="cabling-feedback"></div>
+      <button class="next-btn" id="cabling-next" onclick="nextCablingQ()">Next →</button>
+    </div>
+  </div>
+
+  <!-- ── Network Service Issues (5.3) ── -->
+  <div id="svcissues" class="section">
+    <div class="score-bar">
+      <div class="score-item s-correct"><div class="val" id="svcissues-correct">0</div><div class="lbl">Correct</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item s-wrong"><div class="val" id="svcissues-wrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item"><div class="val" id="svcissues-pct">—</div><div class="lbl">Accuracy</div></div>
+    </div>
+    <div class="progress-dots" id="svcissues-dots"></div>
+    <div class="card">
+      <div class="q-meta" id="svcissues-meta"></div>
+      <div class="q-text" id="svcissues-question"></div>
+      <div class="choices" id="svcissues-choices"></div>
+      <div class="feedback" id="svcissues-feedback"></div>
+      <button class="next-btn" id="svcissues-next" onclick="nextSvcIssueQ()">Next →</button>
+    </div>
+  </div>
+
+  <!-- ── Performance Issues (5.4) ── -->
+  <div id="perf" class="section">
+    <div class="score-bar">
+      <div class="score-item s-correct"><div class="val" id="perf-correct">0</div><div class="lbl">Correct</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item s-wrong"><div class="val" id="perf-wrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item"><div class="val" id="perf-pct">—</div><div class="lbl">Accuracy</div></div>
+    </div>
+    <div class="progress-dots" id="perf-dots"></div>
+    <div class="card">
+      <div class="q-meta" id="perf-meta"></div>
+      <div class="q-text" id="perf-question"></div>
+      <div class="choices" id="perf-choices"></div>
+      <div class="feedback" id="perf-feedback"></div>
+      <button class="next-btn" id="perf-next" onclick="nextPerfQ()">Next →</button>
+    </div>
+  </div>
+
+  <!-- ── Tools & Protocols (5.5) ── -->
+  <div id="tools" class="section">
+    <div class="score-bar">
+      <div class="score-item s-correct"><div class="val" id="tools-correct">0</div><div class="lbl">Correct</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item s-wrong"><div class="val" id="tools-wrong">0</div><div class="lbl">Wrong</div></div>
+      <div class="score-divider"></div>
+      <div class="score-item"><div class="val" id="tools-pct">—</div><div class="lbl">Accuracy</div></div>
+    </div>
+    <div class="progress-dots" id="tools-dots"></div>
+    <div class="card">
+      <div class="q-meta" id="tools-meta"></div>
+      <div class="q-text" id="tools-question"></div>
+      <div class="choices" id="tools-choices"></div>
+      <div class="feedback" id="tools-feedback"></div>
+      <button class="next-btn" id="tools-next" onclick="nextToolsQ()">Next →</button>
     </div>
   </div>
 

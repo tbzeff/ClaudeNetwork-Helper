@@ -1183,6 +1183,344 @@ const DEFENSE_QUESTIONS = [
   { text: "What is the main security benefit of placing public servers in a <strong>screened subnet</strong>?", answer: "If a public server is compromised, the attacker is still isolated from the trusted internal network", choices: ["If a public server is compromised, the attacker is still isolated from the trusted internal network","It doubles the internet bandwidth available to those servers","It removes the need to patch those servers","It allows those servers to skip authentication"], meta: "Security Zones — 4.3" },
 ];
 
+// ── Troubleshooting Methodology (5.1) ──
+const TROUBLESHOOT_QUESTIONS = [
+  // ── Overall order of the seven steps ──
+  { text: "What is the <strong>first step</strong> of the CompTIA network troubleshooting methodology?", answer: "Identify the problem", choices: ["Identify the problem","Establish a theory of probable cause","Test the theory to determine the cause","Document findings, actions, and outcomes"], meta: "Methodology Order — 5.1" },
+  { text: "What is the <strong>last step</strong> of the troubleshooting methodology?", answer: "Document findings, actions, outcomes, and lessons learned", choices: ["Document findings, actions, outcomes, and lessons learned","Verify full system functionality","Implement the solution or escalate","Establish a plan of action"], meta: "Methodology Order — 5.1" },
+  { text: "Immediately after you <strong>identify the problem</strong>, what is the next step?", answer: "Establish a theory of probable cause", choices: ["Establish a theory of probable cause","Test the theory to determine the cause","Establish a plan of action","Verify full system functionality"], meta: "Methodology Order — 5.1" },
+  { text: "After you <strong>establish a theory of probable cause</strong>, what should you do next?", answer: "Test the theory to determine the cause", choices: ["Test the theory to determine the cause","Establish a plan of action to resolve the problem","Implement the solution","Document the outcome"], meta: "Methodology Order — 5.1" },
+  { text: "Once a theory has been <strong>confirmed by testing</strong>, what is the next step?", answer: "Establish a plan of action to resolve the problem and identify potential effects", choices: ["Establish a plan of action to resolve the problem and identify potential effects","Implement the solution immediately without a plan","Document lessons learned","Re-question the users about symptoms"], meta: "Methodology Order — 5.1" },
+  { text: "After you <strong>establish a plan of action</strong>, what comes next?", answer: "Implement the solution or escalate as necessary", choices: ["Implement the solution or escalate as necessary","Verify full system functionality","Establish a new theory of probable cause","Document findings and outcomes"], meta: "Methodology Order — 5.1" },
+  { text: "After you <strong>implement the solution</strong>, what is the next step before documenting?", answer: "Verify full system functionality and, if applicable, implement preventive measures", choices: ["Verify full system functionality and, if applicable, implement preventive measures","Establish a theory of probable cause","Duplicate the problem","Question the obvious"], meta: "Methodology Order — 5.1" },
+  { text: "Which sequence correctly orders the <strong>first three</strong> troubleshooting steps?", answer: "Identify the problem → Establish a theory of probable cause → Test the theory", choices: ["Identify the problem → Establish a theory of probable cause → Test the theory","Establish a theory → Identify the problem → Test the theory","Identify the problem → Test the theory → Establish a theory","Test the theory → Identify the problem → Establish a plan of action"], meta: "Methodology Order — 5.1" },
+
+  // ── Step 1: Identify the problem ──
+  { text: "During <strong>Identify the problem</strong>, why should you question users?", answer: "Users can describe symptoms and what they were doing when the issue occurred, providing information you might otherwise miss", choices: ["Users can describe symptoms and what they were doing when the issue occurred, providing information you might otherwise miss","A user's account of the problem confirms the root cause, so the theory needs no further testing","User sign-off is required before any troubleshooting step may begin","Users are responsible for documenting the findings and outcomes of the incident"], meta: "Identify the Problem — 5.1" },
+  { text: "As part of identifying the problem, asking <strong>“has anything changed recently?”</strong> helps you to:", answer: "Determine if a recent change (patch, config edit, new device) triggered the issue", choices: ["Determine if a recent change (patch, config edit, new device) triggered the issue","Skip directly to documenting the outcome","Establish a plan of action before knowing the cause","Verify full system functionality"], meta: "Identify the Problem — 5.1" },
+  { text: "Within Step 1, what does it mean to <strong>duplicate the problem</strong>?", answer: "Reproduce the issue yourself to confirm the symptoms and observe the conditions that trigger it", choices: ["Reproduce the issue yourself to confirm the symptoms and observe the conditions that trigger it","Make a backup copy of the affected device's configuration","Create a second identical problem on another device","Copy the user's account so you can log in as them"], meta: "Identify the Problem — 5.1" },
+  { text: "When several issues are reported at once, the methodology says you should:", answer: "Approach multiple problems individually", choices: ["Approach multiple problems individually","Ignore all but the loudest complaint","Assume they all share one root cause and fix only that","Escalate every problem immediately"], meta: "Identify the Problem — 5.1" },
+  { text: "Which activity belongs to <strong>Step 1, Identify the problem</strong>?", answer: "Gathering information and identifying symptoms", choices: ["Gathering information and identifying symptoms","Choosing between a top-down or bottom-up OSI approach","Implementing the fix on the production device","Writing up lessons learned"], meta: "Identify the Problem — 5.1" },
+
+  // ── Step 2: Establish a theory of probable cause ──
+  { text: "In <strong>Establish a theory of probable cause</strong>, what does “question the obvious” mean?", answer: "Check simple, common causes first — like an unplugged cable or a disabled interface — before assuming a complex cause", choices: ["Check simple, common causes first — like an unplugged cable or a disabled interface — before assuming a complex cause","Ask the user obvious questions to make them feel involved","Always assume the most complicated cause is correct","Skip testing because the cause is obvious"], meta: "Theory of Cause — 5.1" },
+  { text: "Which two troubleshooting <strong>approaches</strong> are called out for forming a theory of probable cause?", answer: "Top-to-bottom/bottom-to-top the OSI model, and divide and conquer", choices: ["Top-to-bottom/bottom-to-top the OSI model, and divide and conquer","Trial and error, and reboot everything","First-in-first-out, and round robin","Active-active, and active-passive"], meta: "Theory of Cause — 5.1" },
+  { text: "A technician starts at Layer 1 (cabling) and works upward through the OSI model. Which approach is this?", answer: "Bottom-to-top OSI approach", choices: ["Bottom-to-top OSI approach","Top-to-bottom OSI approach","Divide and conquer","Question the users"], meta: "Theory of Cause — 5.1" },
+  { text: "A technician begins at Layer 7 (the application) and works downward through the OSI model. Which approach is this?", answer: "Top-to-bottom OSI approach", choices: ["Top-to-bottom OSI approach","Bottom-to-top OSI approach","Divide and conquer","Duplicating the problem"], meta: "Theory of Cause — 5.1" },
+  { text: "What describes the <strong>divide and conquer</strong> approach to forming a theory?", answer: "Start at a middle OSI layer and, based on the result, move up or down to isolate the fault", choices: ["Start at a middle OSI layer and, based on the result, move up or down to isolate the fault","Always start at Layer 1 and test every layer in order","Replace every component until the problem disappears","Split the work among multiple technicians"], meta: "Theory of Cause — 5.1" },
+
+  // ── Step 3: Test the theory ──
+  { text: "During <strong>Test the theory to determine the cause</strong>, if the theory is <em>confirmed</em>, what do you do?", answer: "Determine the next steps to resolve the problem", choices: ["Determine the next steps to resolve the problem","Immediately document lessons learned and close the ticket","Assume the network is fully functional again","Reboot every device on the network"], meta: "Test the Theory — 5.1" },
+  { text: "During <strong>Test the theory</strong>, if the theory is <em>not confirmed</em>, what should you do?", answer: "Establish a new theory or escalate to someone with more expertise", choices: ["Establish a new theory or escalate to someone with more expertise","Implement the fix anyway and hope it works","Skip ahead and document the outcome","Verify full system functionality"], meta: "Test the Theory — 5.1" },
+  { text: "What is the purpose of the <strong>test the theory</strong> step?", answer: "To confirm or rule out the suspected cause before committing to a fix", choices: ["To confirm or rule out the suspected cause before committing to a fix","To permanently resolve the problem","To gather the initial symptoms from users","To write the final incident report"], meta: "Test the Theory — 5.1" },
+
+  // ── Step 4: Establish a plan of action ──
+  { text: "In addition to resolving the problem, what must you do when you <strong>establish a plan of action</strong>?", answer: "Identify the potential effects the fix may have", choices: ["Identify the potential effects the fix may have","Guarantee zero downtime is possible","Delete the incident ticket","Skip user notification"], meta: "Plan of Action — 5.1" },
+  { text: "Why is identifying <strong>potential effects</strong> part of the plan of action?", answer: "A fix can have side effects or require downtime, so you plan for them before implementing", choices: ["A fix can have side effects or require downtime, so you plan for them before implementing","It is only required for wireless problems","Effects can be ignored once the theory is confirmed","It replaces the need to test the theory"], meta: "Plan of Action — 5.1" },
+
+  // ── Step 5: Implement the solution or escalate ──
+  { text: "In the <strong>Implement the solution or escalate</strong> step, when should you escalate?", answer: "When the fix is beyond your authority, expertise, or access to resolve", choices: ["When the fix is beyond your authority, expertise, or access to resolve","Only after the problem has fully resolved itself","Before you have identified any symptoms","Whenever documentation would be tedious"], meta: "Implement or Escalate — 5.1" },
+  { text: "Which action best fits the <strong>Implement the solution</strong> step?", answer: "Apply the planned fix to resolve the problem", choices: ["Apply the planned fix to resolve the problem","Form an initial theory of probable cause","Interview users about the symptoms","Reproduce the problem to confirm it"], meta: "Implement or Escalate — 5.1" },
+
+  // ── Step 6: Verify full system functionality ──
+  { text: "What should you confirm when you <strong>verify full system functionality</strong>?", answer: "That the original problem is resolved and no new problems were introduced", choices: ["That the original problem is resolved and no new problems were introduced","That the ticket number is spelled correctly","That the user has changed their password","That the OSI model was followed top-down"], meta: "Verify Functionality — 5.1" },
+  { text: "The verification step also says to, <em>if applicable</em>, do what?", answer: "Implement preventive measures so the problem does not recur", choices: ["Implement preventive measures so the problem does not recur","Escalate the ticket to a manager","Establish a new theory of probable cause","Re-duplicate the original problem"], meta: "Verify Functionality — 5.1" },
+
+  // ── Step 7: Document findings, actions, outcomes ──
+  { text: "What should the final <strong>documentation</strong> step capture?", answer: "Findings, actions, outcomes, and lessons learned", choices: ["Findings, actions, outcomes, and lessons learned","Only the ticket's open and close timestamps","Just the name of the technician","Only the make and model of the failed device"], meta: "Documentation — 5.1" },
+  { text: "Why are <strong>lessons learned</strong> valuable in the documentation step?", answer: "They help resolve similar issues faster in the future and can inform preventive measures", choices: ["They help resolve similar issues faster in the future and can inform preventive measures","They are required to reopen the ticket","They replace the need to verify functionality","They are only used for billing the customer"], meta: "Documentation — 5.1" },
+  { text: "Although documentation is listed as the final step, when should documenting actually take place?", answer: "Throughout the troubleshooting process, not only once the problem is resolved", choices: ["Throughout the troubleshooting process, not only once the problem is resolved","Only after the ticket has been closed and archived","Only when the problem has to be escalated to another team","Only if the original theory of probable cause turned out to be wrong"], meta: "Documentation — 5.1" },
+];
+
+// ── Cabling & Physical Interface Issues (5.2) ──
+const CABLING_QUESTIONS = [
+  // ── Incorrect cable type: single-mode vs. multimode ──
+  { text: "A 10 km fiber run between two buildings keeps failing to link. The installer used <strong>multimode</strong> fiber and transceivers. What is the most likely problem?", answer: "Multimode is only rated for short distances; a single-mode run is needed for 10 km", choices: ["Multimode is only rated for short distances; a single-mode run is needed for 10 km","Multimode fiber cannot carry data at all","The fiber needs to be terminated with RJ-45","Single-mode would be even worse over that distance"], meta: "Incorrect Cable Type — 5.2" },
+  { text: "A technician connects a <strong>single-mode</strong> transceiver on one end and a <strong>multimode</strong> transceiver on the other end of the same fiber. What is the result?", answer: "A transceiver/media mismatch — the link fails or is highly unreliable", choices: ["A transceiver/media mismatch — the link fails or is highly unreliable","The link works but only at half speed","The link auto-negotiates to multimode","It converts single-mode to multimode automatically"], meta: "Incorrect Cable Type — 5.2" },
+
+  // ── Incorrect cable type: category (Cat5/6/7/8) ──
+  { text: "A user reports their new connection only runs at <strong>100 Mbps</strong> instead of 1 Gbps. The patch cable is labeled <strong>Cat5</strong>. What is the most likely cause?", answer: "Cat5 tops out at 100 Mbps; a Cat5e or higher cable is required for 1 Gbps", choices: ["Cat5 tops out at 100 Mbps; a Cat5e or higher cable is required for 1 Gbps","Cat5 does not support Ethernet at all","The switch port is bad","Cat5 only works with fiber transceivers"], meta: "Incorrect Cable Type — 5.2" },
+  { text: "You need to run <strong>10GBASE-T at 100 m</strong>. Which cable category should you use to avoid speed/distance problems?", answer: "Cat6a", choices: ["Cat6a","Cat5","Cat5e","Cat3"], meta: "Incorrect Cable Type — 5.2" },
+  { text: "A short 10 Gbps or higher run in a data center between adjacent racks is failing on a <strong>Cat5e</strong> cable. Which cabling is designed for 25/40 Gbps at short distances?", answer: "Cat8", choices: ["Cat8","Cat5","Cat3","Coaxial"], meta: "Incorrect Cable Type — 5.2" },
+
+  // ── Incorrect cable type: STP vs. UTP ──
+  { text: "A copper run passes close to fluorescent lights and motors and shows errors. The cable is <strong>UTP</strong>. What cable change best mitigates the interference?", answer: "Replace it with STP (shielded twisted pair)", choices: ["Replace it with STP (shielded twisted pair)","Replace it with a longer UTP cable","Replace it with a thinner UTP cable","Remove the twists from the pairs"], meta: "Incorrect Cable Type — 5.2" },
+  { text: "For <strong>STP (shielded twisted pair)</strong> to properly drain interference, what must be done?", answer: "The shield must be properly bonded/grounded at the terminations", choices: ["The shield must be properly bonded/grounded at the terminations","The shield must be left ungrounded to float","The cable must be run at maximum length","The twists must be untwisted at the ends"], meta: "Incorrect Cable Type — 5.2" },
+
+  // ── Signal degradation: attenuation ──
+  { text: "A Cat6 run measured at <strong>140 meters</strong> has an intermittent, weak connection. Which form of signal degradation is the cause?", answer: "Attenuation — signal loss increases with distance beyond the 100 m limit", choices: ["Attenuation — signal loss increases with distance beyond the 100 m limit","Crosstalk from an adjacent pair","A transposed TX/RX pair","A PoE power budget problem"], meta: "Signal Degradation — 5.2" },
+  { text: "What is <strong>attenuation</strong>?", answer: "The loss of signal strength as it travels over the length of the cable", choices: ["The loss of signal strength as it travels over the length of the cable","The bleeding of a signal from one pair into another","External electromagnetic noise coupling into the cable","Reversing the transmit and receive pairs"], meta: "Signal Degradation — 5.2" },
+
+  // ── Signal degradation: crosstalk ──
+  { text: "A cable tester reports high <strong>NEXT (near-end crosstalk)</strong> on a newly terminated jack. What does this indicate?", answer: "Signal from one wire pair is bleeding into an adjacent pair, often from untwisting pairs too far at the termination", choices: ["Signal from one wire pair is bleeding into an adjacent pair, often from untwisting pairs too far at the termination","The cable is simply too long","The transceiver wavelength is wrong","The port has been error-disabled"], meta: "Signal Degradation — 5.2" },
+  { text: "Which practice during termination most helps <strong>reduce crosstalk</strong>?", answer: "Keep the wire pairs twisted as close to the termination point as possible", choices: ["Keep the wire pairs twisted as close to the termination point as possible","Untwist the pairs several inches back for a neat look","Use a longer cable","Remove the cable jacket entirely at the connector"], meta: "Signal Degradation — 5.2" },
+
+  // ── Signal degradation: interference / EMI ──
+  { text: "Copper cabling running parallel to power lines is picking up <strong>EMI</strong> and causing errors. Which cabling change most reliably eliminates the interference?", answer: "Switch to fiber-optic cable, which is immune to EMI", choices: ["Switch to fiber-optic cable, which is immune to EMI","Switch to a lower cable category","Increase the cable length","Use a straight-through instead of crossover cable"], meta: "Signal Degradation — 5.2" },
+
+  // ── Improper termination ──
+  { text: "A freshly crimped RJ-45 cable fails a wire-map test showing an <strong>open</strong> on one pair. What is the most likely cause?", answer: "Improper termination — a conductor is not making contact in the connector", choices: ["Improper termination — a conductor is not making contact in the connector","The switch is out of PoE budget","The VLAN is misconfigured","Attenuation from excessive distance"], meta: "Improper Termination — 5.2" },
+  { text: "A wire-map tester shows pins <strong>3 and 6 crossed with 1 and 2</strong> and the cable has intermittent errors. What kind of fault is this?", answer: "An improper termination / miswire (split pair or transposed wires)", choices: ["An improper termination / miswire (split pair or transposed wires)","A PoE standard mismatch","A giant-frame problem","An error-disabled port"], meta: "Improper Termination — 5.2" },
+
+  // ── TX/RX transposed ──
+  { text: "A fiber link stays <strong>down</strong>. Swapping the two fiber strands at one connector brings it up. What was the original problem?", answer: "TX and RX were transposed — transmit was connected to transmit instead of to the far-end receive", choices: ["TX and RX were transposed — transmit was connected to transmit instead of to the far-end receive","Attenuation over distance","A CRC error storm","The port was administratively shut down"], meta: "TX/RX Transposed — 5.2" },
+  { text: "On modern copper switch ports, which feature automatically corrects a <strong>transposed TX/RX</strong> (straight-through vs. crossover) so the link still comes up?", answer: "Auto-MDIX", choices: ["Auto-MDIX","Auto-negotiation of PoE","Spanning Tree Protocol","802.1Q trunking"], meta: "TX/RX Transposed — 5.2" },
+
+  // ── Interface counters: CRC errors ──
+  { text: "An interface is incrementing <strong>CRC errors</strong>. What does a rising CRC counter most commonly indicate?", answer: "Frames are arriving corrupted — usually from a bad cable, EMI, or a duplex mismatch", choices: ["Frames are arriving corrupted — usually from a bad cable, EMI, or a duplex mismatch","The port has too much free buffer space","The VLAN database is empty","The cable is too short"], meta: "Interface Counters — 5.2" },
+  { text: "A CRC error occurs when the received frame's <strong>frame check sequence</strong> does not match. What should you inspect first?", answer: "The physical cabling and connectors, and check for a duplex mismatch", choices: ["The physical cabling and connectors, and check for a duplex mismatch","The DHCP scope size","The routing table's default route","The NTP server address"], meta: "Interface Counters — 5.2" },
+
+  // ── Interface counters: runts ──
+  { text: "An interface is logging <strong>runts</strong>. What is a runt?", answer: "A frame smaller than the minimum 64-byte Ethernet frame size", choices: ["A frame smaller than the minimum 64-byte Ethernet frame size","A frame larger than the maximum allowed size","A frame with a valid checksum but wrong VLAN","A frame dropped because the buffer was full"], meta: "Interface Counters — 5.2" },
+  { text: "Runt frames are frequently the symptom of which physical-layer condition?", answer: "A duplex mismatch or collisions on the segment", choices: ["A duplex mismatch or collisions on the segment","A PoE power budget that is too large","An oversized jumbo-frame configuration","A single-mode/multimode mismatch"], meta: "Interface Counters — 5.2" },
+
+  // ── Interface counters: giants ──
+  { text: "An interface is logging <strong>giants</strong>. What is a giant?", answer: "A frame larger than the maximum Ethernet frame size (over 1518 bytes without jumbo frames)", choices: ["A frame larger than the maximum Ethernet frame size (over 1518 bytes without jumbo frames)","A frame smaller than 64 bytes","A frame with the transmit and receive pairs swapped","A frame that failed the CRC only"], meta: "Interface Counters — 5.2" },
+  { text: "Giants are appearing on a link between two switches. Besides a faulty NIC, what configuration issue commonly causes giant frames?", answer: "An MTU / jumbo-frame mismatch between the two ends", choices: ["An MTU / jumbo-frame mismatch between the two ends","A PoE standard mismatch","An error-disabled port","A crossover cable where a straight-through is needed"], meta: "Interface Counters — 5.2" },
+
+  // ── Interface counters: drops ──
+  { text: "An interface shows increasing output <strong>drops</strong> during peak hours but no CRC errors. What is the most likely cause?", answer: "Congestion — the interface buffer/queue is full and packets are discarded", choices: ["Congestion — the interface buffer/queue is full and packets are discarded","A miswired cable","A transposed TX/RX pair","A single-mode/multimode mismatch"], meta: "Interface Counters — 5.2" },
+
+  // ── Port states: administratively down ──
+  { text: "A <strong>show interface</strong> reports the port as <em>administratively down</em>. What does this mean?", answer: "The interface was manually disabled with a shutdown command and must be re-enabled", choices: ["The interface was manually disabled with a shutdown command and must be re-enabled","The cable is unplugged","The port failed a CRC self-test","The PoE budget was exceeded"], meta: "Port States — 5.2" },
+
+  // ── Port states: error disabled ──
+  { text: "A switch port drops into the <strong>err-disabled (error disabled)</strong> state. What most commonly triggers this?", answer: "A protection feature such as a port-security violation or BPDU guard shut the port down", choices: ["A protection feature such as a port-security violation or BPDU guard shut the port down","The port ran out of IP addresses","The cable exceeded 90 meters","A CNAME record was missing"], meta: "Port States — 5.2" },
+  { text: "How do you typically recover an <strong>error-disabled</strong> port after fixing the underlying cause?", answer: "Bounce the port (shutdown then no shutdown) or enable errdisable recovery", choices: ["Bounce the port (shutdown then no shutdown) or enable errdisable recovery","Replace the entire switch","Change the cable to a lower category","Reboot the DHCP server"], meta: "Port States — 5.2" },
+
+  // ── Port states: suspended ──
+  { text: "A port bundled in an EtherChannel/link aggregation shows the <strong>suspended</strong> state. What does this usually indicate?", answer: "The port's parameters do not match the other bundle members (mismatched speed, duplex, VLAN, or channel mode)", choices: ["The port's parameters do not match the other bundle members (mismatched speed, duplex, VLAN, or channel mode)","The port has been manually shut down","The cable is a runt","The transceiver wavelength is too high"], meta: "Port States — 5.2" },
+
+  // ── Hardware: PoE power budget ──
+  { text: "New PoE cameras stop powering on after several are added, though the network links are fine. What is the most likely cause?", answer: "The switch's PoE power budget has been exceeded", choices: ["The switch's PoE power budget has been exceeded","The cameras need single-mode fiber","The VLAN database is full","The cable is a Cat8"], meta: "PoE Issues — 5.2" },
+  { text: "A device needs <strong>60 W</strong> of PoE, but the switch port only supplies <strong>802.3af (15.4 W)</strong>. What is the problem?", answer: "An incorrect/insufficient PoE standard — the port must support 802.3bt (PoE++)", choices: ["An incorrect/insufficient PoE standard — the port must support 802.3bt (PoE++)","The cable is transposed","The port is error-disabled","A CRC mismatch"], meta: "PoE Issues — 5.2" },
+  { text: "Which PoE standard supplies the most power for high-draw devices like PTZ cameras and access points?", answer: "802.3bt (PoE++)", choices: ["802.3bt (PoE++)","802.3af (PoE)","802.3at (PoE+)","802.3ab"], meta: "PoE Issues — 5.2" },
+
+  // ── Hardware: transceiver mismatch ──
+  { text: "A fiber link between two switches will not come up. One end has a <strong>1000BASE-SX</strong> SFP and the other a <strong>1000BASE-LX</strong> SFP. What is wrong?", answer: "A transceiver mismatch — both ends must use matching optics/wavelength and fiber type", choices: ["A transceiver mismatch — both ends must use matching optics/wavelength and fiber type","The cable is a runt","The port budget is exceeded","The VLAN is suspended"], meta: "Transceiver Issues — 5.2" },
+  { text: "An SFP is physically seated and the link is up, but the interface logs errors. Optical <strong>receive signal strength</strong> reads very low (e.g., far below the transceiver's minimum dBm). What should you check?", answer: "Dirty or damaged fiber connectors, excessive cable length/loss, or a failing transceiver", choices: ["Dirty or damaged fiber connectors, excessive cable length/loss, or a failing transceiver","The DHCP lease time","The default gateway address","The spanning-tree root bridge"], meta: "Transceiver Issues — 5.2" },
+  { text: "Optical power is measured in <strong>dBm</strong>. A received signal that is too weak (low RX power) on a fiber link is best described as which problem category?", answer: "Signal strength / transceiver issue", choices: ["Signal strength / transceiver issue","Improper termination of a copper jack","A runt-frame problem","An administratively-down port"], meta: "Transceiver Issues — 5.2" },
+];
+
+// ── Network Service Issues (5.3) ──
+const SVCISSUE_QUESTIONS = [
+  // ── STP: loops ──
+  { text: "A technician patches two switch ports on the same VLAN together. Immediately the network floods with traffic, CPU spikes, and MAC addresses flap between ports. What has happened?", answer: "A Layer 2 switching loop, which STP is designed to prevent", choices: ["A Layer 2 switching loop, which STP is designed to prevent","A routing loop between two routers","DHCP pool exhaustion","A duplicate IP address conflict"], meta: "Spanning Tree — 5.3" },
+  { text: "What is the primary purpose of <strong>Spanning Tree Protocol (STP)</strong>?", answer: "To prevent Layer 2 loops by blocking redundant paths while keeping a loop-free topology", choices: ["To prevent Layer 2 loops by blocking redundant paths while keeping a loop-free topology","To route packets between different subnets","To assign IP addresses to hosts","To encrypt traffic between switches"], meta: "Spanning Tree — 5.3" },
+  { text: "A broadcast storm is caused by a switching loop. Which condition allows the loop to form when STP is disabled or has failed?", answer: "Redundant Layer 2 links with no port in a blocking state", choices: ["Redundant Layer 2 links with no port in a blocking state","An incorrect default gateway on the hosts","A subnet mask that is too small","An exhausted DHCP scope"], meta: "Spanning Tree — 5.3" },
+
+  // ── STP: root bridge selection ──
+  { text: "How does STP elect the <strong>root bridge</strong>?", answer: "The switch with the lowest bridge ID (priority first, then lowest MAC address) becomes root", choices: ["The switch with the lowest bridge ID (priority first, then lowest MAC address) becomes root","The switch with the highest IP address becomes root","The switch with the most ports becomes root","The first switch powered on becomes root"], meta: "Spanning Tree — 5.3" },
+  { text: "What is the <strong>default bridge priority</strong> on most switches?", answer: "32768", choices: ["32768","0","1","65535"], meta: "Spanning Tree — 5.3" },
+  { text: "A newly added access switch unexpectedly became the STP root bridge, creating suboptimal paths. All switches use the default priority. Why did the new switch win?", answer: "With equal priorities, the switch with the lowest MAC address wins the root election", choices: ["With equal priorities, the switch with the lowest MAC address wins the root election","New switches always become root by design","It had the fastest uplink port","It had the most VLANs configured"], meta: "Spanning Tree — 5.3" },
+  { text: "How do you ensure a specific core switch reliably remains the STP <strong>root bridge</strong>?", answer: "Manually configure it with the lowest bridge priority", choices: ["Manually configure it with the lowest bridge priority","Give it the highest bridge priority value","Disable STP on all other switches","Assign it the highest MAC address"], meta: "Spanning Tree — 5.3" },
+
+  // ── STP: port roles ──
+  { text: "On a non-root switch, which STP port role is the single port with the <strong>lowest-cost path to the root bridge</strong>?", answer: "Root port", choices: ["Root port","Designated port","Blocking port","Alternate port"], meta: "Spanning Tree — 5.3" },
+  { text: "Which STP port role is elected as the forwarding port for a given network segment (one per segment)?", answer: "Designated port", choices: ["Designated port","Root port","Alternate/blocking port","Backup native port"], meta: "Spanning Tree — 5.3" },
+  { text: "A redundant link's port is not forwarding user frames but is still listening for BPDUs to prevent a loop. What is this port's role/state?", answer: "A blocking (alternate) port", choices: ["A blocking (alternate) port","A designated forwarding port","The root port","An error-disabled port"], meta: "Spanning Tree — 5.3" },
+
+  // ── STP: port states ──
+  { text: "What is the correct order of classic <strong>802.1D STP port states</strong> as a port comes up?", answer: "Blocking → Listening → Learning → Forwarding", choices: ["Blocking → Listening → Learning → Forwarding","Listening → Blocking → Forwarding → Learning","Forwarding → Learning → Listening → Blocking","Learning → Listening → Blocking → Forwarding"], meta: "Spanning Tree — 5.3" },
+  { text: "In classic 802.1D STP, why does a newly connected port take roughly <strong>30 seconds</strong> before it forwards traffic?", answer: "It spends ~15 s in listening and ~15 s in learning before forwarding", choices: ["It spends ~15 s in listening and ~15 s in learning before forwarding","It waits for a DHCP lease","It negotiates PoE power","It runs a CRC self-test"], meta: "Spanning Tree — 5.3" },
+  { text: "Users on an access port complain of a delay before their PC gets network access after link-up. Which feature lets an edge port skip listening/learning and forward immediately?", answer: "PortFast", choices: ["PortFast","BPDU guard","Root guard","Auto-MDIX"], meta: "Spanning Tree — 5.3" },
+  { text: "Compared with classic 802.1D STP, what is the main advantage of <strong>Rapid STP (802.1w / RSTP)</strong>?", answer: "Much faster convergence after a topology change", choices: ["Much faster convergence after a topology change","It encrypts BPDUs","It eliminates the need for a root bridge","It assigns VLANs automatically"], meta: "Spanning Tree — 5.3" },
+
+  // ── Incorrect VLAN assignment ──
+  { text: "A user's PC is moved to a new switch port. The link is up and the cable tests good, but the user can no longer reach their department's resources. What is the most likely cause?", answer: "The new access port is assigned to the wrong VLAN", choices: ["The new access port is assigned to the wrong VLAN","The cable is a runt","The switch ran out of PoE budget","The root bridge changed"], meta: "VLAN Assignment — 5.3" },
+  { text: "Two hosts configured with addresses in the same IP subnet, plugged into the same switch, cannot communicate. What incorrect configuration would cause this at Layer 2?", answer: "They are assigned to different VLANs", choices: ["They are assigned to different VLANs","They have the same subnet mask","They both use the same default gateway","They are on the same VLAN"], meta: "VLAN Assignment — 5.3" },
+  { text: "Devices in VLAN 30 cannot reach VLAN 30 devices on a neighboring switch, though VLAN 10 works across the same trunk. What is the most likely cause?", answer: "VLAN 30 is not permitted on the trunk's allowed-VLAN list", choices: ["VLAN 30 is not permitted on the trunk's allowed-VLAN list","VLAN 30 has an exhausted DHCP scope","The trunk cable is too long","VLAN 10 is blocking VLAN 30"], meta: "VLAN Assignment — 5.3" },
+  { text: "A <strong>native VLAN mismatch</strong> between the two ends of an 802.1Q trunk most commonly results in what?", answer: "Traffic from the untagged/native VLAN crossing into the wrong VLAN, plus STP inconsistency warnings", choices: ["Traffic from the untagged/native VLAN crossing into the wrong VLAN, plus STP inconsistency warnings","Faster convergence of the trunk","Automatic VLAN pruning","A PoE power fault"], meta: "VLAN Assignment — 5.3" },
+
+  // ── ACLs ──
+  { text: "After a technician edits a router's ACL, an entire subnet suddenly loses access to a file server. What is the most likely cause?", answer: "A misconfigured ACL entry is denying the traffic", choices: ["A misconfigured ACL entry is denying the traffic","The DHCP scope is exhausted","The subnet mask is wrong","The STP root bridge moved"], meta: "ACLs — 5.3" },
+  { text: "What implicit rule exists at the end of every ACL?", answer: "An implicit 'deny all' — anything not explicitly permitted is dropped", choices: ["An implicit 'deny all' — anything not explicitly permitted is dropped","An implicit 'permit all'","An implicit 'log all'","Nothing; unmatched traffic is passed"], meta: "ACLs — 5.3" },
+  { text: "Traffic that a specific 'permit' line should allow is still being dropped, even though that permit line exists in the ACL. What is the most likely reason?", answer: "A broader deny (or permit) statement earlier in the list matched first — ACLs are processed top-down", choices: ["A broader deny (or permit) statement earlier in the list matched first — ACLs are processed top-down","ACLs are processed bottom-up","The permit line is case-sensitive","ACLs ignore the first matching entry"], meta: "ACLs — 5.3" },
+  { text: "Why does the <strong>order of entries</strong> matter in an ACL?", answer: "The first matching entry is applied and processing stops, so a misordered rule can override later ones", choices: ["The first matching entry is applied and processing stops, so a misordered rule can override later ones","The last matching entry always wins","All entries are evaluated and the strictest applies","Order only matters for IPv6 ACLs"], meta: "ACLs — 5.3" },
+
+  // ── Route selection: routing table ──
+  { text: "A router's routing table has two routes to the same destination: 10.1.1.0/24 and 10.1.0.0/16. Which does it use for a packet to 10.1.1.5?", answer: "10.1.1.0/24 — the most specific (longest-prefix) match wins", choices: ["10.1.1.0/24 — the most specific (longest-prefix) match wins","10.1.0.0/16 — the shorter prefix wins","Neither; the packet is dropped","It load-balances across both equally"], meta: "Route Selection — 5.3" },
+  { text: "Two routes to the same network have the <strong>same prefix length</strong> but were learned by different routing protocols. Which value breaks the tie?", answer: "Administrative distance — the route with the lower AD is installed", choices: ["Administrative distance — the route with the lower AD is installed","The metric of the higher-AD protocol","The router with the higher IP","The oldest route in the table"], meta: "Route Selection — 5.3" },
+  { text: "Two routes to the same network have the same prefix length and were learned by the <strong>same protocol</strong>. What decides which is used?", answer: "The lower metric is preferred", choices: ["The lower metric is preferred","The higher administrative distance","The higher metric is preferred","The route learned first"], meta: "Route Selection — 5.3" },
+  { text: "In route selection, what is the correct order of criteria a router uses to choose the best path?", answer: "Longest prefix match, then administrative distance, then metric", choices: ["Longest prefix match, then administrative distance, then metric","Metric, then prefix length, then AD","Administrative distance, then metric, then prefix length","Prefix length, then metric, then AD"], meta: "Route Selection — 5.3" },
+
+  // ── Route selection: default routes ──
+  { text: "What network/prefix represents the <strong>default route</strong> (gateway of last resort)?", answer: "0.0.0.0/0", choices: ["0.0.0.0/0","255.255.255.255/32","127.0.0.1/8","169.254.0.0/16"], meta: "Route Selection — 5.3" },
+  { text: "Hosts can reach internal subnets but nothing on the Internet. 'show ip route' reveals no gateway of last resort. What is the most likely cause?", answer: "A missing or incorrect default route on the router", choices: ["A missing or incorrect default route on the router","A duplicate IP address on the router","An STP loop","An exhausted DHCP scope"], meta: "Route Selection — 5.3" },
+  { text: "A packet's destination network has no matching entry in the routing table and there is no default route. What does the router do?", answer: "Drops the packet (no route to destination)", choices: ["Drops the packet (no route to destination)","Broadcasts it to every interface","Sends it to 127.0.0.1","Queues it until a route appears"], meta: "Route Selection — 5.3" },
+
+  // ── Address pool exhaustion ──
+  { text: "New devices on a subnet cannot obtain IP addresses while existing devices work fine. The DHCP server shows the scope is fully leased. What is the problem?", answer: "DHCP address pool (scope) exhaustion", choices: ["DHCP address pool (scope) exhaustion","An incorrect subnet mask on the server","An STP loop on the segment","An ACL blocking DNS"], meta: "Addressing Issues — 5.3" },
+  { text: "Which action best resolves <strong>DHCP scope exhaustion</strong> on a busy guest network?", answer: "Enlarge the scope or shorten the lease time so addresses free up faster", choices: ["Enlarge the scope or shorten the lease time so addresses free up faster","Lengthen the lease time to hours or days","Disable DHCP and use APIPA","Add more DNS servers"], meta: "Addressing Issues — 5.3" },
+  { text: "A client that failed to obtain a lease self-assigns a <strong>169.254.x.x</strong> address. What does this indicate?", answer: "The client could not reach a DHCP server (APIPA fallback)", choices: ["The client could not reach a DHCP server (APIPA fallback)","The client has a duplicate static IP","The default gateway is wrong","The subnet mask is too large"], meta: "Addressing Issues — 5.3" },
+
+  // ── Incorrect default gateway ──
+  { text: "A workstation can ping other hosts on its own subnet but cannot reach any other subnet or the Internet. What is the most likely misconfiguration?", answer: "An incorrect or missing default gateway", choices: ["An incorrect or missing default gateway","A duplicate MAC address","An STP blocking port","A wrong DNS server only"], meta: "Addressing Issues — 5.3" },
+  { text: "What is the specific role of the <strong>default gateway</strong> on a host?", answer: "It is the router the host sends traffic to when the destination is on a different subnet", choices: ["It is the router the host sends traffic to when the destination is on a different subnet","It is the DNS server used for name resolution","It is the DHCP server that leases addresses","It is the loopback address of the host"], meta: "Addressing Issues — 5.3" },
+
+  // ── Incorrect / duplicate IP ──
+  { text: "Two hosts on the LAN intermittently lose connectivity and the OS reports an 'IP address conflict.' What is the cause?", answer: "A duplicate IP address — two devices are configured with the same address", choices: ["A duplicate IP address — two devices are configured with the same address","An exhausted DHCP scope","A native VLAN mismatch","An incorrect default route"], meta: "Addressing Issues — 5.3" },
+  { text: "Which practice best prevents a statically assigned server from <strong>duplicating</strong> an address that DHCP might hand out?", answer: "Exclude the static addresses from the DHCP scope (or use a DHCP reservation)", choices: ["Exclude the static addresses from the DHCP scope (or use a DHCP reservation)","Shorten the DHCP lease time to one minute","Assign the server an APIPA address","Disable the default gateway on the server"], meta: "Addressing Issues — 5.3" },
+
+  // ── Incorrect subnet mask ──
+  { text: "A host is given the wrong <strong>subnet mask</strong>. It can reach some hosts but not others on what should be the same network. Why?", answer: "The wrong mask makes the host miscalculate which addresses are local vs. remote, so some traffic is sent to the wrong place", choices: ["The wrong mask makes the host miscalculate which addresses are local vs. remote, so some traffic is sent to the wrong place","The mask has no effect on reachability","A wrong mask only affects DNS","The mask changes the host's MAC address"], meta: "Addressing Issues — 5.3" },
+  { text: "A host with mask 255.255.255.0 (/24) needs to reach a device in 10.0.5.0/24 but the true network is /16. Because of the too-small mask, how does the host treat that device?", answer: "As remote, so it forwards the traffic to the default gateway instead of ARPing locally", choices: ["As remote, so it forwards the traffic to the default gateway instead of ARPing locally","As local, sending an ARP that always succeeds","As a duplicate IP conflict","As an unroutable APIPA address"], meta: "Addressing Issues — 5.3" },
+];
+
+// ── Performance Issues (5.4) ──
+const PERF_QUESTIONS = [
+  // ── Congestion / contention ──
+  { text: "During peak hours, a WAN link that is fine at other times becomes slow for everyone, with rising latency and dropped packets. Utilization sits near 100%. What is this?", answer: "Network congestion — offered traffic exceeds the link's capacity", choices: ["Network congestion — offered traffic exceeds the link's capacity","A duplicate IP address","A native VLAN mismatch","An STP loop"], meta: "Congestion / Contention — 5.4" },
+  { text: "Which technology best mitigates congestion by prioritizing delay-sensitive traffic (like VoIP) over bulk traffic on a saturated link?", answer: "Quality of Service (QoS)", choices: ["Quality of Service (QoS)","Spanning Tree Protocol","APIPA","MAC filtering"], meta: "Congestion / Contention — 5.4" },
+  { text: "On a legacy half-duplex Ethernet segment, throughput drops as more hosts transmit and collisions climb. This competition for a shared medium is best called what?", answer: "Contention", choices: ["Contention","Attenuation","Jitter","Crosstalk"], meta: "Congestion / Contention — 5.4" },
+  { text: "A half-duplex link shows rising collisions and late collisions as load increases. What kind of problem does this indicate?", answer: "Media contention on the shared collision domain", choices: ["Media contention on the shared collision domain","A routing loop","DHCP scope exhaustion","An incorrect subnet mask"], meta: "Congestion / Contention — 5.4" },
+
+  // ── Bottlenecking ──
+  { text: "Two sites each have gigabit LANs but are joined by a 100 Mbps link. End-to-end transfers never exceed ~100 Mbps. What is this single slowest point called?", answer: "A bottleneck", choices: ["A bottleneck","Jitter","A broadcast storm","A duplicate IP"], meta: "Bottlenecking — 5.4" },
+  { text: "What is the defining characteristic of a network bottleneck?", answer: "The slowest component or link limits the overall throughput of the whole path", choices: ["The slowest component or link limits the overall throughput of the whole path","Every device transmits at its maximum rate","Traffic is evenly balanced across all links","Latency is eliminated end to end"], meta: "Bottlenecking — 5.4" },
+  { text: "A server's NIC is negotiated at 100 Mbps while everything else is 1 Gbps, and it is the slowest hop for its traffic. Fixing the mismatch removes what?", answer: "The bottleneck limiting that server's throughput", choices: ["The bottleneck limiting that server's throughput","The default gateway","The STP root bridge","The DHCP scope"], meta: "Bottlenecking — 5.4" },
+
+  // ── Bandwidth / throughput ──
+  { text: "What is the difference between bandwidth and throughput?", answer: "Bandwidth is the maximum theoretical capacity of a link; throughput is the actual data rate achieved", choices: ["Bandwidth is the maximum theoretical capacity of a link; throughput is the actual data rate achieved","They are identical terms","Throughput is always higher than bandwidth","Bandwidth is measured in milliseconds"], meta: "Bandwidth / Throughput — 5.4" },
+  { text: "A '1 Gbps' link only delivers ~600 Mbps in a file-transfer test. Which term describes that measured 600 Mbps?", answer: "Throughput (actual achieved rate)", choices: ["Throughput (actual achieved rate)","Bandwidth (theoretical maximum)","Latency","Jitter"], meta: "Bandwidth / Throughput — 5.4" },
+  { text: "Users report an application is 'slow' but ping times are normal and there is no packet loss. A speed test shows throughput far below the link's rated bandwidth. What is the most likely category of issue?", answer: "Insufficient bandwidth/throughput for the demand (or a bottleneck along the path)", choices: ["Insufficient bandwidth/throughput for the demand (or a bottleneck along the path)","High jitter","A duplicate IP address","An STP loop"], meta: "Bandwidth / Throughput — 5.4" },
+
+  // ── Latency ──
+  { text: "What does network latency measure?", answer: "The time delay for data to travel from source to destination", choices: ["The time delay for data to travel from source to destination","The maximum capacity of a link","The percentage of packets dropped","The variation between packet arrival times"], meta: "Latency — 5.4" },
+  { text: "Which tool and value are commonly used to observe round-trip latency to a host?", answer: "ping — the round-trip time (RTT) in milliseconds", choices: ["ping — the round-trip time (RTT) in milliseconds","ipconfig — the subnet mask","arp — the MAC address","nslookup — the A record"], meta: "Latency — 5.4" },
+  { text: "A video call feels laggy: there is a noticeable delay before the other person reacts, though audio quality itself is clear. Which performance issue best fits?", answer: "High latency (delay)", choices: ["High latency (delay)","Packet loss","Duplicate IP addressing","MAC flooding"], meta: "Latency — 5.4" },
+  { text: "Which factor typically adds the most fixed latency to a long-distance WAN link?", answer: "Propagation delay over distance (plus queuing/serialization along the path)", choices: ["Propagation delay over distance (plus queuing/serialization along the path)","The color of the fiber jacket","The switch's hostname length","The number of VLANs defined"], meta: "Latency — 5.4" },
+
+  // ── Packet loss ──
+  { text: "A continuous ping to a stable server shows '4% packet loss' and some requests time out. What performance issue is this?", answer: "Packet loss — some packets fail to reach the destination", choices: ["Packet loss — some packets fail to reach the destination","High bandwidth","Low latency","A DHCP reservation"], meta: "Packet Loss — 5.4" },
+  { text: "How does TCP typically respond to packet loss, and what is the user-visible effect?", answer: "It retransmits lost segments, which reduces effective throughput and slows the transfer", choices: ["It retransmits lost segments, which reduces effective throughput and slows the transfer","It ignores the loss with no effect","It switches to UDP automatically","It doubles the link bandwidth"], meta: "Packet Loss — 5.4" },
+  { text: "Which of these is a common cause of packet loss on a network path?", answer: "Congestion causing buffers to overflow, or a faulty/errored interface", choices: ["Congestion causing buffers to overflow, or a faulty/errored interface","A correctly sized DHCP scope","A matching native VLAN on both ends","A lower administrative distance"], meta: "Packet Loss — 5.4" },
+  { text: "Why is packet loss especially harmful to real-time voice and video, unlike a bulk file download?", answer: "Real-time media cannot wait for retransmissions, so lost packets cause audible/visible gaps", choices: ["Real-time media cannot wait for retransmissions, so lost packets cause audible/visible gaps","Voice traffic never uses packets","File downloads are unaffected by loss but voice is faster","Retransmission makes real-time media clearer"], meta: "Packet Loss — 5.4" },
+
+  // ── Jitter ──
+  { text: "What is jitter?", answer: "Variation in the delay between arriving packets", choices: ["Variation in the delay between arriving packets","The total capacity of a link","The number of dropped packets","The round-trip time of a single ping"], meta: "Jitter — 5.4" },
+  { text: "On a VoIP call, audio breaks up and sounds choppy even though average latency and packet loss are low. Which issue is the most likely culprit?", answer: "Jitter — inconsistent packet arrival times", choices: ["Jitter — inconsistent packet arrival times","Insufficient bandwidth","A duplicate IP address","An ACL misconfiguration"], meta: "Jitter — 5.4" },
+  { text: "Which mechanism on a receiving VoIP device is designed to smooth out jitter?", answer: "A jitter buffer that briefly holds packets to play them back at an even rate", choices: ["A jitter buffer that briefly holds packets to play them back at an even rate","A larger subnet mask","A shorter DHCP lease","Disabling QoS"], meta: "Jitter — 5.4" },
+
+  // ── Wireless: channel overlap interference ──
+  { text: "In the crowded 2.4 GHz band, which three channels are non-overlapping and should be used to avoid adjacent-channel interference (in North America)?", answer: "Channels 1, 6, and 11", choices: ["Channels 1, 6, and 11","Channels 1, 2, and 3","Channels 2, 5, and 8","All channels overlap equally"], meta: "Wireless: Channel Overlap — 5.4" },
+  { text: "Two nearby APs are both set to 2.4 GHz channel 3 and channel 5. Users see slow, unreliable Wi-Fi. What is the problem?", answer: "Overlapping (adjacent-channel) interference between the APs", choices: ["Overlapping (adjacent-channel) interference between the APs","A duplicate IP address","An STP loop","DHCP scope exhaustion"], meta: "Wireless: Channel Overlap — 5.4" },
+  { text: "Several APs on the SAME 2.4 GHz channel in range of each other must take turns transmitting, reducing throughput. What is this called?", answer: "Co-channel interference (contention)", choices: ["Co-channel interference (contention)","Attenuation","Jitter","Crosstalk"], meta: "Wireless: Channel Overlap — 5.4" },
+
+  // ── Wireless: signal degradation / loss ──
+  { text: "As a laptop moves farther from the AP and through several walls, its signal strength (RSSI) weakens and the data rate drops. What is this loss of signal over distance/obstacles called?", answer: "Attenuation (signal degradation)", choices: ["Attenuation (signal degradation)","Jitter","A broadcast storm","A duplicate IP"], meta: "Wireless: Signal Degradation — 5.4" },
+  { text: "A metric like RSSI (or SNR) is used to gauge wireless signal quality. A very low RSSI at the client indicates what?", answer: "A weak/degraded signal, likely from distance, obstructions, or interference", choices: ["A weak/degraded signal, likely from distance, obstructions, or interference","An exhausted DHCP scope","A misconfigured ACL","Excessive bandwidth"], meta: "Wireless: Signal Degradation — 5.4" },
+  { text: "Which of these commonly degrades a Wi-Fi signal between the AP and client?", answer: "Physical obstructions (walls, metal) and RF interference from other devices", choices: ["Physical obstructions (walls, metal) and RF interference from other devices","A correct subnet mask","A lower administrative distance","A matching native VLAN"], meta: "Wireless: Signal Degradation — 5.4" },
+
+  // ── Wireless: insufficient coverage ──
+  { text: "Users in a far corner of the warehouse have no Wi-Fi, while the rest of the building is fine. This 'dead zone' is a symptom of what?", answer: "Insufficient wireless coverage", choices: ["Insufficient wireless coverage","A routing loop","DHCP exhaustion","A duplicate IP"], meta: "Wireless: Coverage — 5.4" },
+  { text: "What is the best remedy for a Wi-Fi coverage gap (dead zone) in part of a building?", answer: "Add or reposition access points (and adjust transmit power) to extend coverage", choices: ["Add or reposition access points (and adjust transmit power) to extend coverage","Shorten the DHCP lease time","Disable the SSID","Lower the AP's channel width to 20 MHz only"], meta: "Wireless: Coverage — 5.4" },
+  { text: "Which tool is most useful for identifying wireless coverage gaps and interference so APs can be placed correctly?", answer: "A Wi-Fi analyzer / wireless survey (heat map)", choices: ["A Wi-Fi analyzer / wireless survey (heat map)","A cable tester","A toner probe","A visual fault locator"], meta: "Wireless: Coverage — 5.4" },
+
+  // ── Wireless: client disassociation ──
+  { text: "Wireless clients repeatedly drop off the network and must reconnect, even while stationary. This is best described as what?", answer: "Client disassociation from the AP", choices: ["Client disassociation from the AP","A duplicate IP conflict","An STP topology change","A default gateway error"], meta: "Wireless: Disassociation — 5.4" },
+  { text: "Which of these can cause frequent wireless client disassociations?", answer: "Weak signal at the cell edge, RF interference, or an overloaded AP", choices: ["Weak signal at the cell edge, RF interference, or an overloaded AP","A correctly sized DHCP scope","A lower administrative distance","A matching MTU"], meta: "Wireless: Disassociation — 5.4" },
+
+  // ── Wireless: roaming misconfiguration ──
+  { text: "A user walks across the building on a VoIP-over-Wi-Fi call. Their device stays locked to the first, now-distant AP instead of moving to a closer one, so the call degrades. What describes this?", answer: "A roaming problem — a 'sticky client' failing to hand off to a nearer AP", choices: ["A roaming problem — a 'sticky client' failing to hand off to a nearer AP","A duplicate IP address","DHCP scope exhaustion","An STP loop"], meta: "Wireless: Roaming — 5.4" },
+  { text: "For seamless roaming, multiple APs in the same wireless network should share which setting so clients move between them without re-authenticating to a different network?", answer: "The same SSID (and security settings), with APs on non-overlapping channels", choices: ["The same SSID (and security settings), with APs on non-overlapping channels","A different SSID per AP","The same static IP on every client","Overlapping channels on every AP"], meta: "Wireless: Roaming — 5.4" },
+  { text: "Roaming is configured too aggressively, so clients keep jumping between APs and briefly lose connectivity each time. What is this behavior called?", answer: "Roaming misconfiguration causing excessive handoffs (flapping between APs)", choices: ["Roaming misconfiguration causing excessive handoffs (flapping between APs)","A broadcast storm","Attenuation","A native VLAN mismatch"], meta: "Wireless: Roaming — 5.4" },
+];
+
+// ── Tools & Protocols (5.5) ──
+const TOOLS_QUESTIONS = [
+  // ── Software: protocol analyzer ──
+  { text: "You need to inspect the actual contents and headers of traffic to diagnose why a TLS handshake is failing. Which software tool is designed to capture and decode packets at every layer?", answer: "A protocol analyzer (e.g., Wireshark)", choices: ["A protocol analyzer (e.g., Wireshark)","ping","nslookup","A speed tester"], meta: "Protocol Analyzer — 5.5" },
+  { text: "What does a protocol analyzer primarily let you do?", answer: "Capture, decode, and inspect network packets frame by frame", choices: ["Capture, decode, and inspect network packets frame by frame","Assign IP addresses via DHCP","Trace a copper cable through a wall","Measure PoE power budget"], meta: "Protocol Analyzer — 5.5" },
+
+  // ── Software: ping ──
+  { text: "Which tool sends ICMP echo requests to test basic reachability and round-trip time to a host?", answer: "ping", choices: ["ping","dig","netstat","arp"], meta: "ping — 5.5" },
+  { text: "A user cannot reach a server. You want the quickest test of whether the host is reachable across the network and how long replies take. Which command is best?", answer: "ping (ICMP echo, reports RTT)", choices: ["ping (ICMP echo, reports RTT)","nslookup","tracert","ipconfig"], meta: "ping — 5.5" },
+  { text: "A ping to a host returns 'Request timed out' but ping to the default gateway succeeds. What has this most directly confirmed?", answer: "Local connectivity to the gateway works, but the remote host is unreachable or not responding", choices: ["Local connectivity to the gateway works, but the remote host is unreachable or not responding","DNS resolution has failed","The NIC driver is corrupt","The switch has an STP loop"], meta: "ping — 5.5" },
+
+  // ── Software: traceroute / tracert ──
+  { text: "Which tool shows each router (hop) along the path to a destination and the latency to each, helping locate where traffic slows or stops?", answer: "traceroute / tracert", choices: ["traceroute / tracert","arp","netstat","a cable tester"], meta: "traceroute / tracert — 5.5" },
+  { text: "Traceroute works by sending packets with incrementing values in which IP field so each successive router replies with a Time Exceeded message?", answer: "The TTL (Time To Live) field", choices: ["The TTL (Time To Live) field","The source port field","The DSCP/QoS field","The fragment offset field"], meta: "traceroute / tracert — 5.5" },
+  { text: "On Windows, which command traces the Layer 3 path to a destination?", answer: "tracert", choices: ["tracert","traceroute","dig","ss"], meta: "traceroute / tracert — 5.5" },
+
+  // ── Software: nslookup ──
+  { text: "Users report a website is down, but you suspect DNS. Which tool queries a DNS server to resolve a name to an IP (and works on both Windows and Linux)?", answer: "nslookup", choices: ["nslookup","netstat","arp","toner probe"], meta: "nslookup — 5.5" },
+  { text: "You want to confirm which DNS server answered a query and what record it returned for a hostname. Which basic tool is appropriate?", answer: "nslookup", choices: ["nslookup","ping","tracert","ipconfig"], meta: "nslookup — 5.5" },
+
+  // ── Software: tcpdump ──
+  { text: "On a Linux server with no GUI, which command-line tool captures packets on an interface for later analysis?", answer: "tcpdump", choices: ["tcpdump","ipconfig","nslookup","tracert"], meta: "tcpdump — 5.5" },
+  { text: "What is tcpdump best described as?", answer: "A command-line packet capture / protocol analyzer for Unix-like systems", choices: ["A command-line packet capture / protocol analyzer for Unix-like systems","A DNS record editor","A fiber break locator","A PoE power meter"], meta: "tcpdump — 5.5" },
+
+  // ── Software: dig ──
+  { text: "On Linux you need detailed DNS query output, including the authority and answer sections, to troubleshoot a resolution problem. Which tool is preferred?", answer: "dig", choices: ["dig","arp","netstat","tcpdump"], meta: "dig — 5.5" },
+  { text: "Which statement best distinguishes dig from nslookup?", answer: "dig gives more detailed, scriptable DNS output and is common on Unix/Linux systems", choices: ["dig gives more detailed, scriptable DNS output and is common on Unix/Linux systems","dig captures packets while nslookup edits routes","dig only works on Windows","dig measures link throughput"], meta: "dig — 5.5" },
+
+  // ── Software: netstat ──
+  { text: "You suspect a host has an unexpected service listening or too many open connections. Which command displays active connections and listening ports?", answer: "netstat", choices: ["netstat","nslookup","tracert","dig"], meta: "netstat — 5.5" },
+  { text: "What information does netstat primarily provide?", answer: "Active network connections, listening ports, and protocol statistics on the local host", choices: ["Active network connections, listening ports, and protocol statistics on the local host","The path of routers to a remote host","The signal strength of nearby Wi-Fi","The MAC-to-port table of a switch"], meta: "netstat — 5.5" },
+
+  // ── Software: ip / ifconfig / ipconfig ──
+  { text: "On a Windows PC, which command displays the interface's IP address, subnet mask, and default gateway?", answer: "ipconfig", choices: ["ipconfig","ifconfig","dig","netstat"], meta: "ip / ifconfig / ipconfig — 5.5" },
+  { text: "On a modern Linux host, which command is the current tool for viewing and configuring interface addresses (replacing the older ifconfig)?", answer: "ip (e.g., ip address)", choices: ["ip (e.g., ip address)","ipconfig","tracert","nslookup"], meta: "ip / ifconfig / ipconfig — 5.5" },
+  { text: "A Windows user reports an address of 169.254.x.x. Which command did you most likely run to see that APIPA address, and what does it indicate?", answer: "ipconfig — the client failed to get an address from DHCP", choices: ["ipconfig — the client failed to get an address from DHCP","dig — DNS resolution failed","arp — a duplicate MAC was found","netstat — a port is blocked"], meta: "ip / ifconfig / ipconfig — 5.5" },
+
+  // ── Software: arp ──
+  { text: "You need to see the local mapping of IP addresses to MAC addresses your host has learned, to investigate a suspected duplicate IP or ARP poisoning. Which command shows this cache?", answer: "arp (e.g., arp -a)", choices: ["arp (e.g., arp -a)","netstat","nslookup","tracert"], meta: "arp — 5.5" },
+  { text: "The arp command displays which type of information?", answer: "The IP-address-to-MAC-address resolution table (ARP cache)", choices: ["The IP-address-to-MAC-address resolution table (ARP cache)","The list of DNS records for a domain","The routers along a path","Open TCP listening sockets"], meta: "arp — 5.5" },
+
+  // ── Software: Nmap ──
+  { text: "You want to discover live hosts on a subnet and enumerate which TCP/UDP ports and services are open. Which tool is designed for this?", answer: "Nmap", choices: ["Nmap","ping","dig","a toner probe"], meta: "Nmap — 5.5" },
+  { text: "Nmap is best categorized as which kind of tool?", answer: "A network / port scanner used for host discovery and service enumeration", choices: ["A network / port scanner used for host discovery and service enumeration","A DNS resolver","A cable continuity tester","A packet decoder for a single flow"], meta: "Nmap — 5.5" },
+
+  // ── Software: LLDP / CDP ──
+  { text: "You need to identify which switch and port a device is connected to without physically tracing the cable. Which protocols let neighboring devices advertise their identity and port?", answer: "LLDP and CDP", choices: ["LLDP and CDP","ICMP and ARP","DNS and DHCP","SFTP and TFTP"], meta: "LLDP / CDP — 5.5" },
+  { text: "Which statement correctly distinguishes LLDP from CDP?", answer: "LLDP is the vendor-neutral (IEEE 802.1AB) standard; CDP is Cisco proprietary", choices: ["LLDP is the vendor-neutral (IEEE 802.1AB) standard; CDP is Cisco proprietary","CDP is the open standard; LLDP is Cisco-only","Both are Cisco proprietary","Both operate at Layer 3 to route packets"], meta: "LLDP / CDP — 5.5" },
+
+  // ── Software: speed tester ──
+  { text: "A user complains their connection is 'slow.' Which tool measures actual upload/download throughput to compare against the provisioned bandwidth?", answer: "A speed tester", choices: ["A speed tester","nslookup","arp","a visual fault locator"], meta: "Speed Tester — 5.5" },
+
+  // ── Hardware: toner / toner probe ──
+  { text: "In a wiring closet full of unlabeled cables, which hardware tool pair lets you place a tone on one end and audibly find the matching cable at the other end?", answer: "A toner (tone generator) and probe", choices: ["A toner (tone generator) and probe","A cable tester","A Wi-Fi analyzer","A protocol analyzer"], meta: "Toner Probe — 5.5" },
+  { text: "What is the primary purpose of a toner probe (tone generator and probe)?", answer: "To locate and trace / identify a specific cable among many", choices: ["To locate and trace / identify a specific cable among many","To verify a cable's pinout and continuity","To decode captured packets","To measure signal-to-noise ratio on Wi-Fi"], meta: "Toner Probe — 5.5" },
+
+  // ── Hardware: cable tester ──
+  { text: "A newly terminated Ethernet run does not work. Which hardware tool verifies continuity and the correct pin-to-pin wiremap (detecting opens, shorts, and miswires)?", answer: "A cable tester", choices: ["A cable tester","A toner probe","A speed tester","nslookup"], meta: "Cable Tester — 5.5" },
+  { text: "A cable tester reports pins 3 and 6 are open on a patch cable. What does this most likely indicate?", answer: "An improper termination / wiring fault on those conductors", choices: ["An improper termination / wiring fault on those conductors","A DNS misconfiguration","An exhausted DHCP scope","An STP root bridge change"], meta: "Cable Tester — 5.5" },
+
+  // ── Hardware: taps ──
+  { text: "You must capture all traffic on a link for analysis without introducing a device that could drop frames, and without relying on a switch feature. Which hardware provides a passive copy of the traffic?", answer: "A network tap", choices: ["A network tap","A toner probe","A visual fault locator","A cable tester"], meta: "Taps — 5.5" },
+  { text: "What is an advantage of a network tap over a switch's port mirror (SPAN) for capture?", answer: "A tap passively copies all traffic and does not drop frames under load the way an oversubscribed SPAN port can", choices: ["A tap passively copies all traffic and does not drop frames under load the way an oversubscribed SPAN port can","A tap assigns IP addresses to clients","A tap resolves DNS names faster","A tap boosts PoE power to the link"], meta: "Taps — 5.5" },
+
+  // ── Hardware: Wi-Fi analyzer ──
+  { text: "Users report unreliable wireless in one area. Which tool shows channel usage, signal strength, and interference so you can pick better channels or AP placement?", answer: "A Wi-Fi analyzer", choices: ["A Wi-Fi analyzer","A cable tester","A toner probe","netstat"], meta: "Wi-Fi Analyzer — 5.5" },
+
+  // ── Hardware: visual fault locator ──
+  { text: "You suspect a break or a tight bend in a fiber run. Which tool injects visible (usually red) laser light so the fault glows at the break?", answer: "A visual fault locator (VFL)", choices: ["A visual fault locator (VFL)","A toner probe","A cable tester","A Wi-Fi analyzer"], meta: "Visual Fault Locator — 5.5" },
+  { text: "A visual fault locator is used on which type of media?", answer: "Fiber-optic cable", choices: ["Fiber-optic cable","Copper twisted pair","Coaxial cable","Wireless RF links"], meta: "Visual Fault Locator — 5.5" },
+
+  // ── Device commands: show mac-address-table ──
+  { text: "On a switch, which command reveals which MAC addresses are learned on which physical ports (useful for locating an end device)?", answer: "show mac-address-table", choices: ["show mac-address-table","show ip route","show vlan","show power"], meta: "show mac-address-table — 5.5" },
+
+  // ── Device commands: show route ──
+  { text: "A router is not forwarding traffic to a remote subnet. Which command displays the routing table and installed routes/next hops?", answer: "show route (show ip route)", choices: ["show route (show ip route)","show mac-address-table","show interface","show arp"], meta: "show route — 5.5" },
+
+  // ── Device commands: show interface ──
+  { text: "You suspect a link has errors. Which command shows an interface's status, speed/duplex, and counters like CRC errors and drops?", answer: "show interface", choices: ["show interface","show vlan","show config","show route"], meta: "show interface — 5.5" },
+  { text: "'show interface' reports rising CRC errors on a port. Which class of problem does that most point to?", answer: "A physical / cabling or duplex issue on that link", choices: ["A physical / cabling or duplex issue on that link","An expired DHCP lease","A DNS record error","A missing default route"], meta: "show interface — 5.5" },
+
+  // ── Device commands: show config ──
+  { text: "You need to verify the currently active settings on a switch to confirm a recent change took effect. Which command displays the running configuration?", answer: "show config (show running-config)", choices: ["show config (show running-config)","show mac-address-table","show power","show arp"], meta: "show config — 5.5" },
+
+  // ── Device commands: show arp ──
+  { text: "On a router or switch, which command displays the device's own IP-to-MAC resolution table?", answer: "show arp", choices: ["show arp","show vlan","show route","show interface"], meta: "show arp — 5.5" },
+
+  // ── Device commands: show vlan ──
+  { text: "An access port's device is on the wrong network. Which command lists VLANs and which ports are assigned to each?", answer: "show vlan", choices: ["show vlan","show power","show route","show config"], meta: "show vlan — 5.5" },
+
+  // ── Device commands: show power ──
+  { text: "A PoE access point won't power on and you suspect the switch's power budget is exhausted. Which command displays PoE power usage and availability?", answer: "show power", choices: ["show power","show vlan","show arp","show interface"], meta: "show power — 5.5" },
+];
+
 //  STATE
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
@@ -1597,6 +1935,11 @@ let accessQs = [], accessIdx = 0, accessScore = { c: 0, w: 0 }, accessHist = [];
 let securityQs = [], securityIdx = 0, securityScore = { c: 0, w: 0 }, securityHist = [];
 let attackQs = [], attackIdx = 0, attackScore = { c: 0, w: 0 }, attackHist = [];
 let defenseQs = [], defenseIdx = 0, defenseScore = { c: 0, w: 0 }, defenseHist = [];
+let troubleshootQs = [], troubleshootIdx = 0, troubleshootScore = { c: 0, w: 0 }, troubleshootHist = [];
+let cablingQs = [], cablingIdx = 0, cablingScore = { c: 0, w: 0 }, cablingHist = [];
+let svcIssueQs = [], svcIssueIdx = 0, svcIssueScore = { c: 0, w: 0 }, svcIssueHist = [];
+let perfQs = [], perfIdx = 0, perfScore = { c: 0, w: 0 }, perfHist = [];
+let toolsQs = [], toolsIdx = 0, toolsScore = { c: 0, w: 0 }, toolsHist = [];
 let acronymQs = [], acronymIdx = 0, acronymScore = { c: 0, w: 0 }, acronymHist = [];
 
 // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
@@ -1987,6 +2330,106 @@ function nextDefenseQ() {
   renderDefenseQ();
 }
 
+// Troubleshooting Methodology (5.1)
+
+function renderTroubleshootQ() {
+  renderMC('troubleshoot', troubleshootQs[troubleshootIdx], checkTroubleshootQ);
+  renderDots('troubleshoot-dots', troubleshootHist);
+}
+
+function checkTroubleshootQ(chosen, correct) {
+  resolveMC('troubleshoot', chosen, correct, troubleshootScore, troubleshootHist);
+  updateScore('troubleshoot', troubleshootScore);
+  renderDots('troubleshoot-dots', troubleshootHist);
+  document.getElementById('troubleshoot-next').style.display = 'inline-block';
+}
+
+function nextTroubleshootQ() {
+  troubleshootIdx++;
+  if (troubleshootIdx >= troubleshootQs.length) { troubleshootQs = shuffle([...TROUBLESHOOT_QUESTIONS]); troubleshootIdx = 0; }
+  renderTroubleshootQ();
+}
+
+// Cabling & Physical Interface Issues (5.2)
+
+function renderCablingQ() {
+  renderMC('cabling', cablingQs[cablingIdx], checkCablingQ);
+  renderDots('cabling-dots', cablingHist);
+}
+
+function checkCablingQ(chosen, correct) {
+  resolveMC('cabling', chosen, correct, cablingScore, cablingHist);
+  updateScore('cabling', cablingScore);
+  renderDots('cabling-dots', cablingHist);
+  document.getElementById('cabling-next').style.display = 'inline-block';
+}
+
+function nextCablingQ() {
+  cablingIdx++;
+  if (cablingIdx >= cablingQs.length) { cablingQs = shuffle([...CABLING_QUESTIONS]); cablingIdx = 0; }
+  renderCablingQ();
+}
+
+// Network Service Issues (5.3)
+
+function renderSvcIssueQ() {
+  renderMC('svcissues', svcIssueQs[svcIssueIdx], checkSvcIssueQ);
+  renderDots('svcissues-dots', svcIssueHist);
+}
+
+function checkSvcIssueQ(chosen, correct) {
+  resolveMC('svcissues', chosen, correct, svcIssueScore, svcIssueHist);
+  updateScore('svcissues', svcIssueScore);
+  renderDots('svcissues-dots', svcIssueHist);
+  document.getElementById('svcissues-next').style.display = 'inline-block';
+}
+
+function nextSvcIssueQ() {
+  svcIssueIdx++;
+  if (svcIssueIdx >= svcIssueQs.length) { svcIssueQs = shuffle([...SVCISSUE_QUESTIONS]); svcIssueIdx = 0; }
+  renderSvcIssueQ();
+}
+
+// Performance Issues (5.4)
+
+function renderPerfQ() {
+  renderMC('perf', perfQs[perfIdx], checkPerfQ);
+  renderDots('perf-dots', perfHist);
+}
+
+function checkPerfQ(chosen, correct) {
+  resolveMC('perf', chosen, correct, perfScore, perfHist);
+  updateScore('perf', perfScore);
+  renderDots('perf-dots', perfHist);
+  document.getElementById('perf-next').style.display = 'inline-block';
+}
+
+function nextPerfQ() {
+  perfIdx++;
+  if (perfIdx >= perfQs.length) { perfQs = shuffle([...PERF_QUESTIONS]); perfIdx = 0; }
+  renderPerfQ();
+}
+
+// Tools & Protocols (5.5)
+
+function renderToolsQ() {
+  renderMC('tools', toolsQs[toolsIdx], checkToolsQ);
+  renderDots('tools-dots', toolsHist);
+}
+
+function checkToolsQ(chosen, correct) {
+  resolveMC('tools', chosen, correct, toolsScore, toolsHist);
+  updateScore('tools', toolsScore);
+  renderDots('tools-dots', toolsHist);
+  document.getElementById('tools-next').style.display = 'inline-block';
+}
+
+function nextToolsQ() {
+  toolsIdx++;
+  if (toolsIdx >= toolsQs.length) { toolsQs = shuffle([...TOOLS_QUESTIONS]); toolsIdx = 0; }
+  renderToolsQ();
+}
+
 // Acronyms (N10-009 acronym appendix)
 
 function renderAcronymQ() {
@@ -2016,6 +2459,7 @@ const DOMAIN_SECTIONS = {
   domain2: ['routing', 'switching', 'wireless', 'physical'],
   domain3: ['orgproc', 'monitoring', 'dr', 'services', 'access'],
   domain4: ['security', 'attacks', 'defenses'],
+  domain5: ['troubleshoot', 'cabling', 'svcissues', 'perf', 'tools'],
 };
 
 let activeDomain = 'domain1';
@@ -2092,6 +2536,11 @@ document.addEventListener('DOMContentLoaded', () => {
   securityQs   = shuffle([...SECURITY_QUESTIONS]);
   attackQs     = shuffle([...ATTACK_QUESTIONS]);
   defenseQs    = shuffle([...DEFENSE_QUESTIONS]);
+  troubleshootQs = shuffle([...TROUBLESHOOT_QUESTIONS]);
+  cablingQs    = shuffle([...CABLING_QUESTIONS]);
+  svcIssueQs   = shuffle([...SVCISSUE_QUESTIONS]);
+  perfQs       = shuffle([...PERF_QUESTIONS]);
+  toolsQs      = shuffle([...TOOLS_QUESTIONS]);
   acronymQs    = buildAcronymQuestions();
   renderPortQ();
   renderCableQ();
@@ -2111,6 +2560,11 @@ document.addEventListener('DOMContentLoaded', () => {
   renderSecurityQ();
   renderAttackQ();
   renderDefenseQ();
+  renderTroubleshootQ();
+  renderCablingQ();
+  renderSvcIssueQ();
+  renderPerfQ();
+  renderToolsQ();
   renderAcronymQ();
 
   document.getElementById('subnet-answer').addEventListener('keydown', e => {

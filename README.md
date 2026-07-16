@@ -44,7 +44,11 @@ Open `networkplus.html` in a browser. No installation required.
 | Security Concepts | 4.1 | Done ✅ |
 | Attack Types | 4.2 | Done ✅ |
 | Security Defenses | 4.3 | Done ✅ |
-| Troubleshooting | 5.1–5.5 | Not yet |
+| Troubleshooting Methodology | 5.1 | Done ✅ |
+| Cabling & Physical Issues | 5.2 | Unverified 🟡 |
+| Network Service Issues | 5.3 | Unverified 🟡 |
+| Performance Issues | 5.4 | Unverified 🟡 |
+| Tools & Protocols | 5.5 | Unverified 🟡 |
 | Acronyms | Objectives appendix | Done ✅ |
 
 ## Acronyms Section
