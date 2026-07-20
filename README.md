@@ -4,6 +4,20 @@ A browser-based flashcard and quiz tool for the CompTIA Network+ N10-009 exam. N
 
 **Live:** https://tbzeff.github.io/ClaudeNetwork-Helper/
 
+## Disclaimers
+
+**Not affiliated with CompTIA.** This is an independent, unofficial study aid and is
+not affiliated with, endorsed by, or sponsored by CompTIA. CompTIA® and Network+® are
+registered trademarks of CompTIA, Inc. "N10-009" refers to the exam objectives version
+this tool targets.
+
+**Supplement, not sole source.** This tool is a supplement to, not a replacement for,
+official study materials. Questions are independently written and may contain errors or
+omissions — they are not reviewed or approved by CompTIA and won't match the real exam's
+wording, difficulty, or scoring. Cross-reference with an official study guide, and report
+any inaccuracies you find via
+[Issues](https://github.com/tbzeff/ClaudeNetwork-Helper/issues).
+
 ## Purpose
 
 Covers all five N10-009 exam domains through interactive multiple-choice questions and free-text exercises. Tracks your score per section so you can focus on weak areas before the exam.

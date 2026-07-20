@@ -1,0 +1,84 @@
+name: Question error
+description: Report a wrong answer, misleading explanation, or typo in a quiz question
+title: "[Question] "
+labels: ["question-error"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping fix this. The more of the question text you paste, the
+        faster it can be found in the data arrays.
+
+  - type: dropdown
+    id: section
+    attributes:
+      label: Section
+      description: Which tab was the question in?
+      options:
+        - "Domain 1 — Ports & Protocols"
+        - "Domain 1 — Cable Standards"
+        - "Domain 1 — Classful IP"
+        - "Domain 1 — Net Fundamentals"
+        - "Domain 1 — Cloud Concepts"
+        - "Domain 1 — Subnetting"
+        - "Domain 2 — Routing"
+        - "Domain 2 — Switching/VLANs"
+        - "Domain 2 — Wireless"
+        - "Domain 2 — Physical Install"
+        - "Domain 3 — Org Processes"
+        - "Domain 3 — Monitoring"
+        - "Domain 3 — DR Concepts"
+        - "Domain 3 — IPv4/IPv6 Services"
+        - "Domain 3 — Access & Mgmt"
+        - "Domain 4 — Security Concepts"
+        - "Domain 4 — Attack Types"
+        - "Domain 4 — Security Defenses"
+        - "Domain 5 — Troubleshooting Methodology"
+        - "Domain 5 — Cabling & Physical Issues"
+        - "Domain 5 — Network Service Issues"
+        - "Domain 5 — Performance Issues"
+        - "Domain 5 — Tools & Protocols"
+        - "Acronyms"
+        - "Not sure / other"
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Question text
+      description: Paste the question as it appeared, plus the answer choices if you have them.
+      placeholder: "What port does SIP use?"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What's wrong?
+      options:
+        - "The answer marked correct is wrong"
+        - "The explanation is wrong or misleading"
+        - "More than one answer is correct"
+        - "The question is outside the N10-009 objectives"
+        - "Typo or formatting problem"
+        - "Something else"
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What should it say instead?
+      description: The answer or wording you believe is correct, and why.
+    validations:
+      required: true
+
+  - type: input
+    id: source
+    attributes:
+      label: Source (optional)
+      description: >
+        An objectives-document line, RFC, or study guide that backs this up.
+        Optional, but it makes the fix much quicker to confirm.
+      placeholder: "N10-009 objective 1.4, ports table"
